@@ -1,4 +1,40 @@
+label {
+    margin-left: 4px;
+    font-weight: 300;
+}
 
+input {
+    width: 300px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    padding: 6px;
+    height: 26px;
+    border: none;
+    border-radius: 8px;
+}
+
+input:focus {
+    outline: none;
+    background-color: rgb(230, 230, 230);
+}
+
+select {
+    width: 130%;
+    height: 40px;
+    padding: 6px;
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+select:focus {
+    outline: none;
+    background-color: rgb(230, 230, 230);
+}
+
+option:hover{
+    background-color: rgb(230, 230, 230); 
+}
 
 .form_personal {
     width: 50%;
@@ -21,20 +57,3 @@
     gap: 40px;
 }
 
-select {
-    width: 130%;
-    height: 40px;
-    padding: 6px;
-    border-radius: 8px;
-    margin-top: 4px;
-    margin-bottom: 10px;
-}
-
-select:focus {
-    outline: none;
-    background-color: rgb(230, 230, 230);
-}
-
-option:hover{
-    background-color: rgb(230, 230, 230); 
-}
