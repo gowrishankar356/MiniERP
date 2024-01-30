@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import styles from "./styles.module.css";
 import NavBar from "../NavBar";
 
 const PersonalDetailsForm = () => {
   const [persoanlDetails, setPersonalDetails] = useState({
-    title: "mr",
+    hireDate: "",
+    companyName: "",
+    employeeType: "FULL_TIME",
+    title: "MR",
     firstName: "",
     lastName: "",
-    gender: "male",
+    gender: "MALE",
     dob: "",
   });
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setPersonalDetails((prev) => ({
@@ -25,25 +27,97 @@ const PersonalDetailsForm = () => {
     console.log(persoanlDetails);
   };
 
-  const handleSubmit = async (e) => {
+  const handleNext = async (e) => {
     e.preventDefault();
-    console.log(persoanlDetails)
     try {
-      await axios.post(
-        `http://localhost:3300/person`,
-        persoanlDetails
-      );
+      navigate("/legislativeContactInfo");
+    } catch (error) {
+      console.log(error);
+      alert("Error navigating to Citizenship Info form!");
+    }
+  };
+
+  const handleBack = async (e) => {
+    e.preventDefault();
+    try {
       navigate("/");
     } catch (error) {
       console.log(error);
-      alert("Error adding person. Please try again.");
+      alert("Error navigating back!");
     }
   };
+
+  const handleCancel = async (e) => {
+    e.preventDefault();
+    try {
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert("Error cancelling current transaction!");
+    }
+  };
+
+  // Initial Submit Configuration
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log(persoanlDetails);
+  //   try {
+  //     await axios.post(`http://localhost:3300/person`, persoanlDetails);
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert("Error adding person. Please try again.");
+  //   }
+  // };
 
   return (
     <div>
       <NavBar></NavBar>
       <div class={styles.form_personal}>
+        <h2>Hire an Employee</h2>
+        <h3>Basic Details</h3>
+        <form>
+          <div class={styles.row}>
+            <label>
+              Hire Date<br></br>
+              <input
+                type="date"
+                name="hireDate"
+                id="hireDate"
+                value={persoanlDetails.hireDate}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Company Name<br></br>
+              <input
+                type="text"
+                name="companyName"
+                placeholder="Eg: Google"
+                id="companyName"
+                value={persoanlDetails.companyName}
+                onChange={handleChange}
+                required
+              />
+            </label>
+          </div>
+        </form>
+        <div class={styles.row}>
+          <label>
+            Employee Type<br></br>
+            <select
+              id="employeeType"
+              onChange={handleChange}
+              name="employeeType"
+              value={persoanlDetails.employeeType}
+              required
+            >
+              <option value="FULL_TIME">Full Time</option>
+              <option value="PART_TIME">Part Time</option>
+            </select>
+          </label>
+        </div>
         <form>
           <h3>Personal Details</h3>
           <div class={styles.row}>
@@ -56,9 +130,9 @@ const PersonalDetailsForm = () => {
                 value={persoanlDetails.title}
                 required
               >
-                <option value="mr">Mr.</option>
-                <option value="mrs">Mrs.</option>
-                <option value="ms">Ms.</option>
+                <option value="MR">Mr.</option>
+                <option value="MRS">Mrs.</option>
+                <option value="MS">Ms.</option>
               </select>
             </label>
             <label>
@@ -72,7 +146,7 @@ const PersonalDetailsForm = () => {
                 onChange={handleChange}
                 required
               />
-            </label>
+            </label> 
             <label>
               Last Name
               <input
@@ -96,10 +170,10 @@ const PersonalDetailsForm = () => {
                 value={persoanlDetails.gender}
                 required
               >
-                <option selected value="male">
+                <option selected value="MALE">
                   Male
                 </option>
-                <option value="female">Female</option>
+                <option value="FEMALE">Female</option>
               </select>
             </label>
             <label>
@@ -115,7 +189,11 @@ const PersonalDetailsForm = () => {
             </label>
           </div>
         </form>
-        <button type='submit' onClick = {handleSubmit} className={styles.logbutton}>Create Person</button>
+        <div class={styles.buttons}>
+          <button onClick={handleNext}>Next</button>
+          <button onClick={handleBack}>Back</button>
+          <button onClick={handleCancel}>Cancel</button>
+        </div>
       </div>
     </div>
   );

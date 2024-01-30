@@ -19,7 +19,7 @@ input:focus {
 }
 
 select {
-    width: 130%;
+    width: auto;
     height: 40px;
     padding: 6px;
     border-radius: 8px;
@@ -41,7 +41,7 @@ button:hover{
 }
 
 /* personal form css*/
-.form_personal {
+.form_legislativeContactInfo {
     width: 60%;
     height: 50%;
     padding: 30px;
@@ -51,7 +51,7 @@ button:hover{
     border-radius: 16px;
 }
 
-.form_personal h3 {
+.form_legislativeContactInfo h3 {
     margin-left: 4px;
     margin-bottom: 10px;
 }
