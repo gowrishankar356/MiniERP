@@ -27,10 +27,10 @@ const EmploymentInfo = () => {
   const handleNext = async (e) => {
     e.preventDefault();
     try {
-      navigate("/employmentInfo");
+      navigate("/compensationInfo");
     } catch (error) {
       console.log(error);
-      alert("Error navigating to Employment Info form!");
+      alert("Error navigating to Compensation Info form!");
     }
   };
 
@@ -112,7 +112,7 @@ const EmploymentInfo = () => {
               </select>
             </label>
             <label>
-              Location<br></br>
+              Job Location<br></br>
               <select
                 id="location"
                 onChange={handleChange}
