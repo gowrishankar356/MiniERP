@@ -16,7 +16,7 @@
 }
 
 .nav_bar_bg {
-    background-color : rgb(63, 62, 62);
+    background-color: rgb(63, 62, 62);
 }
 
 .nav_bar a {
@@ -53,7 +53,7 @@
     flex-direction: row;
     justify-content: end;
     padding-top: 4px;
-    margin-right: 20px;
+    margin-right: 50px;
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
 }
@@ -90,6 +90,30 @@
     opacity: 0;
 }
 
+.second_levelnav {
+    background-color: gray;
+    margin-top: 8px;
+    margin-right: 0px;
+    padding: 20px;
+    width: 175px;
+    border-radius: 10px;
+}
+
+
+.second_levelnav li {
+    padding: 4px;
+    border-bottom: 1px groove;
+    width: 100%;
+}
+
+.second_levelnav a:hover {
+    padding: 4px;
+    background-color: rgba(218, 143, 5, 0.711);
+    border-radius: 8px;
+}
+
+
+
 @media only screen and (max-width: 1256px) {
     .nav_bar {
         display: flex;
@@ -102,7 +126,7 @@
         opacity: 1;
     }
 
-    .nav_bar ul{
+    .nav_bar ul {
         padding-left: 10px;
     }
 
@@ -117,7 +141,7 @@
         transition: 0.7s ease-in-out;
         padding: 10px;
         background-color: gray;
-        border-radius: 10px; 
+        border-radius: 10px;
     }
 
     .hamburger {
@@ -180,7 +204,7 @@
 }
 
 @media only screen and (max-width: 560px) {
-    .nav_bar{
+    .nav_bar {
         height: 80px;
     }
 
@@ -190,23 +214,23 @@
 }
 
 @media only screen and (max-width: 460px) {
-      .nav_bar_sub_content.active {
+    .nav_bar_sub_content.active {
         left: 55%;
     }
 
-    .nav_bar{
+    .nav_bar {
         height: 120px;
     }
 }
 
 @media only screen and (max-width: 420px) {
     .nav_bar_sub_content.active {
-      left: 50%;
-  }
+        left: 50%;
+    }
 }
 
 @media only screen and (max-width: 300px) {
     .nav_bar_sub_content.active {
-      left: 45%;
-  }
+        left: 45%;
+    }
 }

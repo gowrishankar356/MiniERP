@@ -26,7 +26,7 @@ const NavBar = () => {
     }
   };
 
-  window.addEventListener('scroll', changeColor)
+  window.addEventListener("scroll", changeColor);
 
   return (
     <div className={`${styles.nav_bar} ${color ? styles.nav_bar_bg : ""}`}>
@@ -48,6 +48,31 @@ const NavBar = () => {
           <ul>
             <li onClick={removeActive}>
               <a href="/hr">HR Activities</a>
+            </li>
+          </ul>
+          <ul>
+            <li onClick={removeActive}>
+              Workforce Structures
+              <ul className={styles.second_levelnav}>
+                <li>
+                  <a href="/company">Manage Companies</a>
+                </li>
+                <li>
+                  <a href="/grade">Manage Grades</a>
+                </li>
+                <li>
+                  <a href="/job">Manage Jobs</a>
+                </li>
+                <li>
+                  <a href="/department">Manage departments</a>
+                </li>
+                <li>
+                  <a href="/createLocation">Manage locations</a>
+                </li>
+                <li>
+                  <a href="/element">Manage elements</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

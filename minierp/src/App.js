@@ -4,6 +4,7 @@ import PersonalDetailsForm from "./components/PersonalDetailsForm";
 import LegislativeContactInfo from "./components/LegislativeContactForm";
 import EmploymentInfo from "./components/EmploymentInfo";
 import CompensationInfo from "./components/CompensationInfo";
+import CreateLocation from "./components/WorkforceStructures/CreateLocation";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/legislativeContactInfo"  element={<LegislativeContactInfo />}/>
           <Route path="/employmentInfo"  element={<EmploymentInfo />}/>
           <Route path="/compensationInfo"  element={<CompensationInfo />}/>
+          <Route path="/createLocation"  element={<CreateLocation />}/>
         </Routes>
       </BrowserRouter>
     </div>
