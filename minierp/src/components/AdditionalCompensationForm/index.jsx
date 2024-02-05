@@ -23,8 +23,6 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
     closeForm();
   }
 
- 
-
   return (
     <div className={styles.modal_container}>
       <div className={styles.modal}>

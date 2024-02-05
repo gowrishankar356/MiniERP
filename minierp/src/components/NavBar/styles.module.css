@@ -99,6 +99,13 @@
     border-radius: 10px;
 }
 
+.second_level_active {
+    visibility:visible;
+}
+
+.second_level_inactive {
+    visibility:hidden;
+}
 
 .second_levelnav li {
     padding: 4px;

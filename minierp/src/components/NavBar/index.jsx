@@ -6,6 +6,7 @@ import { useState } from "react";
 const NavBar = () => {
   // adding the states
   const [isActive, setIsActive] = useState(false);
+  const [isSecondLevleActive, setIsSecondLevleActive] = useState(false);
 
   //add the active class
   const toggleActiveClass = () => {
@@ -15,6 +16,14 @@ const NavBar = () => {
   //clean up function to remove the active class
   const removeActive = () => {
     setIsActive(false);
+  };
+
+  const secondLevelActive = () => {
+    setIsSecondLevleActive(true);
+  };
+
+  const secondLevelInActive = () => {
+    setIsSecondLevleActive(false);
   };
 
   const [color, setColor] = useState(false);
@@ -52,8 +61,17 @@ const NavBar = () => {
           </ul>
           <ul>
             <li onClick={removeActive}>
-              Workforce Structures
-              <ul className={styles.second_levelnav}>
+              <a onClick={secondLevelActive}>Workforce Structures</a>
+              <ul
+                className={`${styles.second_levelnav} ${
+                  isSecondLevleActive
+                    ? styles.second_level_active
+                    : styles.second_level_inactive
+                }`}
+                onClick={(e) => {
+                  secondLevelInActive();
+                }}
+              >
                 <li>
                   <a href="/company">Manage Companies</a>
                 </li>
