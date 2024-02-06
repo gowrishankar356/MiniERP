@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "./components/HomePage";
-import PersonalDetailsForm from "./components/PersonalDetailsForm";
-import LegislativeContactInfo from "./components/LegislativeContactForm";
+import PersonalDetailsForm from "./components/HRActivities/Hiring/CreatePerson/PersonalDetails";
+import DemographicInfo from "./components/HRActivities/Hiring/CreatePerson/DemographicDetails";
 import EmploymentInfo from "./components/EmploymentInfo";
 import CompensationInfo from "./components/CompensationInfo";
 import CreateLocation from "./components/WorkforceStructures/CreateLocation";
@@ -19,8 +19,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/hr" element={<PersonalDetailsForm />} />
           <Route
-            path="/legislativeContactInfo"
-            element={<LegislativeContactInfo />}
+            path="/demographicInfo"
+            element={<DemographicInfo />}
           />
           <Route path="/employmentInfo" element={<EmploymentInfo />} />
           <Route path="/compensationInfo" element={<CompensationInfo />} />

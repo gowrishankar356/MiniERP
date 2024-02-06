@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../NavBar";
+import NavBar from "../../../../NavBar";
 
 const PersonalDetailsForm = () => {
-  const [persoanlDetails, setPersonalDetails] = useState({
+  const [personalDetails, setPersonalDetails] = useState({
     hireDate: "",
-    companyName: "",
+    companyId: 0,
     employeeType: "FULL_TIME",
     title: "MR",
     firstName: "",
@@ -16,6 +16,7 @@ const PersonalDetailsForm = () => {
     gender: "MALE",
     dob: "",
   });
+  const [companies, setCompanies] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,10 +30,12 @@ const PersonalDetailsForm = () => {
   const handleNext = async (e) => {
     e.preventDefault();
     try {
-      navigate("/legislativeContactInfo");
+      navigate("/demographicInfo", {
+        state: { personalDetails: personalDetails },
+      });
     } catch (error) {
       console.log(error);
-      alert("Error navigating to Citizenship Info form!");
+      alert("Error navigating to Demographic Info form!");
     }
   };
 
@@ -55,6 +58,19 @@ const PersonalDetailsForm = () => {
       alert("Error cancelling current transaction!");
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getcompanies`);
+        setCompanies(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Initial Submit Configuration
   // const handleSubmit = async (e) => {
@@ -83,22 +99,27 @@ const PersonalDetailsForm = () => {
                 type="date"
                 name="hireDate"
                 id="hireDate"
-                value={persoanlDetails.hireDate}
+                value={personalDetails.hireDate}
                 onChange={handleChange}
                 required
               />
             </label>
             <label>
-              Company Name<br></br>
-              <input
-                type="text"
-                name="companyName"
-                placeholder="Eg: Google"
-                id="companyName"
-                value={persoanlDetails.companyName}
-                onChange={handleChange}
+              Company<br></br>
+              <select
+                id="companyId"
+                name="companyId"
+                value={personalDetails.companyId}
                 required
-              />
+                onChange={handleChange}
+              >
+                <option value="0">Select Company</option>
+                {companies.map((company) => (
+                  <option value={company.companyid} id={company.companyid}>
+                    {company.companyname}
+                  </option>
+                ))}
+              </select>
             </label>
           </div>
         </form>
@@ -109,7 +130,7 @@ const PersonalDetailsForm = () => {
               id="employeeType"
               onChange={handleChange}
               name="employeeType"
-              value={persoanlDetails.employeeType}
+              value={personalDetails.employeeType}
               required
             >
               <option value="FULL_TIME">Full Time</option>
@@ -126,7 +147,7 @@ const PersonalDetailsForm = () => {
                 id="title"
                 onChange={handleChange}
                 name="title"
-                value={persoanlDetails.title}
+                value={personalDetails.title}
                 required
               >
                 <option value="MR">Mr.</option>
@@ -141,11 +162,11 @@ const PersonalDetailsForm = () => {
                 name="firstName"
                 placeholder="Eg: John"
                 id="firstName"
-                value={persoanlDetails.firstName}
+                value={personalDetails.firstName}
                 onChange={handleChange}
                 required
               />
-            </label> 
+            </label>
             <label>
               Last Name
               <input
@@ -153,7 +174,7 @@ const PersonalDetailsForm = () => {
                 name="lastName"
                 placeholder="Eg: Wick"
                 id="lastName"
-                value={persoanlDetails.lastName}
+                value={personalDetails.lastName}
                 onChange={handleChange}
                 required
               />
@@ -166,7 +187,7 @@ const PersonalDetailsForm = () => {
                 id="gender"
                 onChange={handleChange}
                 name="gender"
-                value={persoanlDetails.gender}
+                value={personalDetails.gender}
                 required
               >
                 <option selected value="MALE">
@@ -181,7 +202,7 @@ const PersonalDetailsForm = () => {
                 type="date"
                 name="dob"
                 id="dob"
-                value={persoanlDetails.dob}
+                value={personalDetails.dob}
                 onChange={handleChange}
                 required
               />
