@@ -6,6 +6,9 @@ import EmploymentInfo from "./components/EmploymentInfo";
 import CompensationInfo from "./components/CompensationInfo";
 import CreateLocation from "./components/WorkforceStructures/CreateLocation";
 import CreateCompany from "./components/WorkforceStructures/CreateCompany";
+import CreateGrade from "./components/WorkforceStructures/CreateGrade";
+import CreateJob from "./components/WorkforceStructures/CreateJob";
+import CreateDepartment from "./components/WorkforceStructures/CreateDepartment";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           <Route path="/compensationInfo"  element={<CompensationInfo />}/>
           <Route path="/createLocation"  element={<CreateLocation />}/>
           <Route path="/createCompany"  element={<CreateCompany />}/>
+          <Route path="/createGrade"  element={<CreateGrade />}/>
+          <Route path="/createJob"  element={<CreateJob />}/>
+          <Route path="/createDepartment"  element={<CreateDepartment />}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -75,13 +75,13 @@ const NavBar = () => {
                   <a href="/createCompany">Manage Companies</a>
                 </li>
                 <li>
-                  <a href="/grade">Manage Grades</a>
+                  <a href="/createGrade">Manage Grades</a>
                 </li>
                 <li>
-                  <a href="/job">Manage Jobs</a>
+                  <a href="/createJob">Manage Jobs</a>
                 </li>
                 <li>
-                  <a href="/department">Manage departments</a>
+                  <a href="/createDepartment">Manage departments</a>
                 </li>
                 <li>
                   <a href="/createLocation">Manage locations</a>
