@@ -238,3 +238,36 @@ app.post("/createdepartment", (req, res) => {
   );
   client.end;
 });
+
+//APIs of Element
+app.post("/createelement", (req, res) => {
+  const elementName = req.body.elementName;
+  const elementType = req.body.elementType;
+  const periodicity = req.body.periodicity;
+  const companyId = req.body.companyId;
+
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  const datecreated = `${day}-${month}-${year}`;
+  const createdby = -1;
+
+  const query =
+    "Insert into element(elementname, elementtype, periodicity, companyId, datecreated, createdby) values($1,$2,$3,$4,$5, $6)";
+
+  client.query(
+    query,
+    [elementName, elementType, periodicity, companyId, datecreated, createdby],
+    (err, result) => {
+      if (!err) {
+        res.send(result.rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+  client.end;
+});

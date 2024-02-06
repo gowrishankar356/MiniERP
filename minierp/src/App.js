@@ -9,22 +9,27 @@ import CreateCompany from "./components/WorkforceStructures/CreateCompany";
 import CreateGrade from "./components/WorkforceStructures/CreateGrade";
 import CreateJob from "./components/WorkforceStructures/CreateJob";
 import CreateDepartment from "./components/WorkforceStructures/CreateDepartment";
+import CreateElement from "./components/WorkforceStructures/CreateElement";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/"  element={<HomePage />}/>
-          <Route path="/hr"  element={<PersonalDetailsForm />}/>
-          <Route path="/legislativeContactInfo"  element={<LegislativeContactInfo />}/>
-          <Route path="/employmentInfo"  element={<EmploymentInfo />}/>
-          <Route path="/compensationInfo"  element={<CompensationInfo />}/>
-          <Route path="/createLocation"  element={<CreateLocation />}/>
-          <Route path="/createCompany"  element={<CreateCompany />}/>
-          <Route path="/createGrade"  element={<CreateGrade />}/>
-          <Route path="/createJob"  element={<CreateJob />}/>
-          <Route path="/createDepartment"  element={<CreateDepartment />}/>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/hr" element={<PersonalDetailsForm />} />
+          <Route
+            path="/legislativeContactInfo"
+            element={<LegislativeContactInfo />}
+          />
+          <Route path="/employmentInfo" element={<EmploymentInfo />} />
+          <Route path="/compensationInfo" element={<CompensationInfo />} />
+          <Route path="/createLocation" element={<CreateLocation />} />
+          <Route path="/createCompany" element={<CreateCompany />} />
+          <Route path="/createGrade" element={<CreateGrade />} />
+          <Route path="/createJob" element={<CreateJob />} />
+          <Route path="/createDepartment" element={<CreateDepartment />} />
+          <Route path="/createElement" element={<CreateElement />} />
         </Routes>
       </BrowserRouter>
     </div>
