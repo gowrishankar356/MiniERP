@@ -21,7 +21,6 @@ const EmploymentInfo = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log(employmentInfo);
   };
 
   const handleNext = async (e) => {

@@ -28,7 +28,6 @@ const LegislativeContactInfo = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log(LegislativeContactInfo);
   };
 
   const handleNext = async (e) => {

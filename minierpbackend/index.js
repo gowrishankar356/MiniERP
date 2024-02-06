@@ -24,7 +24,6 @@ app.get('/person', (req, res)=>{
 })
 
 app.post('/person', (req, res)=>{
-    console.log('came here')
     const title = req.body.title;
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;

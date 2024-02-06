@@ -24,7 +24,6 @@ const PersonalDetailsForm = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log(persoanlDetails);
   };
 
   const handleNext = async (e) => {

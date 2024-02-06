@@ -40,7 +40,6 @@ const CompensationInfo = () => {
   };
 
   const handleAdd = (newRow) => {
-    console.log('here');
     setCompensations([...compensations, newRow]);
   };
 
@@ -51,7 +50,6 @@ const CompensationInfo = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log(compensationInfo);
   };
 
   const handleNext = async (e) => {

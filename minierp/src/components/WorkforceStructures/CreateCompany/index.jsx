@@ -49,7 +49,6 @@ const Company = () => {
       try {
         const response = await axios.get(`http://localhost:3300/getlocations`);
         setLocations(response.data.rows);
-        console.log(response.data.rows)
       } catch (error) {
         console.error("Error:", error);
       }
