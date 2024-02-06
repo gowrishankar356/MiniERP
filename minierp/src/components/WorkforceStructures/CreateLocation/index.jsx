@@ -12,7 +12,7 @@ const CreateLocation = () => {
     addressLine2: "",
     city: "",
     state: "",
-    country: "UNITED_STATES",
+    country: "",
     postalCode: "",
   });
 
@@ -26,15 +26,6 @@ const CreateLocation = () => {
     console.log(setLocation);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      navigate("/compensationInfo");
-    } catch (error) {
-      console.log(error);
-      alert("Error navigating to Compensation Info form!");
-    }
-  };
 
   const handleCancel = async (e) => {
     e.preventDefault();
@@ -43,6 +34,18 @@ const CreateLocation = () => {
     } catch (error) {
       console.log(error);
       alert("Error cancelling current transaction!");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(location)
+    try {
+      await axios.post(`http://localhost:3300/createlocation`, location);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert("Error adding location. Please try again.");
     }
   };
 
@@ -69,7 +72,7 @@ const CreateLocation = () => {
             <label>
               Address Line 1<br></br>
               <input
-                type="addressLine1"
+                type="text"
                 name="addressLine1"
                 id="addressLine1"
                 value={location.addressLine1}
@@ -80,10 +83,10 @@ const CreateLocation = () => {
             <label>
               Address Line 2<br></br>
               <input
-                type="addressLine2"
+                type="text"
                 name="addressLine2"
                 id="addressLine2"
-                value={location.addressLine1}
+                value={location.addressLine2}
                 onChange={handleChange}
                 required
               />
@@ -93,7 +96,7 @@ const CreateLocation = () => {
             <label>
               City<br></br>
               <input
-                type="city"
+                type="text"
                 name="city"
                 id="city"
                 value={location.city}
@@ -104,7 +107,7 @@ const CreateLocation = () => {
             <label>
               State<br></br>
               <input
-                type="state"
+                type="text"
                 name="state"
                 id="state"
                 value={location.state}
@@ -117,7 +120,7 @@ const CreateLocation = () => {
             <label>
               Country<br></br>
               <input
-                type="country"
+                type="text"
                 name="country"
                 id="country"
                 value={location.country}
@@ -128,7 +131,7 @@ const CreateLocation = () => {
             <label>
               Postal Code<br></br>
               <input
-                type="postalCode"
+                type="text"
                 name="postalCode"
                 id="postalCode"
                 value={location.postalCode}

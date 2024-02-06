@@ -51,7 +51,7 @@
 .nav_bar_sub_content {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     padding-top: 4px;
     margin-right: 50px;
     font-family: 'Poppins', sans-serif;

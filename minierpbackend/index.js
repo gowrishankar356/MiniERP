@@ -45,3 +45,34 @@ app.post('/person', (req, res)=>{
     client.end;
 })
 
+// APIs for Location
+app.post('/createlocation', (req, res)=>{
+    console.log(req.body)
+    const locationname = req.body.locationName;
+    const addressline1 = req.body.addressLine1;
+    const addressline2 = req.body.addressLine2;
+    const city = req.body.city;
+    const state = req.body.state;
+    const country = req.body.country;
+    const postalcode = req.body.postalCode;
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    const datecreated = `${day}-${month}-${year}`;
+    const createdby = -1;
+
+    const query = 'Insert into location(locationname, addressline1, addressline2, city, state, country, postalcode, datecreated, createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9)'
+
+    client.query(query,[locationname,addressline1,addressline2,city,state, country,postalcode, datecreated,  createdby], (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+        else{
+            console.log(err);
+        }
+    });
+    client.end;
+})
