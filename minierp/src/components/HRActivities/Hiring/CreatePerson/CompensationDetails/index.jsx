@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
-import NavBar from "../NavBar";
+import NavBar from "../../../../NavBar";
 
-import Table from "../Table";
-import { AddtionalCompensationForm } from "../AdditionalCompensationForm";
+import Table from "../../../../Table";
+import { AddtionalCompensationForm } from "../../../../AdditionalCompensationForm";
 
 const CompensationInfo = () => {
   const [compensationFormOpen, setCompensationFormOpen] = useState(false);

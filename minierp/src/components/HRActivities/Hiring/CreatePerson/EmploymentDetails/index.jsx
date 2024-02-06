@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../NavBar";
+import NavBar from "../../../../NavBar";
 
 const EmploymentInfo = () => {
   const [employmentInfo, setemploymentInfo] = useState({
@@ -15,6 +15,10 @@ const EmploymentInfo = () => {
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const personalDetails = location.state?.personalDetails;
+  const demographicDetails = location.state?.demographicDetails;
 
   const handleChange = (e) => {
     setemploymentInfo((prev) => ({
@@ -26,7 +30,7 @@ const EmploymentInfo = () => {
   const handleNext = async (e) => {
     e.preventDefault();
     try {
-      navigate("/compensationInfo");
+      navigate("/compensationDetails", {state : {personalDetails : personalDetails, demographicDetails : demographicDetails, employmentDetails : employmentInfo}});
     } catch (error) {
       console.log(error);
       alert("Error navigating to Compensation Info form!");
@@ -36,7 +40,7 @@ const EmploymentInfo = () => {
   const handleBack = async (e) => {
     e.preventDefault();
     try {
-      navigate("/");
+      navigate("/demographicDetails", {state : {personalDetails: personalDetails, demographicDetails : demographicDetails}});
     } catch (error) {
       console.log(error);
       alert("Error navigating back!");

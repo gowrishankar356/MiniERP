@@ -32,12 +32,12 @@ select:focus {
     background-color: rgb(230, 230, 230);
 }
 
-option:hover{
-    background-color: rgb(230, 230, 230); 
+option:hover {
+    background-color: rgb(230, 230, 230);
 }
 
-button:hover{
-    background-color: rgb(180, 180, 180); 
+button:hover {
+    background-color: rgb(180, 180, 180);
 }
 
 /* personal form css*/
@@ -62,7 +62,7 @@ button:hover{
     gap: 40px;
 }
 
-.buttons{
+.buttons {
     margin-top: 100px;
     display: flex;
     flex-direction: row;
@@ -77,5 +77,3 @@ button:hover{
     border: none;
     border-radius: 4px;
 }
-
-

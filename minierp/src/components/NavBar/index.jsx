@@ -55,7 +55,7 @@ const NavBar = () => {
           </ul>
           <ul>
             <li onClick={removeActive}>
-              <a href="/hr">HR Activities</a>
+              <a href="/personalDetails">HR Activities</a>
             </li>
           </ul>
           <ul>

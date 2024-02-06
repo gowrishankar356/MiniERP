@@ -17,16 +17,15 @@ const DemographicInfo = () => {
     addressLine2: "",
     city: "",
     state: "",
-    country: "UNITED_STATES",
+    country: "",
     postalCode: "",
   });
-
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const personalDetails = location.state?.personalDetails;
-  console.log(personalDetails)
+  const demographicDetails = location.state?.demographicDetails;
 
   const handleChange = (e) => {
     setdemographicInfo((prev) => ({
@@ -38,7 +37,12 @@ const DemographicInfo = () => {
   const handleNext = async (e) => {
     e.preventDefault();
     try {
-      navigate("/employmentInfo");
+      navigate("/employmentInfo", {
+        state: {
+          personalDetails: personalDetails,
+          demographicDetails: demographicInfo,
+        },
+      });
     } catch (error) {
       console.log(error);
       alert("Error navigating to Employment Info form!");
@@ -48,7 +52,9 @@ const DemographicInfo = () => {
   const handleBack = async (e) => {
     e.preventDefault();
     try {
-      navigate("/");
+      navigate("/personalDetails", {
+        state: { personalDetails: personalDetails },
+      });
     } catch (error) {
       console.log(error);
       alert("Error navigating back!");
@@ -79,7 +85,11 @@ const DemographicInfo = () => {
                 type="text"
                 name="citizenship"
                 id="citizenship"
-                value={demographicInfo.citizenship}
+                value={
+                  demographicDetails?.citizenship
+                    ? demographicDetails.citizenship
+                    : demographicInfo.citizenship
+                }
                 onChange={handleChange}
                 required
               />
@@ -90,7 +100,11 @@ const DemographicInfo = () => {
                 id="citizenshipStatus"
                 onChange={handleChange}
                 name="citizenshipStatus"
-                value={demographicInfo.citizenshipStatus}
+                value={
+                  demographicDetails?.citizenshipStatus
+                    ? demographicDetails.citizenshipStatus
+                    : demographicInfo.citizenshipStatus
+                }
                 required
               >
                 <option value="ACTIVE">Active</option>
@@ -106,7 +120,11 @@ const DemographicInfo = () => {
               id="maritalStatus"
               onChange={handleChange}
               name="maritalStatus"
-              value={demographicInfo.maritalStatus}
+              value={
+                demographicDetails?.maritalStatus
+                  ? demographicDetails.maritalStatus
+                  : demographicInfo.maritalStatus
+              }
               required
             >
               <option value="MARRIED">Married</option>
@@ -123,7 +141,11 @@ const DemographicInfo = () => {
                 type="email"
                 name="email"
                 id="email"
-                value={demographicInfo.email}
+                value={
+                  demographicDetails?.email
+                    ? demographicDetails.email
+                    : demographicInfo.email
+                }
                 onChange={handleChange}
                 required
               />
@@ -136,7 +158,11 @@ const DemographicInfo = () => {
                 type="countryCode"
                 name="countryCode"
                 id="countryCode"
-                value={demographicInfo.countryCode}
+                value={
+                  demographicDetails?.countryCode
+                    ? demographicDetails.countryCode
+                    : demographicInfo.countryCode
+                }
                 onChange={handleChange}
                 required
               />
@@ -147,7 +173,11 @@ const DemographicInfo = () => {
                 type="phoneNumber"
                 name="phoneNumber"
                 id="phoneNumber"
-                value={demographicInfo.phoneNumber}
+                value={
+                  demographicDetails?.phoneNumber
+                    ? demographicDetails.phoneNumber
+                    : demographicInfo.phoneNumber
+                }
                 onChange={handleChange}
                 required
               />
@@ -161,7 +191,11 @@ const DemographicInfo = () => {
                 type="addressLine1"
                 name="addressLine1"
                 id="addressLine1"
-                value={demographicInfo.addressLine1}
+                value={
+                  demographicDetails?.addressLine1
+                    ? demographicDetails.addressLine1
+                    : demographicInfo.addressLine1
+                }
                 onChange={handleChange}
                 required
               />
@@ -172,7 +206,11 @@ const DemographicInfo = () => {
                 type="addressLine2"
                 name="addressLine2"
                 id="addressLine2"
-                value={demographicInfo.addressLine1}
+                value={
+                  demographicDetails?.addressLine2
+                    ? demographicDetails.addressLine2
+                    : demographicInfo.addressLine1
+                }
                 onChange={handleChange}
                 required
               />
@@ -185,7 +223,11 @@ const DemographicInfo = () => {
                 type="city"
                 name="city"
                 id="city"
-                value={demographicInfo.city}
+                value={
+                  demographicDetails?.city
+                    ? demographicDetails.city
+                    : demographicInfo.city
+                }
                 onChange={handleChange}
                 required
               />
@@ -196,7 +238,11 @@ const DemographicInfo = () => {
                 type="state"
                 name="state"
                 id="state"
-                value={demographicInfo.state}
+                value={
+                  demographicDetails?.state
+                    ? demographicDetails.state
+                    : demographicInfo.state
+                }
                 onChange={handleChange}
                 required
               />
@@ -209,7 +255,11 @@ const DemographicInfo = () => {
                 type="country"
                 name="country"
                 id="country"
-                value={demographicInfo.country}
+                value={
+                  demographicDetails?.country
+                    ? demographicDetails.country
+                    : demographicInfo.country
+                }
                 onChange={handleChange}
                 required
               />
@@ -220,7 +270,11 @@ const DemographicInfo = () => {
                 type="postalCode"
                 name="postalCode"
                 id="postalCode"
-                value={demographicInfo.postalCode}
+                value={
+                  demographicDetails?.postalCode
+                    ? demographicDetails.postalCode
+                    : demographicInfo.postalCode
+                }
                 onChange={handleChange}
                 required
               />
