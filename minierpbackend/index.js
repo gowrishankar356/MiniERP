@@ -74,5 +74,43 @@ app.post('/createlocation', (req, res)=>{
             console.log(err);
         }
     });
-    client.end;
+    client.end();
+})
+
+// get locations
+app.get("/getlocations", async (req,res)=>{  
+    const locations = "SELECT locationId, locationName, addressline1, addressline2, city, state, country, postalcode, datecreated, createdby, lastupdateddate, updatedby FROM location;"
+    client.query(locations,(err,result)=>{
+        if (err) return res.json(err)
+        console.log(result)
+        return res.json(result);
+    })
+})
+
+// APIs for Company
+app.post('/createcompany', (req, res)=>{
+    console.log(req.body)
+    const companyName = req.body.companyName;
+    const locationId  = req.body.locationId;
+
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    const datecreated = `${day}-${month}-${year}`;
+    const createdby = -1;
+
+    const query = 'Insert into company(companyName, locationId, datecreated, createdby) values($1,$2,$3,$4)'
+
+    client.query(query,[companyName,locationId,datecreated,createdby], (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+        else{
+            console.log(err);
+        }
+    });
+    client.end();
 })

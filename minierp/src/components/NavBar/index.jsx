@@ -72,7 +72,7 @@ const NavBar = () => {
                 }}
               >
                 <li>
-                  <a href="/company">Manage Companies</a>
+                  <a href="/createCompany">Manage Companies</a>
                 </li>
                 <li>
                   <a href="/grade">Manage Grades</a>
