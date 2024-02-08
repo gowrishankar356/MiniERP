@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
 
 import Table from "../../../../Table";
-import { AddtionalCompensationForm } from "../../../../AdditionalCompensationForm";
+// import { AddtionalCompensationForm } from "../../../../AdditionalCompensationForm";
 
 const CompensationInfo = () => {
   const [compensationFormOpen, setCompensationFormOpen] = useState(false);
@@ -132,12 +132,12 @@ const CompensationInfo = () => {
           <button onClick={() => setCompensationFormOpen(true)}>
             Add Compensation
           </button>
-          {compensationFormOpen && (
+          {/* {compensationFormOpen && (
             <AddtionalCompensationForm
               closeForm={() => setCompensationFormOpen(false)}
               onSubmit={handleAdd}
             ></AddtionalCompensationForm>
-          )}
+          )} */}
         </form>
         <div class={styles.buttons}>
           <button onClick={handleNext}>Next</button>

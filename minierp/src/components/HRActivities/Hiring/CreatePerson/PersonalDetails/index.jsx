@@ -6,21 +6,23 @@ import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
 
 const PersonalDetailsForm = () => {
-  const [personalDetails, setPersonalDetails] = useState({
-    hireDate: "",
-    companyId: 0,
-    employeeType: "FULL_TIME",
-    title: "MR",
-    firstName: "",
-    lastName: "",
-    gender: "MALE",
-    dob: "",
-  });
-  const [companies, setCompanies] = useState([]);
-
   const navigate = useNavigate();
   const location = useLocation();
   const personalDetailsBack = location.state?.personalDetails;
+  console.log(personalDetailsBack);
+  const [personalDetails, setPersonalDetails] = useState({
+    hireDate: personalDetailsBack?.hireDate ? personalDetailsBack.hireDate : "",
+    companyId: personalDetailsBack?.companyId ? personalDetailsBack.companyId : 0,
+    employeeType: personalDetailsBack?.employeeType
+      ? personalDetailsBack.employeeType
+      : "",
+    title: personalDetailsBack?.title ? personalDetailsBack.title : "",
+    firstName: personalDetailsBack?.firstName ? personalDetailsBack.firstName : "",
+    lastName: personalDetailsBack?.lastName ? personalDetailsBack.lastName : "",
+    gender: personalDetailsBack?.gender ? personalDetailsBack.gender : "",
+    dob: personalDetailsBack?.dob ? personalDetailsBack.dob : "",
+  });
+  const [companies, setCompanies] = useState([]);
 
   const handleChange = (e) => {
     setPersonalDetails((prev) => ({
@@ -101,11 +103,7 @@ const PersonalDetailsForm = () => {
                 type="date"
                 name="hireDate"
                 id="hireDate"
-                value={
-                  personalDetailsBack.hireDate
-                    ? personalDetailsBack.hireDate
-                    : personalDetails.hireDate
-                }
+                value={personalDetails.hireDate}
                 onChange={handleChange}
                 required
               />
@@ -115,11 +113,7 @@ const PersonalDetailsForm = () => {
               <select
                 id="companyId"
                 name="companyId"
-                value={
-                  personalDetailsBack.companyId
-                    ? personalDetailsBack.companyId
-                    : personalDetails.companyId
-                }
+                value={personalDetails.companyId}
                 required
                 onChange={handleChange}
               >
@@ -140,11 +134,7 @@ const PersonalDetailsForm = () => {
               id="employeeType"
               onChange={handleChange}
               name="employeeType"
-              value={
-                personalDetailsBack.employeeType
-                  ? personalDetailsBack.employeeType
-                  : personalDetails.employeeType
-              }
+              value={personalDetails.employeeType}
               required
             >
               <option value="FULL_TIME">Full Time</option>
@@ -161,11 +151,7 @@ const PersonalDetailsForm = () => {
                 id="title"
                 onChange={handleChange}
                 name="title"
-                value={
-                  personalDetailsBack.title
-                    ? personalDetailsBack.title
-                    : personalDetails.title
-                }
+                value={personalDetails.title}
                 required
               >
                 <option value="MR">Mr.</option>
@@ -180,11 +166,7 @@ const PersonalDetailsForm = () => {
                 name="firstName"
                 placeholder="Eg: John"
                 id="firstName"
-                value={
-                  personalDetailsBack.firstName
-                    ? personalDetailsBack.firstName
-                    : personalDetails.firstName
-                }
+                value={personalDetails.firstName}
                 onChange={handleChange}
                 required
               />
@@ -196,11 +178,7 @@ const PersonalDetailsForm = () => {
                 name="lastName"
                 placeholder="Eg: Wick"
                 id="lastName"
-                value={
-                  personalDetailsBack.lastName
-                    ? personalDetailsBack.lastName
-                    : personalDetails.lastName
-                }
+                value={personalDetails.lastName}
                 onChange={handleChange}
                 required
               />
@@ -213,11 +191,7 @@ const PersonalDetailsForm = () => {
                 id="gender"
                 onChange={handleChange}
                 name="gender"
-                value={
-                  personalDetailsBack.gender
-                    ? personalDetailsBack.gender
-                    : personalDetails.gender
-                }
+                value={personalDetails.gender}
                 required
               >
                 <option selected value="MALE">
@@ -232,11 +206,7 @@ const PersonalDetailsForm = () => {
                 type="date"
                 name="dob"
                 id="dob"
-                value={
-                  personalDetailsBack.dob
-                    ? personalDetailsBack.dob
-                    : personalDetails.dob
-                }
+                value={personalDetails.dob}
                 onChange={handleChange}
                 required
               />

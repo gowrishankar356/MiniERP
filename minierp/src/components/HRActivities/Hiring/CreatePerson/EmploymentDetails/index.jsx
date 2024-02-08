@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -6,19 +6,25 @@ import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
 
 const EmploymentInfo = () => {
-  const [employmentInfo, setemploymentInfo] = useState({
-    job: "",
-    grade: "",
-    department: "",
-    location: "",
-    manager: "",
-  });
-
   const navigate = useNavigate();
   const location = useLocation();
 
   const personalDetails = location.state?.personalDetails;
   const demographicDetails = location.state?.demographicDetails;
+  const employmentDetailsBack = location.state?.employmentDetailsBack;
+  const [employmentInfo, setemploymentInfo] = useState({
+    job: employmentDetailsBack?.job ? employmentDetailsBack.job : "",
+    grade: employmentDetailsBack?.grade ? employmentDetailsBack.grade : "",
+    department: employmentDetailsBack?.department ? employmentDetailsBack.department: "",
+    location: employmentDetailsBack?.location ? employmentDetailsBack.location : "",
+    manager: employmentDetailsBack?.location ? employmentDetailsBack.location : "",
+  });
+
+  const [jobs,setJobs] = useState([]);
+  const [grades, setGrades] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [managers, setManagers] = useState([]);
 
   const handleChange = (e) => {
     setemploymentInfo((prev) => ({
@@ -30,7 +36,13 @@ const EmploymentInfo = () => {
   const handleNext = async (e) => {
     e.preventDefault();
     try {
-      navigate("/compensationDetails", {state : {personalDetails : personalDetails, demographicDetails : demographicDetails, employmentDetails : employmentInfo}});
+      navigate("/compensationDetails", {
+        state: {
+          personalDetails: personalDetails,
+          demographicDetails: demographicDetails,
+          employmentDetails: employmentInfo,
+        },
+      });
     } catch (error) {
       console.log(error);
       alert("Error navigating to Compensation Info form!");
@@ -40,7 +52,12 @@ const EmploymentInfo = () => {
   const handleBack = async (e) => {
     e.preventDefault();
     try {
-      navigate("/demographicDetails", {state : {personalDetails: personalDetails, demographicDetails : demographicDetails}});
+      navigate("/demographicDetails", {
+        state: {
+          personalDetails: personalDetails,
+          demographicDetails: demographicDetails,
+        },
+      });
     } catch (error) {
       console.log(error);
       alert("Error navigating back!");
@@ -56,6 +73,72 @@ const EmploymentInfo = () => {
       alert("Error cancelling current transaction!");
     }
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getjobs`);
+        setJobs(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getgrades`);
+        setGrades(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getdepartments`);
+        setDepartments(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getlocations`);
+        setLocations(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getpersons`);
+        setManagers(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>

@@ -6,26 +6,42 @@ import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
 
 const DemographicInfo = () => {
-  const [demographicInfo, setdemographicInfo] = useState({
-    citizenship: "",
-    citizenshipStatus: "",
-    maritalStatus: "SINGLE",
-    email: "",
-    countryCode: "",
-    phoneNumber: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    state: "",
-    country: "",
-    postalCode: "",
-  });
-
   const navigate = useNavigate();
   const location = useLocation();
 
   const personalDetails = location.state?.personalDetails;
   const demographicDetails = location.state?.demographicDetails;
+  console.log(personalDetails)
+  const [demographicInfo, setdemographicInfo] = useState({
+    citizenship: demographicDetails?.citizenship
+      ? demographicDetails.citizenship
+      : "",
+    citizenshipStatus: demographicDetails?.citizenshipStatus
+      ? demographicDetails.citizenship
+      : "",
+    maritalStatus: demographicDetails?.maritalStatus
+      ? demographicDetails.maritalStatus
+      : "",
+    email: demographicDetails?.email ? demographicDetails.email : "",
+    countryCode: demographicDetails?.countryCode
+      ? demographicDetails.countryCode
+      : "",
+    phoneNumber: demographicDetails?.phoneNumber
+      ? demographicDetails.phoneNumber
+      : "",
+    addressLine1: demographicDetails?.addressLine1
+      ? demographicDetails.addressLine1
+      : "",
+    addressLine2: demographicDetails?.addressLine2
+      ? demographicDetails.addressLine2
+      : "",
+    city: demographicDetails?.city ? demographicDetails.city : "",
+    state: demographicDetails?.state ? demographicDetails.state : "",
+    country: demographicDetails?.country ? demographicDetails.country : "",
+    postalCode: demographicDetails?.postalCode
+      ? demographicDetails.postalcode
+      : "",
+  });
 
   const handleChange = (e) => {
     setdemographicInfo((prev) => ({
@@ -85,11 +101,7 @@ const DemographicInfo = () => {
                 type="text"
                 name="citizenship"
                 id="citizenship"
-                value={
-                  demographicDetails?.citizenship
-                    ? demographicDetails.citizenship
-                    : demographicInfo.citizenship
-                }
+                value={demographicInfo.citizenship}
                 onChange={handleChange}
                 required
               />
@@ -100,13 +112,10 @@ const DemographicInfo = () => {
                 id="citizenshipStatus"
                 onChange={handleChange}
                 name="citizenshipStatus"
-                value={
-                  demographicDetails?.citizenshipStatus
-                    ? demographicDetails.citizenshipStatus
-                    : demographicInfo.citizenshipStatus
-                }
+                value={demographicInfo.citizenshipStatus}
                 required
               >
+                <option value="">Select Citizeship Status</option>
                 <option value="ACTIVE">Active</option>
                 <option value="INACTIVE">Inactive</option>
               </select>
@@ -120,13 +129,10 @@ const DemographicInfo = () => {
               id="maritalStatus"
               onChange={handleChange}
               name="maritalStatus"
-              value={
-                demographicDetails?.maritalStatus
-                  ? demographicDetails.maritalStatus
-                  : demographicInfo.maritalStatus
-              }
+              value={demographicInfo.maritalStatus}
               required
             >
+              <option value="">Select Marital Status</option>
               <option value="MARRIED">Married</option>
               <option value="SINGLE">Single</option>
             </select>
@@ -141,11 +147,7 @@ const DemographicInfo = () => {
                 type="email"
                 name="email"
                 id="email"
-                value={
-                  demographicDetails?.email
-                    ? demographicDetails.email
-                    : demographicInfo.email
-                }
+                value={demographicInfo.email}
                 onChange={handleChange}
                 required
               />
@@ -158,11 +160,7 @@ const DemographicInfo = () => {
                 type="countryCode"
                 name="countryCode"
                 id="countryCode"
-                value={
-                  demographicDetails?.countryCode
-                    ? demographicDetails.countryCode
-                    : demographicInfo.countryCode
-                }
+                value={demographicInfo.countryCode}
                 onChange={handleChange}
                 required
               />
@@ -173,11 +171,7 @@ const DemographicInfo = () => {
                 type="phoneNumber"
                 name="phoneNumber"
                 id="phoneNumber"
-                value={
-                  demographicDetails?.phoneNumber
-                    ? demographicDetails.phoneNumber
-                    : demographicInfo.phoneNumber
-                }
+                value={demographicInfo.phoneNumber}
                 onChange={handleChange}
                 required
               />
@@ -191,11 +185,7 @@ const DemographicInfo = () => {
                 type="addressLine1"
                 name="addressLine1"
                 id="addressLine1"
-                value={
-                  demographicDetails?.addressLine1
-                    ? demographicDetails.addressLine1
-                    : demographicInfo.addressLine1
-                }
+                value={demographicInfo.addressLine1}
                 onChange={handleChange}
                 required
               />
@@ -206,11 +196,7 @@ const DemographicInfo = () => {
                 type="addressLine2"
                 name="addressLine2"
                 id="addressLine2"
-                value={
-                  demographicDetails?.addressLine2
-                    ? demographicDetails.addressLine2
-                    : demographicInfo.addressLine1
-                }
+                value={demographicInfo.addressLine2}
                 onChange={handleChange}
                 required
               />
@@ -223,11 +209,7 @@ const DemographicInfo = () => {
                 type="city"
                 name="city"
                 id="city"
-                value={
-                  demographicDetails?.city
-                    ? demographicDetails.city
-                    : demographicInfo.city
-                }
+                value={demographicInfo.city}
                 onChange={handleChange}
                 required
               />
@@ -238,11 +220,7 @@ const DemographicInfo = () => {
                 type="state"
                 name="state"
                 id="state"
-                value={
-                  demographicDetails?.state
-                    ? demographicDetails.state
-                    : demographicInfo.state
-                }
+                value={demographicInfo.state}
                 onChange={handleChange}
                 required
               />
@@ -255,11 +233,7 @@ const DemographicInfo = () => {
                 type="country"
                 name="country"
                 id="country"
-                value={
-                  demographicDetails?.country
-                    ? demographicDetails.country
-                    : demographicInfo.country
-                }
+                value={demographicInfo.country}
                 onChange={handleChange}
                 required
               />
@@ -270,11 +244,7 @@ const DemographicInfo = () => {
                 type="postalCode"
                 name="postalCode"
                 id="postalCode"
-                value={
-                  demographicDetails?.postalCode
-                    ? demographicDetails.postalCode
-                    : demographicInfo.postalCode
-                }
+                value={demographicInfo.postalCode}
                 onChange={handleChange}
                 required
               />
