@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate, useLocation,useSearchParams } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
@@ -11,20 +11,19 @@ const CompensationInfo = () => {
   const location = useLocation();
 
   const [compensationFormOpen, setCompensationFormOpen] = useState(false);
-  const [queryParameters] = useSearchParams()
+  const [queryParameters] = useSearchParams();
 
-  
   const personalDetails = location.state?.personalDetails;
   const demographicDetails = location.state?.demographicDetails;
-  const employmentDetails = location.state?.employmentDetails; 
-  
-  console.log(personalDetails)
-  console.log(demographicDetails)
-  console.log(employmentDetails)
+  const employmentDetails = location.state?.employmentDetails;
+
+  console.log(personalDetails);
+  console.log(demographicDetails);
+  console.log(employmentDetails);
 
   const [compensationInfo, setCompensationInfo] = useState({
     basicSalary: 0,
-    annualBasicSalary: 0
+    annualBasicSalary: 0,
   });
 
   const [compensations, setCompensations] = useState([
@@ -134,7 +133,10 @@ const CompensationInfo = () => {
             </label>
           </div>
           <Table rows={compensations} deleteRow={handleDelete}></Table>
-          <button onClick={handleSetCompensation}>
+          <button
+            className={styles.button_add_compensation}
+            onClick={handleSetCompensation}
+          >
             Add Compensation
           </button>
           {compensationFormOpen && (

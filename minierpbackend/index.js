@@ -315,3 +315,15 @@ app.post("/createelement", (req, res) => {
   );
   client.end;
 });
+
+
+// get elements
+app.get("/getelements", async (req, res) => {
+  const elements =
+    "select elementid, elementname, elementtype, periodicity, companyid, datecreated, createdby, lastupdateddate, updatedby from element;";
+  client.query(elements, (err, result) => {
+    if (err) return res.json(err);
+    console.log(result);
+    return res.json(result);
+  });
+});

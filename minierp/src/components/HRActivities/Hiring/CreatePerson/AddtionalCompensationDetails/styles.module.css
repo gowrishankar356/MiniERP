@@ -1,14 +1,14 @@
 .modal_container {
     position: fixed;
     z-index: 1;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal {
@@ -18,9 +18,19 @@
     width: 25em;
 }
 
-.modal .btn{
+.modal input {
+    border: 1px solid #ccc;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.buttons button {
     display: block;
-    margin: auto;
     margin-top: 1rem;
     border: none;
     background-color: grey;
@@ -30,4 +40,3 @@
     cursor: pointer;
     box-shadow: 0px 5px 5px white;
 }
-

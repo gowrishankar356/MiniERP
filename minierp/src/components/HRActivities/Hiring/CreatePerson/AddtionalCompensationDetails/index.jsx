@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
+import axios from "axios";
 
 export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
   const [formState, setFormState] = useState({
-    compensation: "",
-    startdate: "",
+    elementId: "",
+    elementName: "",
+    elementType: "",
+    periodicity: "",
+    startDate: "",
     value: 0.0,
     status: "ACTIVE",
   });
+
+  const [elements, setElements] = useState([]);
 
   const handleChange = (e) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
+    console.log(formState)
   };
 
   const handleSubmit = (e) => {
@@ -21,7 +28,31 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
     console.log(formState);
     onSubmit(formState);
     closeForm();
+  };
+
+  const handleChangeElement = (e) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+      elementName: e.target.options[e.target.selectedIndex].getAttribute("elementname"),
+      elementType: e.target.options[e.target.selectedIndex].getAttribute("elementtype"),
+      periodicity: e.target.options[e.target.selectedIndex].getAttribute("periodicity"),
+    });
+    console.log(formState)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getelements`);
+        setElements(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.modal_container}>
@@ -30,15 +61,27 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
           <div>
             <label>
               Compensation<br></br>
-              <input
-                type="text"
-                name="compensation"
-                placeholder="Eg: Housing Allowance"
-                id="compensation"
-                value={formState.compensation}
-                onChange={handleChange}
+              <select
+                id="elementId"
+                name="elementId"
+                value={formState.elementId}
                 required
-              />
+                onChange={handleChangeElement}
+              >
+                <option value="0">Select Element</option>
+                {elements.map((element) => (
+                  <option
+                    key={element.elementid}
+                    value={element.elementid}
+                    id={element.elementid}
+                    elementname={element.elementname}
+                    elementtype={element.elementtype}
+                    periodicity={element.periodicity}
+                  >
+                    {element.elementname}
+                  </option>
+                ))}
+              </select>
             </label>
             <label>
               Start Date<br></br>
@@ -78,11 +121,11 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
               </select>
             </label>
           </div>
-          <div className="flex flex-column">
-            <button type="submit" className={styles.btn} onClick={handleSubmit}>
+          <div className={styles.buttons}>
+            <button type="submit"  onClick={handleSubmit}>
               Submit
             </button>
-            <button className={styles.btn} onClick={closeForm}>
+            <button onClick={closeForm}>
               Cancel
             </button>
           </div>
