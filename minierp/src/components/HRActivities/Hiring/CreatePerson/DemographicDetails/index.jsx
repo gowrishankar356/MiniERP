@@ -11,7 +11,6 @@ const DemographicInfo = () => {
 
   const personalDetails = location.state?.personalDetails;
   const demographicDetails = location.state?.demographicDetails;
-  console.log(personalDetails)
   const [demographicInfo, setdemographicInfo] = useState({
     citizenship: demographicDetails?.citizenship
       ? demographicDetails.citizenship
@@ -90,11 +89,11 @@ const DemographicInfo = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_legislativeContactInfo}>
+      <div className={styles.form_legislativeContactInfo}>
         <h2>Hire an Employee</h2>
         <h3>Citizenship Info</h3>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Citizenship<br></br>
               <input
@@ -140,7 +139,7 @@ const DemographicInfo = () => {
         </form>
         <form>
           <h3>Contact Info</h3>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Email<br></br>
               <input
@@ -153,7 +152,7 @@ const DemographicInfo = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Country Code<br></br>
               <input
@@ -178,7 +177,7 @@ const DemographicInfo = () => {
             </label>
           </div>
           <h4>Address Info</h4>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Address Line 1<br></br>
               <input
@@ -202,7 +201,7 @@ const DemographicInfo = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               City<br></br>
               <input
@@ -226,7 +225,7 @@ const DemographicInfo = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Country<br></br>
               <input
@@ -251,7 +250,7 @@ const DemographicInfo = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button onClick={handleNext}>Next</button>
           <button onClick={handleBack}>Back</button>
           <button onClick={handleCancel}>Cancel</button>

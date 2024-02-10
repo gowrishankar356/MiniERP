@@ -58,10 +58,10 @@ const CreateJob = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_createjob}>
+      <div className={styles.form_createjob}>
         <h2>Create Location</h2>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Job Name<br></br>
               <input
@@ -92,7 +92,7 @@ const CreateJob = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div cclassName={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Job
           </button>

@@ -52,7 +52,7 @@ const CreateLocation = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_createLocation}>
+      <div className={styles.form_createLocation}>
         <h2>Create Location</h2>
         <form>
           <div>
@@ -68,7 +68,7 @@ const CreateLocation = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Address Line 1<br></br>
               <input
@@ -92,7 +92,7 @@ const CreateLocation = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               City<br></br>
               <input
@@ -116,7 +116,7 @@ const CreateLocation = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Country<br></br>
               <input
@@ -141,7 +141,7 @@ const CreateLocation = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Location
           </button>

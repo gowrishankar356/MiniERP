@@ -62,10 +62,10 @@ const Company = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_createCompany}>
+      <div className={styles.form_createCompany}>
         <h2>Create Company</h2>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Company Name<br></br>
               <input
@@ -96,7 +96,7 @@ const Company = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Company
           </button>

@@ -1,17 +1,30 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { useNavigate, useLocation,useSearchParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
 
 import Table from "../../../../Table";
-// import { AddtionalCompensationForm } from "../../../../AdditionalCompensationForm";
+import { AddtionalCompensationForm } from "../AddtionalCompensationDetails";
 
 const CompensationInfo = () => {
-  const [compensationFormOpen, setCompensationFormOpen] = useState(false);
+  const location = useLocation();
 
-  const [compensationInfo, setcompensationInfo] = useState({
-    basicSalaryAmount: "",
+  const [compensationFormOpen, setCompensationFormOpen] = useState(false);
+  const [queryParameters] = useSearchParams()
+
+  
+  const personalDetails = location.state?.personalDetails;
+  const demographicDetails = location.state?.demographicDetails;
+  const employmentDetails = location.state?.employmentDetails; 
+  
+  console.log(personalDetails)
+  console.log(demographicDetails)
+  console.log(employmentDetails)
+
+  const [compensationInfo, setCompensationInfo] = useState({
+    basicSalary: 0,
+    annualBasicSalary: 0
   });
 
   const [compensations, setCompensations] = useState([
@@ -41,12 +54,13 @@ const CompensationInfo = () => {
 
   const handleAdd = (newRow) => {
     setCompensations([...compensations, newRow]);
+    setCompensationFormOpen(false); // Close the form
   };
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setcompensationInfo((prev) => ({
+    setCompensationInfo((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -82,34 +96,26 @@ const CompensationInfo = () => {
     }
   };
 
+  const handleSetCompensation = async (e) => {
+    e.preventDefault();
+    setCompensationFormOpen(true);
+  };
+
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_compensationInfo}>
+      <div className={styles.form_compensationInfo}>
         <h2>Hire an Employee</h2>
         <h3>Compensation Info</h3>
         <form>
           <div>
             <label>
-              Start Date<br></br>
-              <input
-                type="text"
-                name="companyName"
-                placeholder="Eg: Google"
-                id="companyName"
-                value={compensationInfo.companyName}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
               Basic Salary<br></br>
               <input
-                type="text"
-                name="companyName"
-                placeholder="Eg: Google"
-                id="companyName"
-                value={compensationInfo.basicSalaryAmount}
+                type="number"
+                name="basicSalary"
+                id="basicSalary"
+                value={compensationInfo.basicSalary}
                 onChange={handleChange}
                 required
               />
@@ -117,29 +123,28 @@ const CompensationInfo = () => {
             <label>
               Annual Basic Salary<br></br>
               <input
-                type="text"
-                name="companyName"
-                placeholder="Eg: Google"
-                id="companyName"
-                value={compensationInfo.basicSalaryAmount * 12}
+                type="number"
+                name="annualBasicSalary"
+                placeholder=""
+                id="annualBasicSalary"
+                value={compensationInfo.annualBasicSalary}
                 onChange={handleChange}
                 required
-                readOnly
               />
             </label>
           </div>
           <Table rows={compensations} deleteRow={handleDelete}></Table>
-          <button onClick={() => setCompensationFormOpen(true)}>
+          <button onClick={handleSetCompensation}>
             Add Compensation
           </button>
-          {/* {compensationFormOpen && (
+          {compensationFormOpen && (
             <AddtionalCompensationForm
               closeForm={() => setCompensationFormOpen(false)}
               onSubmit={handleAdd}
             ></AddtionalCompensationForm>
-          )} */}
+          )}
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button onClick={handleNext}>Next</button>
           <button onClick={handleBack}>Back</button>
           <button onClick={handleCancel}>Cancel</button>

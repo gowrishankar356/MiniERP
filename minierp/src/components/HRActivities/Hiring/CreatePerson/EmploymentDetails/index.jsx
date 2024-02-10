@@ -13,14 +13,20 @@ const EmploymentInfo = () => {
   const demographicDetails = location.state?.demographicDetails;
   const employmentDetailsBack = location.state?.employmentDetailsBack;
   const [employmentInfo, setemploymentInfo] = useState({
-    job: employmentDetailsBack?.job ? employmentDetailsBack.job : "",
-    grade: employmentDetailsBack?.grade ? employmentDetailsBack.grade : "",
-    department: employmentDetailsBack?.department ? employmentDetailsBack.department: "",
-    location: employmentDetailsBack?.location ? employmentDetailsBack.location : "",
-    manager: employmentDetailsBack?.location ? employmentDetailsBack.location : "",
+    jobId: employmentDetailsBack?.jobId ? employmentDetailsBack.jobId : 0,
+    gradeId: employmentDetailsBack?.gradeId ? employmentDetailsBack.gradeId : 0,
+    departmentId: employmentDetailsBack?.departmentId
+      ? employmentDetailsBack.departmentId
+      : 0,
+    locationId: employmentDetailsBack?.locationId
+      ? employmentDetailsBack.locationId
+      : 0,
+    managerId: employmentDetailsBack?.managerId
+      ? employmentDetailsBack.managerId
+      : 0,
   });
 
-  const [jobs,setJobs] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const [grades, setGrades] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [locations, setLocations] = useState([]);
@@ -74,7 +80,6 @@ const EmploymentInfo = () => {
     }
   };
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -104,7 +109,9 @@ const EmploymentInfo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3300/getdepartments`);
+        const response = await axios.get(
+          `http://localhost:3300/getdepartments`
+        );
         setDepartments(response.data.rows);
       } catch (error) {
         console.error("Error:", error);
@@ -143,74 +150,79 @@ const EmploymentInfo = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_employmentInfo}>
+      <div className={styles.form_employmentInfo}>
         <h2>Hire an Employee</h2>
         <h3>Employment Info</h3>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Job<br></br>
               <select
-                id="job"
-                onChange={handleChange}
-                name="job"
-                value={employmentInfo.job}
+                id="jobId"
+                name="jobId"
+                value={employmentInfo.jobId}
                 required
+                onChange={handleChange}
               >
-                <option value="MANAGER">Manager</option>
-                <option value="DEVELOPER">Developer</option>
-                <option value="Tester">Tester</option>
-                <option value="HR">Hr</option>
-                <option value="CEO">Cheif Executive Officer</option>
+                <option value="0">Select Job</option>
+                {jobs.map((job) => (
+                  <option key={job.jobid} value={job.jobid} id={job.jobid}>
+                    {job.jobname}
+                  </option>
+                ))}
               </select>
             </label>
             <label>
               Grade<br></br>
               <select
-                id="grade"
-                onChange={handleChange}
-                name="grade"
-                value={employmentInfo.grade}
+                id="gradeId"
+                name="gradeId"
+                value={employmentInfo.gradeId}
                 required
+                onChange={handleChange}
               >
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
+                <option value="0">Select Grade</option>
+                {grades.map((grade) => (
+                  <option key={grade.gradeid} value={grade.gradeid} id={grade.gradeid}>
+                    {grade.gradename}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Department<br></br>
               <select
-                id="department"
-                onChange={handleChange}
-                name="department"
-                value={employmentInfo.department}
+                id="departmentId"
+                name="departmentId"
+                value={employmentInfo.departmentId}
                 required
+                onChange={handleChange}
               >
-                <option value="TECHNICAL">Technical</option>
-                <option value="ADMIN">Administration</option>
-                <option value="TESTING">Q & A</option>
-                <option value="HR">Hr</option>
+                <option value="0">Select Department</option>
+                {departments.map((department) => (
+                  <option key={department.departmentid} value={department.departmentid} id={department.departmentid}>
+                    {department.departmentname}
+                  </option>
+                ))}
               </select>
             </label>
             <label>
               Job Location<br></br>
               <select
-                id="location"
-                onChange={handleChange}
-                name="location"
-                value={employmentInfo.location}
+                id="locationId"
+                name="locationId"
+                value={employmentInfo.locationId}
                 required
+                onChange={handleChange}
               >
-                <option value="UAE">United Arab Emirites</option>
-                <option value="USA">United States</option>
-                <option value="IND">India</option>
-                <option value="JPN">Japan</option>
-                <option value="EUR">Europe</option>
+                <option value="0">Select Location</option>
+                {locations.map((location) => (
+                  <option key={location.locationid} value={location.locationid} id={location.locationid}>
+                    {location.locationname}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
@@ -218,20 +230,23 @@ const EmploymentInfo = () => {
             <label>
               Manager<br></br>
               <select
-                id="manager"
-                onChange={handleChange}
-                name="manager"
-                value={employmentInfo.manager}
+                id="managerId"
+                name="managerId"
+                value={employmentInfo.managerId}
                 required
+                onChange={handleChange}
               >
-                <option value="JYOTHI">Jyothi</option>
-                <option value="SANTOSH">Santosh</option>
-                <option value="NALLURI">Nalluri</option>
+                <option value="0">Select Manager</option>
+                {managers.map((manager) => (
+                  <option key={manager.personid} value={manager.personid} id={manager.personid}>
+                    {manager.personid}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button onClick={handleNext}>Next</button>
           <button onClick={handleBack}>Back</button>
           <button onClick={handleCancel}>Cancel</button>

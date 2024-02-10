@@ -46,7 +46,7 @@ const CreateGrade = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_creategrade}>
+      <div className={styles.form_creategrade}>
         <h2>Create Location</h2>
         <form>
           <div>
@@ -62,7 +62,7 @@ const CreateGrade = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Minimum Salary<br></br>
               <input
@@ -87,7 +87,7 @@ const CreateGrade = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Grade
           </button>

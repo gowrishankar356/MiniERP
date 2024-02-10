@@ -9,15 +9,19 @@ const PersonalDetailsForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const personalDetailsBack = location.state?.personalDetails;
-  console.log(personalDetailsBack);
+
   const [personalDetails, setPersonalDetails] = useState({
     hireDate: personalDetailsBack?.hireDate ? personalDetailsBack.hireDate : "",
-    companyId: personalDetailsBack?.companyId ? personalDetailsBack.companyId : 0,
+    companyId: personalDetailsBack?.companyId
+      ? personalDetailsBack.companyId
+      : 0,
     employeeType: personalDetailsBack?.employeeType
       ? personalDetailsBack.employeeType
       : "",
     title: personalDetailsBack?.title ? personalDetailsBack.title : "",
-    firstName: personalDetailsBack?.firstName ? personalDetailsBack.firstName : "",
+    firstName: personalDetailsBack?.firstName
+      ? personalDetailsBack.firstName
+      : "",
     lastName: personalDetailsBack?.lastName ? personalDetailsBack.lastName : "",
     gender: personalDetailsBack?.gender ? personalDetailsBack.gender : "",
     dob: personalDetailsBack?.dob ? personalDetailsBack.dob : "",
@@ -92,11 +96,11 @@ const PersonalDetailsForm = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_personal}>
+      <div className={styles.form_personal}>
         <h2>Hire an Employee</h2>
         <h3>Basic Details</h3>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Hire Date<br></br>
               <input
@@ -119,7 +123,7 @@ const PersonalDetailsForm = () => {
               >
                 <option value="0">Select Company</option>
                 {companies.map((company) => (
-                  <option value={company.companyid} id={company.companyid}>
+                  <option key={company.companyid} value={company.companyid} id={company.companyid}>
                     {company.companyname}
                   </option>
                 ))}
@@ -127,7 +131,7 @@ const PersonalDetailsForm = () => {
             </label>
           </div>
         </form>
-        <div class={styles.row}>
+        <div className={styles.row}>
           <label>
             Employee Type<br></br>
             <select
@@ -137,6 +141,7 @@ const PersonalDetailsForm = () => {
               value={personalDetails.employeeType}
               required
             >
+              <option value="">Select Employee Type</option>
               <option value="FULL_TIME">Full Time</option>
               <option value="PART_TIME">Part Time</option>
             </select>
@@ -144,7 +149,7 @@ const PersonalDetailsForm = () => {
         </div>
         <form>
           <h3>Personal Details</h3>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Title<br></br>
               <select
@@ -154,6 +159,7 @@ const PersonalDetailsForm = () => {
                 value={personalDetails.title}
                 required
               >
+                <option value="">Select Title</option>
                 <option value="MR">Mr.</option>
                 <option value="MRS">Mrs.</option>
                 <option value="MS">Ms.</option>
@@ -184,7 +190,7 @@ const PersonalDetailsForm = () => {
               />
             </label>
           </div>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Gender<br></br>
               <select
@@ -194,7 +200,9 @@ const PersonalDetailsForm = () => {
                 value={personalDetails.gender}
                 required
               >
-                <option selected value="MALE">
+                <option value="">Select Gender</option>
+                <option
+                 value="MALE">
                   Male
                 </option>
                 <option value="FEMALE">Female</option>
@@ -213,7 +221,7 @@ const PersonalDetailsForm = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button onClick={handleNext}>Next</button>
           <button onClick={handleBack}>Back</button>
           <button onClick={handleCancel}>Cancel</button>

@@ -58,10 +58,10 @@ const CreateDepartment = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_createdepartment}>
+      <div className={styles.form_createdepartment}>
         <h2>Create Location</h2>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Department Name<br></br>
               <input
@@ -92,7 +92,7 @@ const CreateDepartment = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Department
           </button>

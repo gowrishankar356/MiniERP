@@ -78,7 +78,7 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
               </select>
             </label>
           </div>
-          <div class="flex flex-column">
+          <div className="flex flex-column">
             <button type="submit" className={styles.btn} onClick={handleSubmit}>
               Submit
             </button>

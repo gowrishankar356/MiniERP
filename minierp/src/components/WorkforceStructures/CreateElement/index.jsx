@@ -60,10 +60,10 @@ const CreateElement = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div class={styles.form_element}>
+      <div className={styles.form_element}>
         <h2>Create Element</h2>
         <form>
-          <div class={styles.row}>
+          <div className={styles.row}>
             <label>
               Element Name<br></br>
               <input
@@ -124,7 +124,7 @@ const CreateElement = () => {
             </label>
           </div>
         </form>
-        <div class={styles.buttons}>
+        <div className={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Element
           </button>
