@@ -166,7 +166,7 @@ const PersonalDetailsForm = () => {
               </select>
             </label>
             <label>
-              First Name
+              First Name<br></br>
               <input
                 type="text"
                 name="firstName"
@@ -178,7 +178,7 @@ const PersonalDetailsForm = () => {
               />
             </label>
             <label>
-              Last Name
+              Last Name<br></br>
               <input
                 type="text"
                 name="lastName"

@@ -10,27 +10,44 @@ export const Table = ({ rows, deleteRow }) => {
         <thead>
           <tr>
             <th className={styles.expand}>Compensation</th>
-            <th>Start Date</th>
             <th>Value</th>
-            <th>Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Periodicity</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, idx) => {
-            const statusText = row.status.charAt(0) + row.status.slice(1).toLowerCase();
+            const parts = row.startDate.split("-");
+            var year = parseInt(parts[0], 10);
+            var month = parseInt(parts[1], 10) - 1;
+            var day = parseInt(parts[2], 10);
+
+            const startDateObject = new Date(year, month, day);
+            var lastDayOfMonth = new Date(
+              startDateObject.getFullYear(),
+              startDateObject.getMonth() + 1,
+              0
+            );
+            year = lastDayOfMonth.getFullYear();
+            month = lastDayOfMonth.getMonth();
+            day = lastDayOfMonth.getDate();
+            var endDate = year + "-" + month + "-" + day;
+ 
             return (
               <tr key={idx}>
-                <td>{row.compensation}</td>
-                <td>{row.startdate}</td>
+                <td>{row.elementName}</td>
                 <td>{row.value}</td>
-                <td className={`${styles.lable} ${styles.lable_}${row.status}`}>{statusText}</td>
+                <td>{row.startDate}</td>
+                <td>{row.periodicity === "R" ? "" : endDate}</td>
+                <td>{row.periodicity}</td>
                 <td>
                   <span className={styles.actions}>
                     <BsFillPencilFill></BsFillPencilFill>
                     <BsFillTrashFill
                       className={styles.delete_btn}
-                      onClick={()=>deleteRow(idx)}
+                      onClick={() => deleteRow(idx)}
                     ></BsFillTrashFill>
                   </span>
                 </td>
@@ -38,7 +55,6 @@ export const Table = ({ rows, deleteRow }) => {
             );
           })}
         </tbody>
-
       </table>
     </div>
   );

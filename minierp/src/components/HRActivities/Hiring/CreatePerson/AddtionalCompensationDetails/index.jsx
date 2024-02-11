@@ -25,7 +25,6 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formState);
     onSubmit(formState);
     closeForm();
   };
@@ -87,9 +86,9 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
               Start Date<br></br>
               <input
                 type="date"
-                name="startdate"
+                name="startDate"
                 placeholder="Eg: Google"
-                id="startdate"
+                id="startDate"
                 value={formState.startDate}
                 onChange={handleChange}
                 required

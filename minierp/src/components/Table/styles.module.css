@@ -41,20 +41,6 @@
     width: 100%;
 }
 
-.lable {
-    border-radius: 10px;
-    padding: 0.3rem;
-    color: white;
-}
-
-.lable_ACTIVE {
-    background-color: green;
-}
-
-.lable_INACTIVE{
-    background-color: red;
-}
-
 .actions {
     display: flex;
     justify-content: space-around;

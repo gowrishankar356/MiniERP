@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
@@ -11,41 +11,16 @@ const CompensationInfo = () => {
   const location = useLocation();
 
   const [compensationFormOpen, setCompensationFormOpen] = useState(false);
-  const [queryParameters] = useSearchParams();
 
   const personalDetails = location.state?.personalDetails;
   const demographicDetails = location.state?.demographicDetails;
   const employmentDetails = location.state?.employmentDetails;
-
-  console.log(personalDetails);
-  console.log(demographicDetails);
-  console.log(employmentDetails);
+  const [compensations, setCompensations] = useState([]);
 
   const [compensationInfo, setCompensationInfo] = useState({
     basicSalary: 0,
     annualBasicSalary: 0,
   });
-
-  const [compensations, setCompensations] = useState([
-    {
-      compensation: "Housing Allowance",
-      startdate: "01/01/2021",
-      value: 1999.99,
-      status: "ACTIVE",
-    },
-    {
-      compensation: "Transposrtation Allowance",
-      startdate: "01/01/2021",
-      value: 1999.99,
-      status: "INACTIVE",
-    },
-    {
-      compensation: "General Allowance",
-      startdate: "01/01/2021",
-      value: 1999.99,
-      status: "ACTIVE",
-    },
-  ]);
 
   const handleDelete = (targetIndex) => {
     setCompensations(compensations.filter((_, idx) => idx !== targetIndex));
@@ -53,7 +28,7 @@ const CompensationInfo = () => {
 
   const handleAdd = (newRow) => {
     setCompensations([...compensations, newRow]);
-    setCompensationFormOpen(false); // Close the form
+    setCompensationFormOpen(false);
   };
 
   const navigate = useNavigate();
@@ -65,10 +40,12 @@ const CompensationInfo = () => {
     }));
   };
 
-  const handleNext = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      navigate("/compensationInfo");
+      console.log(personalDetails)
+      await axios.post(`http://localhost:3300/createperson`, {personalDetails :personalDetails , demographicDetails : demographicDetails, employmentDetails : employmentDetails, compensations: compensations});
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert("Error navigating to Compensation Info form!");
@@ -147,7 +124,7 @@ const CompensationInfo = () => {
           )}
         </form>
         <div className={styles.buttons}>
-          <button onClick={handleNext}>Next</button>
+          <button onClick={handleSubmit}>Submit</button>
           <button onClick={handleBack}>Back</button>
           <button onClick={handleCancel}>Cancel</button>
         </div>

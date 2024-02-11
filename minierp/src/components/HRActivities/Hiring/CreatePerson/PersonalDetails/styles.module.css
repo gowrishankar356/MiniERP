@@ -4,7 +4,7 @@ label {
 }
 
 input {
-    width: 300px;
+    width: auto;
     margin-top: 4px;
     margin-bottom: 10px;
     padding: 6px;
