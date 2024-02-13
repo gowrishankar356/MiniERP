@@ -20,7 +20,7 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
       ...formState,
       [e.target.name]: e.target.value,
     });
-    console.log(formState)
+    console.log(formState);
   };
 
   const handleSubmit = (e) => {
@@ -33,12 +33,15 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
-      elementName: e.target.options[e.target.selectedIndex].getAttribute("elementname"),
-      elementType: e.target.options[e.target.selectedIndex].getAttribute("elementtype"),
-      periodicity: e.target.options[e.target.selectedIndex].getAttribute("periodicity"),
+      elementName:
+        e.target.options[e.target.selectedIndex].getAttribute("elementname"),
+      elementType:
+        e.target.options[e.target.selectedIndex].getAttribute("elementtype"),
+      periodicity:
+        e.target.options[e.target.selectedIndex].getAttribute("periodicity"),
     });
-    console.log(formState)
-  }
+    console.log(formState);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -121,12 +124,10 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
             </label>
           </div>
           <div className={styles.buttons}>
-            <button type="submit"  onClick={handleSubmit}>
+            <button type="submit" onClick={handleSubmit}>
               Submit
             </button>
-            <button onClick={closeForm}>
-              Cancel
-            </button>
+            <button onClick={closeForm}>Cancel</button>
           </div>
         </form>
       </div>
