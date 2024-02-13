@@ -9,8 +9,10 @@ const CreateJob = () => {
   const [job, setJob] = useState({
     jobName: "",
     companyId: 0,
+    locationId: 0,
   });
   const [companies, setCompanies] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   const navigate = useNavigate();
 
@@ -55,11 +57,24 @@ const CreateJob = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3300/getlocations`);
+        setLocations(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <NavBar></NavBar>
       <div className={styles.form_createjob}>
-        <h2>Create Location</h2>
+        <h2>Create Job</h2>
         <form>
           <div className={styles.row}>
             <label>
@@ -90,9 +105,26 @@ const CreateJob = () => {
                 ))}
               </select>
             </label>
+            <label>
+              Location<br></br>
+              <select
+                id="locationId"
+                name="locationId"
+                value={job.locationId}
+                required
+                onChange={handleChange}
+              >
+                <option>Select Company</option>
+                {locations.map((location) => (
+                  <option value={location.locationid} id={location.locationid}>
+                    {location.locationname}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
         </form>
-        <div cclassName={styles.buttons}>
+        <div className={styles.buttons}>
           <button type="submit" onClick={handleSubmit}>
             Create Job
           </button>

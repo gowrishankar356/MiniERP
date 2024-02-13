@@ -47,6 +47,7 @@ const DemographicInfo = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    console.log(demographicInfo);
   };
 
   const handleNext = async (e) => {

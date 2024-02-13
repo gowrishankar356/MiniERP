@@ -50,7 +50,7 @@ app.get("/getpersons", async (req, res) => {
 
 //create Person
 app.post("/createperson", (req, res) => {
-
+  console.log(req.body);
   const hireDate = req.body.personalDetails.hireDate;
   const companyId = req.body.personalDetails.companyId;
   const employeeType = req.body.personalDetails.employeeType;
@@ -81,153 +81,167 @@ app.post("/createperson", (req, res) => {
 
   const compensations = req.body.compensations;
 
+  console.log(citizenship, citizenshipStatus, maritalStatus);
+
+  var personID;
+  var demographicId;
+  var contactId;
+  var assignmentId;
+  var elementEntryId;
+
   const date = new Date();
 
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
-  const personalDetailsQuery = "Insert into person values($1, $2, $3,$4, $5)";
+  const personalDetailsQuery =
+    "Insert into person(title, firstName, lastName, gender, dateofbirth, datecreated, createdby) values($1, $2, $3,$4, $5, $6, $7)   RETURNING personid;";
 
   client.query(
     personalDetailsQuery,
-    [title, firstName, lastName, gender, dob],
+    [title, firstName, lastName, gender, dob, datecreated, createdby],
     (err, result) => {
       if (!err) {
-        console.log("succsess")
-        const personId = result.rows[0].personid;
+        personId = result.rows[0].personid;
         console.log("Person ID:", personId);
+
+        //inserting person demographic details
+        const demographicDetailsQuery =
+          "Insert into Demographic(personid,citizenship, status, maritalstatus, datecreated, createdby)  values($1,$2,$3,$4,$5,$6) RETURNING demographicid;";
+
+        client.query(
+          demographicDetailsQuery,
+          [
+            personId,
+            citizenship,
+            citizenshipStatus,
+            maritalStatus,
+            datecreated,
+            createdby,
+          ],
+          (err, result) => {
+            if (!err) {
+              demographicId = result.rows[0].demographicid;
+              console.log("DemographicId ID:", demographicId);
+            } else {
+              console.log(err);
+            }
+          }
+        );
+
+        //inserting person contact details
+        const contactDetailsQuery =
+          "Insert into Contact(personid, email, countrycode, mobileno, addressline1, addressline2, city, state, country, postalcode, datecreated, createdby) values($1,$2,$3,$4,$5,$6, $7, $8, $9, $10, $11 , $12) Returning contactid;";
+
+        client.query(
+          contactDetailsQuery,
+          [
+            personId,
+            email,
+            countryCode,
+            phoneNumber,
+            addressLine1,
+            addressLine2,
+            city,
+            state,
+            country,
+            postalCode,
+            datecreated,
+            createdby,
+          ],
+          (err, result) => {
+            if (!err) {
+              contactId = result.rows[0].contactid;
+              console.log("ContactId ID:", contactId);
+            } else {
+              console.log(err);
+            }
+          }
+        );
+
+        const assignmentDetailsQuery =
+          "Insert into Assignment(personid, assignmentstartdate,assignmentenddate, hiredate, companyid, departmentid, jobid, gradeid, locationid, employeetype, managerid, datecreated, createdby) values($1,$2,$3,$4,$5,$6, $7, $8, $9, $10, $11, $12, $13 ) returning assignmentid";
+
+        const assignmentStartDate = "2020-01-01";
+        const assignmentEndDate = "2020-01-31";
+
+        client.query(
+          assignmentDetailsQuery,
+          [
+            personId,
+            assignmentStartDate,
+            assignmentEndDate,
+            hireDate,
+            companyId,
+            departmentId,
+            jobId,
+            gradeId,
+            locationId,
+            employeeType,
+            personId,
+            datecreated,
+            createdby,
+          ],
+          (err, result) => {
+            if (!err) {
+              assignmentId = result.rows[0].assignmentid;
+              console.log("Assignment ID:", assignmentId);
+
+              compensations.forEach((compensation) => {
+                var elemententryQuery =
+                  "Insert into elemententry(assignmentid, elementid, elemententryvalue, elemententrystartdate, elemententryenddate, datecreated, createdby) values($1,$2,$3,$4,$5,$6, $7 ) returning elemententryid";
+
+                const parts = compensation.startDate.split("-");
+                var year = parseInt(parts[0], 10);
+                var month = parseInt(parts[1], 10) - 1;
+                var day = parseInt(parts[2], 10);
+
+                const startDateObject = new Date(year, month, day);
+                var lastDayOfMonth = new Date(
+                  startDateObject.getFullYear(),
+                  startDateObject.getMonth() + 1,
+                  0
+                );
+                year = lastDayOfMonth.getFullYear();
+                month = lastDayOfMonth.getMonth();
+                day = lastDayOfMonth.getDate();
+                var endDate = year + "-" + month + "-" + day;
+
+                client.query(
+                  elemententryQuery,
+                  [
+                    assignmentId,
+                    compensation.elementId,
+                    compensation.value,
+                    compensation.startDate,
+                    compensation.periodicity === "R" ? "4712-12-31" : endDate,
+                    datecreated,
+                    createdby,
+                  ],
+                  (err, result) => {
+                    if (!err) {
+                      elementEntryId = result.rows[0].elemententryid;
+                      console.log("ElementEntry ID:", elementEntryId);
+                    } else {
+                      console.log(err);
+                    }
+                  }
+                );
+              });
+            } else {
+              console.log(err);
+            }
+          }
+        );
       } else {
         console.log(err);
       }
     }
   );
-
-  // const demographicDetailsQuery =
-  //   "Insert into Demographic values($1,$2,$3,$4,$5,$6)";
-
-  // client.query(
-  //   demographicDetailsQuery,
-  //   [
-  //     personId,
-  //     citizenship,
-  //     citizenshipStatus,
-  //     maritalStatus,
-  //     datecreated,
-  //     createdby,
-  //   ],
-  //   (err, result) => {
-  //     if (!err) {
-  //       const demographicId = result.rows[0].demographicid;
-  //       console.log("DemographicId ID:", demographicId);
-  //     } else {
-  //       console.log(err);
-  //     }
-  //   }
-  // );
-
-  // const contactDetailsQuery =
-  //   "Insert into Contact values($1,$2,$3,$4,$5,$6, $7, $8, $9, $10, $11 )";
-
-  // client.query(
-  //   contactDetailsQuery,
-  //   [
-  //     personId,
-  //     email,
-  //     countryCode,
-  //     phoneNumber,
-  //     addressLine1,
-  //     addressLine2,
-  //     city,
-  //     state,
-  //     country,
-  //     datecreated,
-  //     createdby,
-  //   ],
-  //   (err, result) => {
-  //     if (!err) {
-  //       const contactId = result.rows[0].contactid;
-  //       console.log("ContactId ID:", contactId);
-  //     } else {
-  //       console.log(err);
-  //     }
-  //   }
-  // );
-
-  // const assignmentDetailsQuery =
-  //   "Insert into Assignment values($1,$2,$3,$4,$5,$6, $7, $8, $9, $10, $11. $12, $13 )";
-
-  // client.query(
-  //   assignmentDetailsQuery,
-  //   [
-  //     personId,
-  //     hireDate,
-  //     "",
-  //     hireDate,
-  //     companyId,
-  //     departmentId,
-  //     jobId,
-  //     gradeId,
-  //     locationId,
-  //     employeeType,
-  //     "",
-  //     datecreated,
-  //     createdby,
-  //   ],
-  //   (err, result) => {
-  //     if (!err) {
-  //       const assignmentId = result.rows[0].assignmentid;
-  //       console.log("Assignment ID:", assignmentId);
-  //     } else {
-  //       console.log(err);
-  //     }
-  //   }
-  // );
-
-  // compensations.forEach((compensation) => {
-  //   var elemententryQuery =
-  //     "Insert into elemententry values($1,$2,$3,$4,$5,$6, $7 )";
-
-  //   const parts = compensation.startDate.split("-");
-  //   var year = parseInt(parts[0], 10);
-  //   var month = parseInt(parts[1], 10) - 1;
-  //   var day = parseInt(parts[2], 10);
-
-  //   const startDateObject = new Date(year, month, day);
-  //   var lastDayOfMonth = new Date(
-  //     startDateObject.getFullYear(),
-  //     startDateObject.getMonth() + 1,
-  //     0
-  //   );
-  //   year = lastDayOfMonth.getFullYear();
-  //   month = lastDayOfMonth.getMonth();
-  //   day = lastDayOfMonth.getDate();
-  //   var endDate = year + "-" + month + "-" + day;
-
-  //   client.query(
-  //     elemententryQuery,
-  //     [
-  //       assignmentId,
-  //       compensation.elementId,
-  //       compensation.value,
-  //       compensation.startDate,
-  //       compensation.periodicity === "R" ? "" : endDate,
-  //       datecreated,
-  //       createdby,
-  //     ],
-  //     (err, result) => {
-  //       if (!err) {
-  //         const elementEntryId = result.rows[0].elemententryid;
-  //         console.log("ElementEntry ID:", elementEntryId);
-  //       } else {
-  //         console.log(err);
-  //       }
-  //     }
-  //   );
-  // });
 
   client.end;
 });
@@ -248,7 +262,7 @@ app.post("/createlocation", (req, res) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
   const query =
@@ -301,7 +315,7 @@ app.post("/createcompany", (req, res) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
   const query =
@@ -343,7 +357,7 @@ app.post("/creategrade", (req, res) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
   const query =
@@ -378,6 +392,7 @@ app.get("/getgrades", async (req, res) => {
 app.post("/createjob", (req, res) => {
   const jobName = req.body.jobName;
   const companyId = req.body.companyId;
+  const locationId = req.body.locationId;
 
   const date = new Date();
 
@@ -385,15 +400,15 @@ app.post("/createjob", (req, res) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
   const query =
-    "Insert into job(jobname, companyid, datecreated, createdby) values($1,$2,$3,$4)";
+    "Insert into job(jobname, companyid, locationId,datecreated, createdby) values($1,$2,$3,$4,$5)";
 
   client.query(
     query,
-    [jobName, companyId, datecreated, createdby],
+    [jobName, companyId, locationId, datecreated, createdby],
     (err, result) => {
       if (!err) {
         res.send(result.rows);
@@ -427,7 +442,7 @@ app.post("/createdepartment", (req, res) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
   const query =
@@ -471,7 +486,7 @@ app.post("/createelement", (req, res) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const datecreated = `${day}-${month}-${year}`;
+  const datecreated = `${year}-${month}-${day}`;
   const createdby = -1;
 
   const query =
