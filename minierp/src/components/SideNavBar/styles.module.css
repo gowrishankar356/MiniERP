@@ -1,0 +1,12 @@
+.side_bar_container {
+    margin-top: 65px;
+    background-color: grey;
+    width: 260px;
+    height: 800px;
+    color: white
+}
+
+.side_bar_container a {
+    text-decoration: none;
+    color: white
+}
