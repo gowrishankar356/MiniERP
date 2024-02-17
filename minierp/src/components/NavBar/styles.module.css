@@ -2,21 +2,18 @@
 --------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Charm&family=Lato&family=Poppins:wght@200&family=Ubuntu:wght@300&display=swap');
 
-
 .nav_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 60px;
     color: white;
-    display: flex;
-    flex-direction: column;
     z-index: 1;
-}
-
-.nav_bar_bg {
-    background-color: rgb(63, 62, 62);
+    background-color: gray;
 }
 
 .nav_bar a {
@@ -24,11 +21,23 @@
     color: white;
 }
 
-.nav_bar_content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
+.nav_bar img {
+    float: left;
+    margin: 2px;
+    padding: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.nav_bar button {
     background-color: gray;
+    border: none;
+    cursor: pointer;
+}
+
+.nav_bar button:hover {
+    background-color: rgb(160, 160, 160);
 }
 
 .nav_bar_about {
@@ -47,13 +56,12 @@
     margin-top: 16px;
 }
 
-
 .nav_bar_sub_content {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding-top: 4px;
-    margin-right: 50px;
+    margin-right: 100px;
+    padding-top: 2px;
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
 }
@@ -66,16 +74,9 @@
     position: absolute;
 }
 
-.nav_bar img {
-    margin: 6px 10px 6px 30px;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-}
-
 .nav_bar_sub_content a:hover {
     padding: 8px;
-    background-color: rgba(218, 143, 5, 0.711);
+    background-color: rgb(160, 160, 160);
     border-radius: 8px;
 }
 
@@ -93,18 +94,17 @@
 .second_levelnav {
     background-color: gray;
     margin-top: 8px;
-    margin-right: 0px;
     padding: 20px;
     width: 175px;
     border-radius: 10px;
 }
 
 .second_level_active {
-    visibility:visible;
+    visibility: visible;
 }
 
 .second_level_inactive {
-    visibility:hidden;
+    visibility: hidden;
 }
 
 .second_levelnav li {
@@ -115,7 +115,7 @@
 
 .second_levelnav a:hover {
     padding: 4px;
-    background-color: rgba(218, 143, 5, 0.711);
+    background-color: rgb(160, 160, 160);
     border-radius: 8px;
 }
 
