@@ -64,6 +64,7 @@ const SideNavBar = () => {
           </ul>
         </li>
       </ul>
+      <ul>Hello</ul>
     </div>
   );
 };

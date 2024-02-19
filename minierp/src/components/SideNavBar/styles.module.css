@@ -30,8 +30,8 @@
 }
 
 .workForceStructures {
-    visibility: hidden;
-    position: absolute;
+    display: none;
+    /* position: absolute; */
 }
 
 .side_bar_container li {
