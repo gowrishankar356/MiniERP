@@ -4,25 +4,20 @@ import { useState } from "react";
 
 const SideNavBar = () => {
   // adding the states
-  const [isActive, setIsActive] = useState(false);
   const [
     dropDownWorkForceStructuresActive,
     setDropDownWorkForceStructuresActive,
   ] = useState(false);
 
-  const removeActive = () => {
-    setIsActive(false);
-  };
-
   return (
     <div className={styles.side_bar_container}>
       <ul>
-        <li onClick={removeActive}>
+        <li>
           <a href="/">Home</a>
         </li>
       </ul>
       <ul>
-        <li onClick={removeActive}>
+        <li>
           <a href="/personalDetails">HR Activities</a>
         </li>
       </ul>
@@ -35,7 +30,7 @@ const SideNavBar = () => {
           }
         >
           <a>Workforce Structures</a>
-          <img src="images/dropdown.svg"></img>
+          <img src="images/dropdown.svg" alt="dropdown svg"></img>
           <ul
             className={
               dropDownWorkForceStructuresActive
@@ -64,7 +59,6 @@ const SideNavBar = () => {
           </ul>
         </li>
       </ul>
-      <ul>Hello</ul>
     </div>
   );
 };

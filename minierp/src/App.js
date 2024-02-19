@@ -5,12 +5,11 @@ import DemographicInfo from "./components/HRActivities/Hiring/CreatePerson/Demog
 import EmploymentInfo from "./components/HRActivities/Hiring/CreatePerson/EmploymentDetails";
 import CompensationInfo from "./components/HRActivities/Hiring/CreatePerson/CompensationDetails";
 import CreateLocation from "./components/WorkforceStructures/CreateLocation";
-import CreateCompany from "./components/WorkforceStructures/CreateCompany";
+import CreateCompany from "./components/WorkforceStructures/Company/CreateCompany";
 import CreateGrade from "./components/WorkforceStructures/CreateGrade";
 import CreateJob from "./components/WorkforceStructures/CreateJob";
 import CreateDepartment from "./components/WorkforceStructures/CreateDepartment";
 import CreateElement from "./components/WorkforceStructures/CreateElement";
-
 
 function App() {
   return (
@@ -19,10 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/personalDetails" element={<PersonalDetailsForm />} />
-          <Route
-            path="/demographicDetails"
-            element={<DemographicInfo />}
-          />
+          <Route path="/demographicDetails" element={<DemographicInfo />} />
           <Route path="/employmentInfo" element={<EmploymentInfo />} />
           <Route path="/compensationDetails" element={<CompensationInfo />} />
           <Route path="/createLocation" element={<CreateLocation />} />

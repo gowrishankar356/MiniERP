@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../../NavBar";
+import NavBar from "../../../NavBar";
 
 const Company = () => {
   const [company, setCompany] = useState({
@@ -33,7 +33,7 @@ const Company = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(company)
+    console.log(company);
     try {
       await axios.post(`http://localhost:3300/createcompany`, company);
       navigate("/");
@@ -42,7 +42,6 @@ const Company = () => {
       alert("Error adding Company. Please try again.");
     }
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +56,7 @@ const Company = () => {
     fetchData();
   }, []);
 
-  console.log(locations)
+  console.log(locations);
 
   return (
     <div>
