@@ -3,18 +3,15 @@ import styles from "./styles.module.css";
 
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
-export const Table = ({ rows, deleteRow }) => {
+export const Table = ({ rows, columns, deleteRow }) => {
   return (
     <div className={styles.table_wrapper}>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th className={styles.expand}>Compensation</th>
-            <th>Value</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Periodicity</th>
-            <th>Actions</th>
+            {columns.map((column, idx) => (
+              <th key={idx}>{column}</th>
+            ))}
           </tr>
         </thead>
         <tbody>

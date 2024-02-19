@@ -303,6 +303,19 @@ app.get("/getlocations", async (req, res) => {
   });
 });
 
+// get location by id
+app.get("/getlocations/:locationId", async (req, res) => {
+  const locationId = req.params.locationId;
+
+  const locations =
+    "SELECT locationId, locationName, addressline1, addressline2, city, state, country, postalcode, datecreated, createdby, lastupdateddate, updatedby FROM location where locationId = $1;";
+  client.query(locations, [locationId], (err, result) => {
+    if (err) return res.json(err);
+    console.log(result);
+    return res.json(result);
+  });
+});
+
 // APIs for Company
 app.post("/createcompany", (req, res) => {
   console.log(req.body);
@@ -339,6 +352,16 @@ app.post("/createcompany", (req, res) => {
 app.get("/getcompanies", async (req, res) => {
   const companies =
     "select companyid, companyname, locationid, datecreated, createdby, lastupdateddate, updatedby from COMPANY;";
+  client.query(companies, (err, result) => {
+    if (err) return res.json(err);
+    return res.json(result);
+  });
+});
+
+//getAllCompanies
+app.get("/getallcompanies", async (req, res) => {
+  const companies =
+    "Select companyid, companyname, locationname, datecreated, createdby, lastupdateddate, updatedby from GetAllCompanies();";
   client.query(companies, (err, result) => {
     if (err) return res.json(err);
     return res.json(result);

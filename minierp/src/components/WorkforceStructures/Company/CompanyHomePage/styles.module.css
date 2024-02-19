@@ -1,0 +1,28 @@
+.company_homepage_container {
+    position: fixed;
+    top: 10%;
+    margin-left: 35px;
+    color: black;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.searchform input {
+    border: 1px solid #ccc;
+}
+
+.searchform select {
+    border: 1px solid #ccc;
+}
+
+.searchform label {
+    font-family: 'Poppins', sans-serif;
+}
+
+.company_table {
+    position: fixed;
+    top: 50%;
+    left: 35px;
+}

@@ -41,7 +41,6 @@ const NavBar = () => {
 
   return (
     <div>
-      {isSideNaveBarActive && <SideNavBar></SideNavBar>}
       <div className={`${styles.nav_bar} ${color ? styles.nav_bar_bg : ""}`}>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <button
@@ -86,7 +85,7 @@ const NavBar = () => {
                 }}
               >
                 <li>
-                  <a href="/createCompany">Manage Companies</a>
+                  <a href="/company">Manage Companies</a>
                 </li>
                 <li>
                   <a href="/createGrade">Manage Grades</a>
@@ -116,6 +115,7 @@ const NavBar = () => {
           <span className={`${styles.bar}`}></span>
         </div> */}
       </div>
+      {isSideNaveBarActive && <SideNavBar></SideNavBar>}
     </div>
   );
 };

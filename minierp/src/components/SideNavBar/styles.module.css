@@ -10,6 +10,8 @@
     overflow-y: hidden;
     overflow-x: hidden;
     transition: 2.2s cubic-bezier(.36, -0.01, 0, .77);
+    position: relative;
+    z-index: 1;
 }
 
 .side_bar_container a {

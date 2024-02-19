@@ -39,7 +39,7 @@ const SideNavBar = () => {
             }
           >
             <li>
-              <a href="/createCompany">Manage Companies</a>
+              <a href="/company">Manage Companies</a>
             </li>
             <li>
               <a href="/createGrade">Manage Grades</a>
