@@ -9,6 +9,11 @@ h1 {
     font-family: 'Poppins', sans-serif;
 }
 
+h3 {
+    display: inline-block;
+    margin: 0;
+}
+
 .searchform input {
     border: 1px solid #ccc;
 }
@@ -22,7 +27,20 @@ h1 {
 }
 
 .company_table {
-    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: static;
     top: 50%;
     left: 35px;
+    margin-top: 10%;
+}
+
+.company_table button {
+    font-family: 'Poppins', sans-serif;
+    width: 150px;
+    height: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
 }

@@ -5,19 +5,16 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../NavBar";
 
-const Company = (props) => {
+const Company = ({ updateCompany, closeForm, onSubmit }) => {
   const [company, setCompany] = useState({
-    companyId: props.updateCompany ? props.updateCompany?.companyid : 0,
-    companyName: props.updateCompany ? props.updateCompany?.companyname : "",
-    locationId: props.updateCompany ? props.updateCompany?.locationid : 0,
-    dateCreated: props.updateCompany
-      ? props.updateCompany?.datecreated
-      : Date(),
-    createdBy: props.updateCompany ? props.updateCompany?.createdby : 0,
-    lastUpdatedDate: props.updateCompany
-      ? props.updateCompany?.lastupdateddate
-      : Date(),
-    updatedBy: props.updateCompany ? props.updateCompany?.updatedby : 0,
+    companyId: updateCompany ? updateCompany?.companyid : 0,
+    companyName: updateCompany ? updateCompany?.companyname : "",
+    locationId: updateCompany ? updateCompany?.locationid : 0,
+    dateCreated: updateCompany ? updateCompany?.datecreated : Date(),
+    createdBy: updateCompany ? updateCompany?.createdby : 0,
+    lastUpdatedDate: updateCompany ? updateCompany?.lastupdateddate : Date(),
+    updatedBy: updateCompany ? updateCompany?.updatedby : 0,
+    locationName: updateCompany ? updateCompany?.locationname : "",
   });
   const [locations, setLocations] = useState([]);
 
@@ -30,10 +27,20 @@ const Company = (props) => {
     }));
   };
 
+  const handleChangeLocation = (e) => {
+    setCompany((prev) => ({
+      ...prev,
+      locationId: e.target.value,
+      locationName:
+        e.target.options[e.target.selectedIndex].getAttribute("locationName"),
+    }));
+    console.log(company);
+  };
+
   const handleCancel = async (e) => {
     e.preventDefault();
     try {
-      navigate("/");
+      closeForm();
     } catch (error) {
       console.log(error);
       alert("Error cancelling current transaction!");
@@ -42,10 +49,10 @@ const Company = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(company);
     try {
       await axios.post(`http://localhost:3300/createcompany`, company);
-      navigate("/");
+      onSubmit(company);
+      closeForm();
     } catch (error) {
       console.log(error);
       alert("Error adding Company. Please try again.");
@@ -57,7 +64,7 @@ const Company = (props) => {
     console.log(company);
     try {
       await axios.put(`http://localhost:3300/updateCompany`, company);
-      navigate("/");
+      closeForm();
     } catch (error) {
       console.log(error);
       alert("Error updating Company. Please try again.");
@@ -99,14 +106,18 @@ const Company = (props) => {
               Location<br></br>
               <select
                 id="locationId"
-                onChange={handleChange}
+                onChange={handleChangeLocation}
                 name="locationId"
                 value={company.locationId}
                 required
               >
                 <option value="">Select Location</option>
                 {locations.map((location) => (
-                  <option key={location.locationid} value={location.locationid}>
+                  <option
+                    key={location.locationid}
+                    value={location.locationid}
+                    locationName={location.locationname}
+                  >
                     {location.locationname}
                   </option>
                 ))}
@@ -115,7 +126,7 @@ const Company = (props) => {
           </div>
         </form>
         <div className={styles.buttons}>
-          {props.updateCompany ? (
+          {updateCompany ? (
             <button type="submit" onClick={handleUpdate}>
               Update Company
             </button>

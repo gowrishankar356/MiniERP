@@ -16,6 +16,20 @@ export const CompanyHomePage = () => {
     setCompanyFormOpen(true);
   };
 
+  const handleCreate = (newRow) => {
+    setCompanyFormOpen(false);
+  };
+
+  const handleSetCompanyForm = (e) => {
+    e.preventDefault();
+    setCompanyFormOpen(true);
+  };
+
+  const closeForm = (e) => {
+    setCompany(null);
+    setCompanyFormOpen(false);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,7 +43,7 @@ export const CompanyHomePage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [companyFormOpen]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,9 +83,21 @@ export const CompanyHomePage = () => {
           </form>
         </div>
         <div className={styles.company_table}>
+          <button onClick={handleSetCompanyForm}>
+            <h3>
+              <b>+</b>
+            </h3>{" "}
+            Create Company
+          </button>
           <Table rows={companies} updateCompany={updateCompany}></Table>
         </div>
-        {companyFormOpen && <Company updateCompany={company}></Company>}
+        {companyFormOpen && (
+          <Company
+            updateCompany={company}
+            onSubmit={handleCreate}
+            closeForm={closeForm}
+          ></Company>
+        )}
       </div>
     </div>
   );

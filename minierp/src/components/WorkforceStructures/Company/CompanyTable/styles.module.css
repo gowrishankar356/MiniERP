@@ -4,16 +4,15 @@
 
 .table {
     display: block;
-    overflow: hidden;
+    overflow: scroll;
     table-layout: auto;
     border-collapse: collapse;
     box-shadow: 0px 10px 10px #ccc;
     border-radius: 10px;
     white-space: nowrap;
     width: 90rem;
-    margin: auto;
+    height: 15rem;
     overflow-x: auto;
-    margin-top: 50px;
 }
 
 .table thead {
@@ -21,6 +20,7 @@
     color: #222;
     font-family: 'Poppins', sans-serif;
 }
+
 
 .table th,
 .table td {
