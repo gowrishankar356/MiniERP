@@ -3,10 +3,19 @@ import NavBar from "../../../NavBar";
 import axios from "axios";
 import Table from "../CompanyTable";
 import styles from "./styles.module.css";
+import Company from "../CreateCompany";
 
 export const CompanyHomePage = () => {
   const [companies, setCompanies] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [companyFormOpen, setCompanyFormOpen] = useState(false);
+  const [company, setCompany] = useState(null);
+
+  const updateCompany = (e) => {
+    setCompany(e);
+    setCompanyFormOpen(true);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,7 +30,7 @@ export const CompanyHomePage = () => {
     };
 
     fetchData();
-  }, [companies]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,8 +70,9 @@ export const CompanyHomePage = () => {
           </form>
         </div>
         <div className={styles.company_table}>
-          <Table rows={companies}></Table>
+          <Table rows={companies} updateCompany={updateCompany}></Table>
         </div>
+        {companyFormOpen && <Company updateCompany={company}></Company>}
       </div>
     </div>
   );

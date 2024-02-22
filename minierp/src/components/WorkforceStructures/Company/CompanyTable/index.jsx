@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
-export const Table = ({ rows, deleteRow }) => {
+export const Table = ({ rows, deleteRow, updateCompany }) => {
   return (
     <div className={styles.table_wrapper}>
       <table className={styles.table}>
@@ -22,7 +22,9 @@ export const Table = ({ rows, deleteRow }) => {
                 <td>{row.locationname}</td>
                 <td>
                   <span className={styles.actions}>
-                    <BsFillPencilFill></BsFillPencilFill>
+                    <BsFillPencilFill
+                      onClick={() => updateCompany(row)}
+                    ></BsFillPencilFill>
                     <BsFillTrashFill
                       className={styles.delete_btn}
                       onClick={() => deleteRow(idx)}

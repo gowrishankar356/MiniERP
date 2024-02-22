@@ -5,10 +5,11 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../NavBar";
 
-const Company = () => {
+const Company = (props) => {
+  console.log(props);
   const [company, setCompany] = useState({
-    companyName: "",
-    locationId: 0,
+    companyName: props.updateCompany ? props.updateCompany?.companyname : "",
+    locationId: props.updateCompany ? props.updateCompany?.locationid : 0,
   });
   const [locations, setLocations] = useState([]);
 
@@ -55,8 +56,6 @@ const Company = () => {
 
     fetchData();
   }, []);
-
-  console.log(locations);
 
   return (
     <div>

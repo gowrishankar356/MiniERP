@@ -361,7 +361,7 @@ app.get("/getcompanies", async (req, res) => {
 //getAllCompanies
 app.get("/getallcompanies", async (req, res) => {
   const companies =
-    "Select companyid, companyname, locationname, datecreated, createdby, lastupdateddate, updatedby from GetAllCompanies();";
+    "Select companyid, companyname, locationid, locationname, datecreated, createdby, lastupdateddate, updatedby from GetAllCompanies();";
   client.query(companies, (err, result) => {
     if (err) return res.json(err);
     return res.json(result);
