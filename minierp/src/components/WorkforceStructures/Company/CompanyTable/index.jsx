@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
 export const Table = ({ rows, deleteRow, updateCompany }) => {
+  console.log(rows);
   return (
     <div className={styles.table_wrapper}>
       <table className={styles.table}>

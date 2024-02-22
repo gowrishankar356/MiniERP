@@ -23,7 +23,6 @@ export const CompanyHomePage = () => {
           `http://localhost:3300/getallcompanies`
         );
         setCompanies(response.data.rows);
-        console.log(companies);
       } catch (error) {
         console.error("Error:", error);
       }

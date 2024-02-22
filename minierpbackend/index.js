@@ -358,7 +358,6 @@ app.get("/getcompanies", async (req, res) => {
   });
 });
 
-//getAllCompanies
 app.get("/getallcompanies", async (req, res) => {
   const companies =
     "Select companyid, companyname, locationid, locationname, datecreated, createdby, lastupdateddate, updatedby from GetAllCompanies();";
@@ -366,6 +365,28 @@ app.get("/getallcompanies", async (req, res) => {
     if (err) return res.json(err);
     return res.json(result);
   });
+});
+
+//getAllCompanies
+app.put("/updateCompany", async (req, res) => {
+  const company = req.body;
+  const update = "Select UpdateCompany($1, $2, $3, $4, $5, $6, $7);";
+  client.query(
+    update,
+    [
+      company.companyId,
+      company.companyName,
+      Number(company.locationId),
+      company.dateCreated,
+      company.createdBy,
+      company.lastUpdatedDate,
+      company.updatedBy,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json(result);
+    }
+  );
 });
 
 // APIs for Grade

@@ -6,10 +6,18 @@ import styles from "./styles.module.css";
 import NavBar from "../../../NavBar";
 
 const Company = (props) => {
-  console.log(props);
   const [company, setCompany] = useState({
+    companyId: props.updateCompany ? props.updateCompany?.companyid : 0,
     companyName: props.updateCompany ? props.updateCompany?.companyname : "",
     locationId: props.updateCompany ? props.updateCompany?.locationid : 0,
+    dateCreated: props.updateCompany
+      ? props.updateCompany?.datecreated
+      : Date(),
+    createdBy: props.updateCompany ? props.updateCompany?.createdby : 0,
+    lastUpdatedDate: props.updateCompany
+      ? props.updateCompany?.lastupdateddate
+      : Date(),
+    updatedBy: props.updateCompany ? props.updateCompany?.updatedby : 0,
   });
   const [locations, setLocations] = useState([]);
 
@@ -41,6 +49,18 @@ const Company = (props) => {
     } catch (error) {
       console.log(error);
       alert("Error adding Company. Please try again.");
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    console.log(company);
+    try {
+      await axios.put(`http://localhost:3300/updateCompany`, company);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert("Error updating Company. Please try again.");
     }
   };
 
@@ -95,9 +115,15 @@ const Company = (props) => {
           </div>
         </form>
         <div className={styles.buttons}>
-          <button type="submit" onClick={handleSubmit}>
-            Create Company
-          </button>
+          {props.updateCompany ? (
+            <button type="submit" onClick={handleUpdate}>
+              Update Company
+            </button>
+          ) : (
+            <button type="submit" onClick={handleSubmit}>
+              Create Company
+            </button>
+          )}
           <button onClick={handleCancel}>Cancel</button>
         </div>
       </div>
