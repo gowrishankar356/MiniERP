@@ -7,14 +7,14 @@ import NavBar from "../../../NavBar";
 
 const Company = ({ updateCompany, closeForm, onSubmit }) => {
   const [company, setCompany] = useState({
-    companyId: updateCompany ? updateCompany?.companyid : 0,
-    companyName: updateCompany ? updateCompany?.companyname : "",
-    locationId: updateCompany ? updateCompany?.locationid : 0,
-    dateCreated: updateCompany ? updateCompany?.datecreated : Date(),
-    createdBy: updateCompany ? updateCompany?.createdby : 0,
-    lastUpdatedDate: updateCompany ? updateCompany?.lastupdateddate : Date(),
-    updatedBy: updateCompany ? updateCompany?.updatedby : 0,
-    locationName: updateCompany ? updateCompany?.locationname : "",
+    companyid: updateCompany ? updateCompany?.companyid : 0,
+    companyname: updateCompany ? updateCompany?.companyname : "",
+    locationid: updateCompany ? updateCompany?.locationid : 0,
+    locationname: updateCompany ? updateCompany?.locationname : "",
+    datecreated: updateCompany ? updateCompany?.datecreated : Date(),
+    createdby: updateCompany ? updateCompany?.createdby : 0,
+    lastupdateddate: updateCompany ? updateCompany?.lastupdateddate : Date(),
+    updatedby: updateCompany ? updateCompany?.updatedby : 0,
   });
   const [locations, setLocations] = useState([]);
 
@@ -30,9 +30,9 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
   const handleChangeLocation = (e) => {
     setCompany((prev) => ({
       ...prev,
-      locationId: e.target.value,
-      locationName:
-        e.target.options[e.target.selectedIndex].getAttribute("locationName"),
+      locationid: e.target.value,
+      locationname:
+        e.target.options[e.target.selectedIndex].getAttribute("locationname"),
     }));
     console.log(company);
   };
@@ -50,8 +50,20 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3300/createcompany`, company);
-      onSubmit(company);
+      const res = await axios.post(
+        `http://localhost:3300/createcompany`,
+        company
+      );
+      const locationid = company.locationid;
+      setCompany((prev) => ({
+        ...prev,
+        companyid: res.data[0]?.companyid,
+      }));
+      onSubmit({
+        ...company,
+        locationid: Number(locationid),
+        companyid: res.data[0]?.companyid,
+      });
       closeForm();
     } catch (error) {
       console.log(error);
@@ -95,9 +107,9 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
               Company Name<br></br>
               <input
                 type="text"
-                name="companyName"
-                id="companyName"
-                value={company.companyName}
+                name="companyname"
+                id="companyname"
+                value={company.companyname}
                 onChange={handleChange}
                 required
               />
@@ -108,14 +120,14 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
                 id="locationId"
                 onChange={handleChangeLocation}
                 name="locationId"
-                value={company.locationId}
+                value={company.locationid}
                 required
               >
                 <option value="">Select Location</option>
                 {locations.map((location) => (
                   <option
                     key={location.locationid}
-                    value={location.locationid}
+                    value={Number(location.locationid)}
                     locationName={location.locationname}
                   >
                     {location.locationname}

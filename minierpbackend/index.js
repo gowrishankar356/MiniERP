@@ -319,8 +319,8 @@ app.get("/getlocations/:locationId", async (req, res) => {
 // APIs for Company
 app.post("/createcompany", (req, res) => {
   console.log(req.body);
-  const companyName = req.body.companyName;
-  const locationId = req.body.locationId;
+  const companyName = req.body.companyname;
+  const locationId = req.body.locationid;
 
   const date = new Date();
 
@@ -332,7 +332,7 @@ app.post("/createcompany", (req, res) => {
   const createdby = -1;
 
   const query =
-    "Insert into company(companyName, locationId, datecreated, createdby) values($1,$2,$3,$4)";
+    "Insert into company(companyName, locationId, datecreated, createdby) values($1,$2,$3,$4) RETURNING companyid";
 
   client.query(
     query,
@@ -358,16 +358,17 @@ app.get("/getcompanies", async (req, res) => {
   });
 });
 
+//getAllCompanies
 app.get("/getallcompanies", async (req, res) => {
   const companies =
-    "Select companyid, companyname, locationid, locationname, datecreated, createdby, lastupdateddate, updatedby from GetAllCompanies();";
+    "Select companyid as companyId, companyname as companyName, locationid as locationId, locationname as locationName, datecreated as dateCreated, createdby as createdBy, lastupdateddate as lastUpdatedDate, updatedby as updatedBy from GetAllCompanies();";
   client.query(companies, (err, result) => {
     if (err) return res.json(err);
     return res.json(result);
   });
 });
 
-//getAllCompanies
+//updateCompany
 app.put("/updateCompany", async (req, res) => {
   const company = req.body;
   const update = "Select UpdateCompany($1, $2, $3, $4, $5, $6, $7);";

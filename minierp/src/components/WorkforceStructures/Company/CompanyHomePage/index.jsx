@@ -16,16 +16,18 @@ export const CompanyHomePage = () => {
     setCompanyFormOpen(true);
   };
 
-  const handleCreate = (newRow) => {
+  const handleCreate = async (newRow) => {
+    console.log(newRow);
+    setCompanies((prevCompanies) => [...prevCompanies, newRow]);
     setCompanyFormOpen(false);
   };
 
-  const handleSetCompanyForm = (e) => {
+  const handleSetCompanyForm = async (e) => {
     e.preventDefault();
     setCompanyFormOpen(true);
   };
 
-  const closeForm = (e) => {
+  const closeForm = async (e) => {
     setCompany(null);
     setCompanyFormOpen(false);
   };
@@ -43,7 +45,7 @@ export const CompanyHomePage = () => {
     };
 
     fetchData();
-  }, [companyFormOpen]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +59,10 @@ export const CompanyHomePage = () => {
 
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log(companies);
+  // }, [companies]);
 
   return (
     <div>
