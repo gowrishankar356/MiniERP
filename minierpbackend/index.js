@@ -390,6 +390,17 @@ app.put("/updateCompany", async (req, res) => {
   );
 });
 
+//delete Company
+app.delete("/deleteCompany:companyid", async (req, res) => {
+  const companyid = req.params.companyid;
+  console.log(req.params.companyid);
+  const update = "delete from company where companyid = $1;";
+  client.query(update, [companyid], (err, result) => {
+    if (err) return res.json(err);
+    return res.json(result);
+  });
+});
+
 // APIs for Grade
 app.post("/creategrade", (req, res) => {
   const gradeName = req.body.gradeName;

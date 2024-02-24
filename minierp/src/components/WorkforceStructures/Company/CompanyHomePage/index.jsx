@@ -17,9 +17,13 @@ export const CompanyHomePage = () => {
   };
 
   const handleCreate = async (newRow) => {
-    console.log(newRow);
     setCompanies((prevCompanies) => [...prevCompanies, newRow]);
     setCompanyFormOpen(false);
+  };
+
+  const handleDelete = (targetIndex) => {
+    console.log(targetIndex);
+    setCompanies(companies.filter((_, idx) => idx !== targetIndex));
   };
 
   const handleSetCompanyForm = async (e) => {
@@ -60,10 +64,6 @@ export const CompanyHomePage = () => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(companies);
-  // }, [companies]);
-
   return (
     <div>
       <NavBar></NavBar>
@@ -71,21 +71,17 @@ export const CompanyHomePage = () => {
         <h1>Manage Companies</h1>
         <div className={styles.searchform}>
           <form>
-            <formitem>
-              <label> Company Name</label>
-              <input type="text"></input>
-            </formitem>
-            <formitem>
-              <label> Location</label>
-              <select>
-                <option value={0}>Select Location</option>
-                {locations.map((location) => (
-                  <option value={location.locationid}>
-                    {location.locationname}
-                  </option>
-                ))}
-              </select>
-            </formitem>
+            <label> Company Name</label>
+            <input type="text"></input>
+            <label> Location</label>
+            <select>
+              <option value={0}>Select Location</option>
+              {locations.map((location) => (
+                <option value={location.locationid}>
+                  {location.locationname}
+                </option>
+              ))}
+            </select>
           </form>
         </div>
         <div className={styles.company_table}>
@@ -95,7 +91,11 @@ export const CompanyHomePage = () => {
             </h3>{" "}
             Create Company
           </button>
-          <Table rows={companies} updateCompany={updateCompany}></Table>
+          <Table
+            rows={companies}
+            updateCompany={updateCompany}
+            deleteCompany={handleDelete}
+          ></Table>
         </div>
         {companyFormOpen && (
           <Company
