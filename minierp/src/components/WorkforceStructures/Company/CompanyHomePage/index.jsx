@@ -10,6 +10,7 @@ export const CompanyHomePage = () => {
   const [locations, setLocations] = useState([]);
   const [companyFormOpen, setCompanyFormOpen] = useState(false);
   const [company, setCompany] = useState(null);
+  const [search, setSearch] = useState({ company: "", location: 0 });
 
   const updateCompany = (e) => {
     setCompany(e);
@@ -34,6 +35,25 @@ export const CompanyHomePage = () => {
   const closeForm = async (e) => {
     setCompany(null);
     setCompanyFormOpen(false);
+  };
+
+  const handleChange = (e) => {
+    setSearch((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSearch = async (e) => {
+    setCompanies(
+      companies.filter((company) =>
+        search.company || search.company === ""
+          ? company.companyname
+              .toLowerCase()
+              .includes(search.company.toLowerCase())
+          : true
+      )
+    );
   };
 
   useEffect(() => {
@@ -72,9 +92,14 @@ export const CompanyHomePage = () => {
         <div className={styles.searchform}>
           <form>
             <label> Company Name</label>
-            <input type="text"></input>
+            <input
+              type="text"
+              name="company"
+              id="name"
+              onChange={handleChange}
+            ></input>
             <label> Location</label>
-            <select>
+            <select name="location" id="location" onChange={handleChange}>
               <option value={0}>Select Location</option>
               {locations.map((location) => (
                 <option value={location.locationid}>
@@ -83,6 +108,9 @@ export const CompanyHomePage = () => {
               ))}
             </select>
           </form>
+        </div>
+        <div className={styles.search}>
+          <button onClick={handleSearch}>Search</button>
         </div>
         <div className={styles.company_table}>
           <button onClick={handleSetCompanyForm}>
