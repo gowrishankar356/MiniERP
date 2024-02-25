@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../../NavBar";
-import axios from "axios";
+import axios, { all } from "axios";
 import Table from "../CompanyTable";
 import styles from "./styles.module.css";
 import Company from "../CreateCompany";
@@ -11,6 +11,7 @@ export const CompanyHomePage = () => {
   const [companyFormOpen, setCompanyFormOpen] = useState(false);
   const [company, setCompany] = useState(null);
   const [search, setSearch] = useState({ company: "", location: 0 });
+  const [allCompanies, setAllCompanies] = useState([]);
 
   const updateCompany = (e) => {
     setCompany(e);
@@ -45,15 +46,22 @@ export const CompanyHomePage = () => {
   };
 
   const handleSearch = async (e) => {
+    e.preventDefault();
     setCompanies(
-      companies.filter((company) =>
-        search.company || search.company === ""
+      allCompanies.filter((company) =>
+        search.company.length > 0
           ? company.companyname
               .toLowerCase()
               .includes(search.company.toLowerCase())
           : true
       )
     );
+  };
+
+  const handleRestet = async (e) => {
+    e.preventDefault();
+    setSearch({ company: "", location: 0 });
+    setCompanies(allCompanies);
   };
 
   useEffect(() => {
@@ -63,6 +71,7 @@ export const CompanyHomePage = () => {
           `http://localhost:3300/getallcompanies`
         );
         setCompanies(response.data.rows);
+        setAllCompanies(response.data.rows);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -90,7 +99,13 @@ export const CompanyHomePage = () => {
       <div className={styles.company_homepage_container}>
         <h1>Manage Companies</h1>
         <div className={styles.searchform}>
-          <form>
+          <form
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch(e);
+              }
+            }}
+          >
             <label> Company Name</label>
             <input
               type="text"
@@ -109,8 +124,9 @@ export const CompanyHomePage = () => {
             </select>
           </form>
         </div>
-        <div className={styles.search}>
+        <div className={styles.search_buttons}>
           <button onClick={handleSearch}>Search</button>
+          <button onClick={handleRestet}>Reset</button>
         </div>
         <div className={styles.company_table}>
           <button onClick={handleSetCompanyForm}>

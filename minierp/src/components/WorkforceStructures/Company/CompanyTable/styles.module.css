@@ -11,7 +11,7 @@
     border-radius: 10px;
     white-space: nowrap;
     width: 90rem;
-    height: auto;
+    max-height: 15rem;
     overflow-x: auto;
 }
 
@@ -19,6 +19,9 @@
     background-color: #ccc;
     color: #222;
     font-family: 'Poppins', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 

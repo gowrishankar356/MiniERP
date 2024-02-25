@@ -26,26 +26,24 @@ h3 {
     font-family: 'Poppins', sans-serif;
 }
 
-.search button {
-    font-family: 'Poppins', sans-serif;
-    width: auto;
-    height: auto;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
+.search_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    column-gap: 8px;
 }
+
 
 .company_table {
     display: flex;
     flex-direction: column;
     gap: 10px;
     position: static;
-    top: 50%;
     left: 35px;
-    margin-top: 10%;
+    margin-top: 8%;
 }
 
-.company_table button {
+button {
     font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
