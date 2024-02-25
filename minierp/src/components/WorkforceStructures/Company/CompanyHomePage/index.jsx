@@ -43,12 +43,10 @@ export const CompanyHomePage = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log(search);
   };
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log(search.location);
     setCompanies(
       allCompanies.filter((company) =>
         search.company.length > 0
@@ -62,7 +60,7 @@ export const CompanyHomePage = () => {
                 .includes(search.company.toLowerCase())
           : Number(search.location) !== 0
           ? company.locationid === Number(search.location)
-          : true
+          : false
       )
     );
   };
