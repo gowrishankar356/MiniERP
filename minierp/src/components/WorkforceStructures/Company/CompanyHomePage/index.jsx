@@ -43,21 +43,29 @@ export const CompanyHomePage = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    console.log(search);
   };
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    console.log(search.location);
     setCompanies(
       allCompanies.filter((company) =>
         search.company.length > 0
-          ? company.companyname
-              .toLowerCase()
-              .includes(search.company.toLowerCase())
+          ? Number(search.location) !== 0
+            ? company.companyname
+                .toLowerCase()
+                .includes(search.company.toLowerCase()) &&
+              company.locationid === Number(search.location)
+            : company.companyname
+                .toLowerCase()
+                .includes(search.company.toLowerCase())
+          : Number(search.location) !== 0
+          ? company.locationid === Number(search.location)
           : true
       )
     );
   };
-
   const handleRestet = async (e) => {
     e.preventDefault();
     setSearch({ company: "", location: 0 });
@@ -117,7 +125,7 @@ export const CompanyHomePage = () => {
             <select name="location" id="location" onChange={handleChange}>
               <option value={0}>Select Location</option>
               {locations.map((location) => (
-                <option value={location.locationid}>
+                <option value={Number(location.locationid)}>
                   {location.locationname}
                 </option>
               ))}
