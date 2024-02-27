@@ -1,4 +1,9 @@
+h2 {
+    font-family: 'Poppins', sans-serif;
+}
+
 label {
+    font-family: 'Poppins', sans-serif;
     margin-left: 4px;
     font-weight: 300;
 }
@@ -32,23 +37,26 @@ select:focus {
     background-color: rgb(230, 230, 230);
 }
 
-option:hover{
-    background-color: rgb(230, 230, 230); 
+option:hover {
+    background-color: rgb(230, 230, 230);
 }
 
-button:hover{
-    background-color: rgb(180, 180, 180); 
+button:hover {
+    background-color: rgb(180, 180, 180);
 }
 
 /* personal form css*/
 .form_createLocation {
-    width: 60%;
-    height: 50%;
+    width: auto;
+    height: auto;
+    top: 20%;
+    left: 20%;
     padding: 30px;
-    margin-left: 250px;
-    margin-top: 100px;
     background-color: gray;
     border-radius: 16px;
+    position: fixed;
+    z-index: 1;
+    color: white;
 }
 
 .row {
@@ -57,7 +65,7 @@ button:hover{
     gap: 40px;
 }
 
-.buttons{
+.buttons {
     margin-top: 100px;
     display: flex;
     flex-direction: row;
@@ -72,5 +80,3 @@ button:hover{
     border: none;
     border-radius: 4px;
 }
-
-

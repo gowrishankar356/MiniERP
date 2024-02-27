@@ -1,36 +1,32 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../../NavBar";
+import NavBar from "../../../NavBar";
 
-const CreateLocation = () => {
+const CreateLocation = ({ updateLocation, closeForm, onSubmit }) => {
   const [location, setLocation] = useState({
-    locationName: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    state: "",
-    country: "",
-    postalCode: "",
+    locationid: updateLocation ? updateLocation?.locationid : 0,
+    locationname: updateLocation ? updateLocation?.locationname : "",
+    addressline1: updateLocation ? updateLocation.addressLine1 : "",
+    addressline2: updateLocation ? updateLocation.addressLine2 : "",
+    city: updateLocation ? updateLocation.city : "",
+    state: updateLocation ? updateLocation.state : "",
+    country: updateLocation ? updateLocation.country : "",
+    postalcode: updateLocation ? updateLocation.postalcode : "",
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLocation((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    console.log(setLocation);
   };
-
 
   const handleCancel = async (e) => {
     e.preventDefault();
     try {
-      navigate("/");
+      closeForm();
     } catch (error) {
       console.log(error);
       alert("Error cancelling current transaction!");
@@ -39,13 +35,35 @@ const CreateLocation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(location)
+    console.log(location);
     try {
-      await axios.post(`http://localhost:3300/createlocation`, location);
-      navigate("/");
+      const res = await axios.post(
+        `http://localhost:3300/createlocation`,
+        location
+      );
+      console.log(res.data[0]?.locationid);
+      setLocation((prev) => ({
+        ...prev,
+        locationid: res.data[0]?.locationid,
+      }));
+      onSubmit({
+        ...location,
+        locationid: res.data[0]?.locationid,
+      });
     } catch (error) {
       console.log(error);
       alert("Error adding location. Please try again.");
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3300/updateLocation`, location);
+      closeForm();
+    } catch (error) {
+      console.log(error);
+      alert("Error updating Location. Please try again.");
     }
   };
 
@@ -60,9 +78,9 @@ const CreateLocation = () => {
               Location<br></br>
               <input
                 type="text"
-                name="locationName"
-                id="locationName"
-                value={location.locationName}
+                name="locationname"
+                id="locationname"
+                value={location.locationname}
                 onChange={handleChange}
                 required
               />
@@ -73,9 +91,9 @@ const CreateLocation = () => {
               Address Line 1<br></br>
               <input
                 type="text"
-                name="addressLine1"
-                id="addressLine1"
-                value={location.addressLine1}
+                name="addressline1"
+                id="addressline1"
+                value={location.addressline1}
                 onChange={handleChange}
                 required
               />
@@ -84,9 +102,9 @@ const CreateLocation = () => {
               Address Line 2<br></br>
               <input
                 type="text"
-                name="addressLine2"
-                id="addressLine2"
-                value={location.addressLine2}
+                name="addressline2"
+                id="addressline2"
+                value={location.addressline2}
                 onChange={handleChange}
                 required
               />
@@ -132,9 +150,9 @@ const CreateLocation = () => {
               Postal Code<br></br>
               <input
                 type="text"
-                name="postalCode"
-                id="postalCode"
-                value={location.postalCode}
+                name="postalcode"
+                id="postalcode"
+                value={location.postalcode}
                 onChange={handleChange}
                 required
               />
@@ -142,9 +160,15 @@ const CreateLocation = () => {
           </div>
         </form>
         <div className={styles.buttons}>
-          <button type="submit" onClick={handleSubmit}>
-            Create Location
-          </button>
+          {updateLocation ? (
+            <button type="submit" onClick={handleUpdate}>
+              Update Location
+            </button>
+          ) : (
+            <button type="submit" onClick={handleSubmit}>
+              Create Location
+            </button>
+          )}
           <button onClick={handleCancel}>Cancel</button>
         </div>
       </div>

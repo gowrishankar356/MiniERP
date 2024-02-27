@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
@@ -17,8 +16,6 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
     updatedby: updateCompany ? updateCompany?.updatedby : 0,
   });
   const [locations, setLocations] = useState([]);
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCompany((prev) => ({
@@ -73,7 +70,6 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log(company);
     try {
       await axios.put(`http://localhost:3300/updateCompany`, company);
       closeForm();

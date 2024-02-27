@@ -249,13 +249,13 @@ app.post("/createperson", (req, res) => {
 // APIs for Location
 app.post("/createlocation", (req, res) => {
   console.log(req.body);
-  const locationname = req.body.locationName;
-  const addressline1 = req.body.addressLine1;
-  const addressline2 = req.body.addressLine2;
+  const locationname = req.body.locationname;
+  const addressline1 = req.body.addressline1;
+  const addressline2 = req.body.addressline2;
   const city = req.body.city;
   const state = req.body.state;
   const country = req.body.country;
-  const postalcode = req.body.postalCode;
+  const postalcode = req.body.postalcode;
   const date = new Date();
 
   let day = date.getDate();
@@ -266,7 +266,7 @@ app.post("/createlocation", (req, res) => {
   const createdby = -1;
 
   const query =
-    "Insert into location(locationname, addressline1, addressline2, city, state, country, postalcode, datecreated, createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9)";
+    "Insert into location(locationname, addressline1, addressline2, city, state, country, postalcode, datecreated, createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9) Returning locationid;";
 
   client.query(
     query,

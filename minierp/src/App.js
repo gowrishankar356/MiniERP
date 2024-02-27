@@ -7,9 +7,10 @@ import CompensationInfo from "./components/HRActivities/Hiring/CreatePerson/Comp
 
 //WorkForce Homepage
 import CompanyHomePage from "./components/WorkforceStructures/Company/CompanyHomePage";
+import LocationHomePage from "./components/WorkforceStructures/Location/LocationHomePage";
 
 //Create WorkForce Structure Routes
-import CreateLocation from "./components/WorkforceStructures/CreateLocation";
+import CreateLocation from "./components/WorkforceStructures/Location/CreateLocation";
 import CreateCompany from "./components/WorkforceStructures/Company/CreateCompany";
 import CreateGrade from "./components/WorkforceStructures/CreateGrade";
 import CreateJob from "./components/WorkforceStructures/CreateJob";
@@ -27,8 +28,9 @@ function App() {
           <Route path="/employmentInfo" element={<EmploymentInfo />} />
           <Route path="/compensationDetails" element={<CompensationInfo />} />
           <Route path="/company" element={<CompanyHomePage />} />
-          <Route path="/createLocation" element={<CreateLocation />} />
           <Route path="/createCompany" element={<CreateCompany />} />
+          <Route path="/location" element={<LocationHomePage />} />
+          <Route path="/createLocation" element={<CreateLocation />} />
           <Route path="/createGrade" element={<CreateGrade />} />
           <Route path="/createJob" element={<CreateJob />} />
           <Route path="/createDepartment" element={<CreateDepartment />} />
