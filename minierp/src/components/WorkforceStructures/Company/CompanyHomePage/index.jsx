@@ -60,7 +60,7 @@ export const CompanyHomePage = () => {
                 .includes(search.company.toLowerCase())
           : Number(search.location) !== 0
           ? company.locationid === Number(search.location)
-          : false
+          : true
       )
     );
   };
