@@ -8,12 +8,16 @@ const CreateLocation = ({ updateLocation, closeForm, onSubmit }) => {
   const [location, setLocation] = useState({
     locationid: updateLocation ? updateLocation?.locationid : 0,
     locationname: updateLocation ? updateLocation?.locationname : "",
-    addressline1: updateLocation ? updateLocation.addressLine1 : "",
-    addressline2: updateLocation ? updateLocation.addressLine2 : "",
+    addressline1: updateLocation ? updateLocation.addressline1 : "",
+    addressline2: updateLocation ? updateLocation.addressline2 : "",
     city: updateLocation ? updateLocation.city : "",
     state: updateLocation ? updateLocation.state : "",
     country: updateLocation ? updateLocation.country : "",
     postalcode: updateLocation ? updateLocation.postalcode : "",
+    datecreated: updateLocation ? updateLocation?.datecreated : Date(),
+    createdby: updateLocation ? updateLocation?.createdby : 0,
+    lastupdateddate: updateLocation ? updateLocation?.lastupdateddate : Date(),
+    updatedby: updateLocation ? updateLocation?.updatedby : 0,
   });
 
   const handleChange = (e) => {

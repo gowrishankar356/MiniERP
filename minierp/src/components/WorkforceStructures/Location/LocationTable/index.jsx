@@ -4,15 +4,14 @@ import axios from "axios";
 
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
-export const Table = ({ rows, deleteCompany, updateCompany }) => {
-  const handleDelete = async (companyid) => {
+export const Table = ({ rows, deleteLocation, updateLocation }) => {
+  const handleDelete = async (locationid) => {
     try {
-      console.log(companyid);
-      await axios.delete(`http://localhost:3300/deleteCompany${companyid}`);
-      deleteCompany(companyid);
+      await axios.delete(`http://localhost:3300/deleteCompany${locationid}`);
+      deleteLocation(locationid);
     } catch (error) {
       console.log(error);
-      alert("Error deleting Company. Please try again.");
+      alert("Error deleting Location. Please try again.");
     }
   };
   return (
@@ -42,11 +41,11 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
                 <td>
                   <span className={styles.actions}>
                     <BsFillPencilFill
-                      onClick={() => updateCompany(row)}
+                      onClick={() => updateLocation(row)}
                     ></BsFillPencilFill>
                     <BsFillTrashFill
                       className={styles.delete_btn}
-                      onClick={() => handleDelete(row.companyid)}
+                      onClick={() => handleDelete(row.locationid)}
                     ></BsFillTrashFill>
                   </span>
                 </td>

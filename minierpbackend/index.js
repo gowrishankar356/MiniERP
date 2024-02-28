@@ -303,6 +303,35 @@ app.get("/getlocations", async (req, res) => {
   });
 });
 
+//updateCompany
+app.put("/updateLocation", async (req, res) => {
+  const location = req.body;
+  console.log(location);
+  const update =
+    "Select UpdateLocation($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12);";
+  client.query(
+    update,
+    [
+      location.locationid,
+      location.locationname,
+      location.addressline1,
+      location.addressline2,
+      location.city,
+      location.state,
+      location.country,
+      location.postalcode,
+      location.datecreated,
+      location.createdby,
+      location.lastupdateddate,
+      location.updatedby,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json(result);
+    }
+  );
+});
+
 // get location by id
 app.get("/getlocations/:locationId", async (req, res) => {
   const locationId = req.params.locationId;

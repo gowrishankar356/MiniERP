@@ -127,13 +127,13 @@ export const LocationHomePage = () => {
           </button>
           <Table
             rows={locations}
-            updateCompany={updateLocation}
-            deleteCompany={handleDelete}
+            updateLocation={updateLocation}
+            deleteLocation={handleDelete}
           ></Table>
         </div>
         {locationFormOpen && (
           <CreateLocation
-            updateCompany={location}
+            updateLocation={location}
             onSubmit={handleCreate}
             closeForm={closeForm}
           ></CreateLocation>
