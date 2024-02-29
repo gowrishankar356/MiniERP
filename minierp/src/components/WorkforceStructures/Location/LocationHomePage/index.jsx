@@ -9,7 +9,7 @@ export const LocationHomePage = () => {
   const [locations, setLocations] = useState([]);
   const [locationFormOpen, setLocationFormOpen] = useState(false);
   const [location, setLocation] = useState(null);
-  const [search, setSearch] = useState({ company: "", location: 0 });
+  const [search, setSearch] = useState({ locationname: "", country: "" });
   const [allLocations, setAllLocations] = useState([]);
 
   const updateLocation = (e) => {
@@ -56,22 +56,23 @@ export const LocationHomePage = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     setLocations(
-      allLocations.filter((company) =>
-        search.company.length > 0
-          ? Number(search.location) !== 0
-            ? company.companyname
+      allLocations.filter((location) =>
+        search.locationname.length > 0
+          ? search.country !== ""
+            ? location.locationname
                 .toLowerCase()
-                .includes(search.company.toLowerCase()) &&
-              company.locationid === Number(search.location)
-            : company.companyname
+                .includes(search.locationname.toLowerCase()) &&
+              location.country === search.country
+            : location.locationname
                 .toLowerCase()
-                .includes(search.company.toLowerCase())
-          : Number(search.location) !== 0
-          ? company.locationid === Number(search.location)
+                .includes(search.locationname.toLowerCase())
+          : search.country !== ""
+          ? location.country === search.country
           : true
       )
     );
   };
+
   const handleReset = async (e) => {
     e.preventDefault();
     setSearch({ company: "", location: 0 });
@@ -83,6 +84,7 @@ export const LocationHomePage = () => {
       try {
         const response = await axios.get(`http://localhost:3300/getlocations`);
         setLocations(response.data.rows);
+        setAllLocations(response.data.rows);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -107,17 +109,18 @@ export const LocationHomePage = () => {
             <label> Location Name</label>
             <input
               type="text"
-              name="company"
-              id="name"
+              name="locationname"
+              id="locationname"
               onChange={handleChange}
             ></input>
             <label> Country</label>
             <select name="country" id="country" onChange={handleChange}>
-              <option value="CAN">Cannada</option>
-              <option value="IND">India</option>
-              <option value="JP">Japan</option>
-              <option value="UAE">United Arab Emirited</option>
-              <option value="US">United States</option>
+              <option value="">Select Country</option>
+              <option value="Cannada">Cannada</option>
+              <option value="India">India</option>
+              <option value="Japan">Japan</option>
+              <option value="United Arab Emirited">United Arab Emirited</option>
+              <option value="United States">United States</option>
             </select>
           </form>
         </div>
