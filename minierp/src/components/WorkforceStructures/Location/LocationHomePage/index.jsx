@@ -17,16 +17,23 @@ export const LocationHomePage = () => {
     setLocationFormOpen(true);
   };
 
+  const handleUpdate = (updatedRow) => {
+    console.log(updatedRow);
+    const updateLocations = locations.map((location) =>
+      location.locationid === updatedRow.locationid ? updatedRow : location
+    );
+    setLocations(updateLocations);
+  };
+
   const handleCreate = async (newRow) => {
-    console.log(locations);
-    console.log(newRow);
     setLocations((prevLocations) => [...prevLocations, newRow]);
     setLocationFormOpen(false);
   };
 
   const handleDelete = (targetIndex) => {
-    console.log(targetIndex);
-    setLocations(locations.filter((_, idx) => idx !== targetIndex));
+    setLocations((prevLocations) =>
+      prevLocations.filter((location) => location.locationid !== targetIndex)
+    );
   };
 
   const handleSetLocationForm = async (e) => {
@@ -135,6 +142,7 @@ export const LocationHomePage = () => {
           <CreateLocation
             updateLocation={location}
             onSubmit={handleCreate}
+            onUpdate={handleUpdate}
             closeForm={closeForm}
           ></CreateLocation>
         )}

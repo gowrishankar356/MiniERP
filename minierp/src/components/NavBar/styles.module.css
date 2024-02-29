@@ -25,13 +25,13 @@
 .nav_bar img {
     float: left;
     margin: 2px;
-    padding: 10px;
     height: 30px;
     width: 30px;
 }
 
 .nav_bar button {
     background-color: gray;
+    width: 60px;
     border: none;
     cursor: pointer;
 }

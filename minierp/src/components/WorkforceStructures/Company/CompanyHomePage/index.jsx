@@ -18,6 +18,13 @@ export const CompanyHomePage = () => {
     setCompanyFormOpen(true);
   };
 
+  const handleUpdate = (updatedRow) => {
+    const updatedCompanies = companies?.map((company) =>
+      company.companyid === updatedRow.companyid ? updatedRow : company
+    );
+    setCompanies(updatedCompanies);
+  };
+
   const handleCreate = async (newRow) => {
     setCompanies((prevCompanies) => [...prevCompanies, newRow]);
     setCompanyFormOpen(false);
@@ -25,7 +32,9 @@ export const CompanyHomePage = () => {
 
   const handleDelete = (targetIndex) => {
     console.log(targetIndex);
-    setCompanies(companies.filter((_, idx) => idx !== targetIndex));
+    setCompanies(
+      companies.filter((company) => company.companyid !== targetIndex)
+    );
   };
 
   const handleSetCompanyForm = async (e) => {
@@ -152,6 +161,7 @@ export const CompanyHomePage = () => {
             updateCompany={company}
             onSubmit={handleCreate}
             closeForm={closeForm}
+            onUpdate={handleUpdate}
           ></Company>
         )}
       </div>

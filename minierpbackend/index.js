@@ -345,6 +345,16 @@ app.get("/getlocations/:locationId", async (req, res) => {
   });
 });
 
+//delete Location
+app.delete("/deleteLocation:locationid", async (req, res) => {
+  const locationid = req.params.locationid;
+  const deleteLocation = "delete from location where locationid = $1;";
+  client.query(deleteLocation, [locationid], (err, result) => {
+    if (err) return res.json(err);
+    return res.json(result);
+  });
+});
+
 // APIs for Company
 app.post("/createcompany", (req, res) => {
   console.log(req.body);
@@ -404,13 +414,13 @@ app.put("/updateCompany", async (req, res) => {
   client.query(
     update,
     [
-      company.companyId,
-      company.companyName,
-      Number(company.locationId),
-      company.dateCreated,
-      company.createdBy,
-      company.lastUpdatedDate,
-      company.updatedBy,
+      company.companyid,
+      company.companyname,
+      Number(company.locationid),
+      company.datecreated,
+      company.createdby,
+      company.lastUpdateddate,
+      company.updatedby,
     ],
     (err, result) => {
       if (err) return res.json(err);
@@ -422,9 +432,8 @@ app.put("/updateCompany", async (req, res) => {
 //delete Company
 app.delete("/deleteCompany:companyid", async (req, res) => {
   const companyid = req.params.companyid;
-  console.log(req.params.companyid);
-  const update = "delete from company where companyid = $1;";
-  client.query(update, [companyid], (err, result) => {
+  const deleteCompany = "delete from company where companyid = $1;";
+  client.query(deleteCompany, [companyid], (err, result) => {
     if (err) return res.json(err);
     return res.json(result);
   });

@@ -7,8 +7,8 @@ import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 export const Table = ({ rows, deleteLocation, updateLocation }) => {
   const handleDelete = async (locationid) => {
     try {
-      await axios.delete(`http://localhost:3300/deleteCompany${locationid}`);
-      deleteLocation(locationid);
+      await axios.delete(`http://localhost:3300/deleteLocation${locationid}`);
+      deleteLocation(Number(locationid));
     } catch (error) {
       console.log(error);
       alert("Error deleting Location. Please try again.");

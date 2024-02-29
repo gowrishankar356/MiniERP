@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../NavBar";
 
-const Company = ({ updateCompany, closeForm, onSubmit }) => {
+const Company = ({ updateCompany, closeForm, onSubmit, onUpdate }) => {
   const [company, setCompany] = useState({
     companyid: updateCompany ? updateCompany?.companyid : 0,
     companyname: updateCompany ? updateCompany?.companyname : "",
@@ -72,6 +72,7 @@ const Company = ({ updateCompany, closeForm, onSubmit }) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:3300/updateCompany`, company);
+      onUpdate(company);
       closeForm();
     } catch (error) {
       console.log(error);

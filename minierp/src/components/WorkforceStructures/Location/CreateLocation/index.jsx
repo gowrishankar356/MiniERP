@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../NavBar";
 
-const CreateLocation = ({ updateLocation, closeForm, onSubmit }) => {
+const CreateLocation = ({ updateLocation, closeForm, onSubmit, onUpdate }) => {
   const [location, setLocation] = useState({
     locationid: updateLocation ? updateLocation?.locationid : 0,
     locationname: updateLocation ? updateLocation?.locationname : "",
@@ -64,6 +64,7 @@ const CreateLocation = ({ updateLocation, closeForm, onSubmit }) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:3300/updateLocation`, location);
+      onUpdate(location);
       closeForm();
     } catch (error) {
       console.log(error);
