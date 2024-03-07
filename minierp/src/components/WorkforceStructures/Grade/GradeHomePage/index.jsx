@@ -7,32 +7,32 @@ import CreateGrade from "../CreateGrade";
 
 export const GradeHomePage = () => {
   const [grades, setGrades] = useState([]);
+  const [grade, setGrade] = useState(null);
   const [gradeFormOpen, setGradeFormOpen] = useState(false);
-  const [location, setLocation] = useState(null);
   const [search, setSearch] = useState({ locationname: "", country: "" });
   const [allGrades, setAllGrades] = useState([]);
 
-  const updateLocation = (e) => {
-    //   setLocation(e);
-    //   setLocationFormOpen(true);
+  const updateGrade = (e) => {
+    setGrade(e);
+    setGradeFormOpen(true);
   };
 
   const handleUpdate = (updatedRow) => {
-    // const updateGrades = grades.map((grade) =>
-    //   grade.gradeId === updatedRow.gradeId ? updatedRow : grade
-    // );
-    // setGrades(updateGrades);
+    const updateGrades = grades.map((grade) =>
+      grade.gradeid === updatedRow.gradeid ? updatedRow : grade
+    );
+    setGrades(updateGrades);
   };
 
   const handleCreate = async (newRow) => {
-    // setLocations((prevLocations) => [...prevLocations, newRow]);
-    // setLocationFormOpen(false);
+    setGrades((prevGrades) => [...prevGrades, newRow]);
+    setGradeFormOpen(false);
   };
 
   const handleDelete = (targetIndex) => {
-    // setLocations((prevLocations) =>
-    //   prevLocations.filter((location) => location.locationid !== targetIndex)
-    // );
+    setGrades((prevGrades) =>
+      prevGrades.filter((grade) => grade.gradeid !== targetIndex)
+    );
   };
 
   const handleSetGradeForm = async (e) => {
@@ -41,15 +41,15 @@ export const GradeHomePage = () => {
   };
 
   const closeForm = async (e) => {
-    // setLocation(null);
-    // setLocationFormOpen(false);
+    setGrade(null);
+    setGradeFormOpen(false);
   };
 
   const handleChange = (e) => {
-    // setSearch((prev) => ({
-    //   ...prev,
-    //   [e.target.name]: e.target.value,
-    // }));
+    setSearch((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSearch = async (e) => {
@@ -127,13 +127,13 @@ export const GradeHomePage = () => {
           </button>
           <Table
             rows={grades}
-            updateLocation={updateLocation}
-            deleteLocation={handleDelete}
+            updateGrade={updateGrade}
+            deleteGrade={handleDelete}
           ></Table>
         </div>
         {gradeFormOpen && (
           <CreateGrade
-            updateLocation={location}
+            updateGrade={grade}
             onSubmit={handleCreate}
             onUpdate={handleUpdate}
             closeForm={closeForm}

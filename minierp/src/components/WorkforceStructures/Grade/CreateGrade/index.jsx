@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
 import NavBar from "../../../NavBar";
 
-const CreateGrade = () => {
+const CreateGrade = ({ updateGrade, closeForm, onSubmit, onUpdate }) => {
   const [grade, setGrade] = useState({
-    gradeName: "",
-    minimumSalary: 0,
-    maximumSalary: 0,
+    gradeid: updateGrade ? updateGrade.gradeid : 0,
+    gradename: updateGrade ? updateGrade.gradename : "",
+    minimumsalary: updateGrade ? updateGrade.minimumsalary : 0,
+    maximumsalary: updateGrade ? updateGrade.maximumsalary : 0,
+    datecreated: updateGrade ? updateGrade?.datecreated : Date(),
+    createdby: updateGrade ? updateGrade?.createdby : 0,
+    lastupdateddate: updateGrade ? updateGrade?.lastupdateddate : Date(),
+    updatedby: updateGrade ? updateGrade?.updatedby : 0,
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setGrade((prev) => ({
@@ -24,7 +26,7 @@ const CreateGrade = () => {
   const handleCancel = async (e) => {
     e.preventDefault();
     try {
-      navigate("/");
+      closeForm();
     } catch (error) {
       console.log(error);
       alert("Error cancelling current transaction!");
@@ -34,11 +36,28 @@ const CreateGrade = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3300/creategrade`, grade);
-      navigate("/");
+      const res = await axios.post(`http://localhost:3300/creategrade`, grade);
+      setGrade((prev) => ({ ...prev, gradeid: res.data[0]?.gradeid }));
+      onSubmit({
+        ...grade,
+        gradeid: res.data[0]?.gradeid,
+      });
     } catch (error) {
       console.log(error);
       alert("Error adding Grade. Please try again.");
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3300/updateGrade`, grade);
+      console.log(grade);
+      onUpdate(grade);
+      closeForm();
+    } catch (error) {
+      console.log(error);
+      alert("Error updating Grade. Please try again.");
     }
   };
 
@@ -53,9 +72,9 @@ const CreateGrade = () => {
               Grade Name<br></br>
               <input
                 type="text"
-                name="gradeName"
-                id="gradeName"
-                value={grade.gradeName}
+                name="gradename"
+                id="gradename"
+                value={grade.gradename}
                 onChange={handleChange}
                 required
               />
@@ -66,9 +85,9 @@ const CreateGrade = () => {
               Minimum Salary<br></br>
               <input
                 type="number"
-                name="minimumSalary"
-                id="minimumSalary"
-                value={grade.minimumSalary}
+                name="minimumsalary"
+                id="minimumsalary"
+                value={grade.minimumsalary}
                 onChange={handleChange}
                 required
               />
@@ -77,9 +96,9 @@ const CreateGrade = () => {
               Maximum Salary<br></br>
               <input
                 type="number"
-                name="maximumSalary"
-                id="maximumSalary"
-                value={grade.maximumSalary}
+                name="maximumsalary"
+                id="maximumsalary"
+                value={grade.maximumsalary}
                 onChange={handleChange}
                 required
               />
@@ -87,9 +106,15 @@ const CreateGrade = () => {
           </div>
         </form>
         <div className={styles.buttons}>
-          <button type="submit" onClick={handleSubmit}>
-            Create Grade
-          </button>
+          {updateGrade ? (
+            <button type="submit" onClick={handleUpdate}>
+              Update Grade
+            </button>
+          ) : (
+            <button type="submit" onClick={handleSubmit}>
+              Create Grade
+            </button>
+          )}
           <button onClick={handleCancel}>Cancel</button>
         </div>
       </div>

@@ -441,9 +441,9 @@ app.delete("/deleteCompany:companyid", async (req, res) => {
 
 // APIs for Grade
 app.post("/creategrade", (req, res) => {
-  const gradeName = req.body.gradeName;
-  const minimumSalary = req.body.minimumSalary;
-  const maximumSalary = req.body.maximumSalary;
+  const gradeName = req.body.gradename;
+  const minimumSalary = req.body.minimumsalary;
+  const maximumSalary = req.body.maximumsalary;
 
   const date = new Date();
 
@@ -478,6 +478,39 @@ app.get("/getgrades", async (req, res) => {
   client.query(grades, (err, result) => {
     if (err) return res.json(err);
     console.log(result);
+    return res.json(result);
+  });
+});
+
+// Update Grade
+app.put("/updateGrade", async (req, res) => {
+  const grade = req.body;
+  const update = "Select UpdateGrade($1, $2, $3, $4, $5, $6, $7, $8);";
+  client.query(
+    update,
+    [
+      grade.gradeid,
+      grade.gradename,
+      grade.minimumsalary,
+      grade.maximumsalary,
+      grade.datecreated,
+      grade.createdby,
+      grade.lastupdateddate,
+      grade.updatedby,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json(result);
+    }
+  );
+});
+
+//delete Grade
+app.delete("/deleteGrade:gradeid", async (req, res) => {
+  const gradeid = req.params.gradeid;
+  const deletegrade = "delete from grade where gradeid = $1;";
+  client.query(deletegrade, [gradeid], (err, result) => {
+    if (err) return res.json(err);
     return res.json(result);
   });
 });
