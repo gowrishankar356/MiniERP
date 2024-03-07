@@ -8,11 +8,12 @@ import CompensationInfo from "./components/HRActivities/Hiring/CreatePerson/Comp
 //WorkForce Homepage
 import CompanyHomePage from "./components/WorkforceStructures/Company/CompanyHomePage";
 import LocationHomePage from "./components/WorkforceStructures/Location/LocationHomePage";
+import GradeHomePage from "./components/WorkforceStructures/Grade/GradeHomePage";
 
 //Create WorkForce Structure Routes
 import CreateLocation from "./components/WorkforceStructures/Location/CreateLocation";
 import CreateCompany from "./components/WorkforceStructures/Company/CreateCompany";
-import CreateGrade from "./components/WorkforceStructures/CreateGrade";
+import CreateGrade from "./components/WorkforceStructures/Grade/CreateGrade";
 import CreateJob from "./components/WorkforceStructures/CreateJob";
 import CreateDepartment from "./components/WorkforceStructures/CreateDepartment";
 import CreateElement from "./components/WorkforceStructures/CreateElement";
@@ -22,7 +23,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/a" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/personalDetails" element={<PersonalDetailsForm />} />
           <Route path="/demographicDetails" element={<DemographicInfo />} />
           <Route path="/employmentInfo" element={<EmploymentInfo />} />
@@ -31,6 +32,7 @@ function App() {
           <Route path="/createCompany" element={<CreateCompany />} />
           <Route path="/location" element={<LocationHomePage />} />
           <Route path="/createLocation" element={<CreateLocation />} />
+          <Route path="/grade" element={<GradeHomePage />} />
           <Route path="/createGrade" element={<CreateGrade />} />
           <Route path="/createJob" element={<CreateJob />} />
           <Route path="/createDepartment" element={<CreateDepartment />} />

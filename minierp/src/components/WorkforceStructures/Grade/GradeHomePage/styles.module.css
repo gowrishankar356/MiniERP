@@ -1,0 +1,53 @@
+.grade_homepage_container {
+    position: fixed;
+    top: 10%;
+    margin-left: 35px;
+    color: black;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+h3 {
+    display: inline-block;
+    margin: 0;
+}
+
+.searchform input {
+    border: 1px solid #ccc;
+}
+
+.searchform select {
+    border: 1px solid #ccc;
+}
+
+.searchform label {
+    font-family: 'Poppins', sans-serif;
+}
+
+.search_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    column-gap: 8px;
+}
+
+
+.grade_table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: static;
+    left: 35px;
+    margin-top: 8%;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    width: 150px;
+    height: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+}
