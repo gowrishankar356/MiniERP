@@ -53,29 +53,22 @@ export const GradeHomePage = () => {
   };
 
   const handleSearch = async (e) => {
-    // e.preventDefault();
-    // setLocations(
-    //   allLocations.filter((location) =>
-    //     search.locationname.length > 0
-    //       ? search.country !== ""
-    //         ? location.locationname
-    //             .toLowerCase()
-    //             .includes(search.locationname.toLowerCase()) &&
-    //           location.country === search.country
-    //         : location.locationname
-    //             .toLowerCase()
-    //             .includes(search.locationname.toLowerCase())
-    //       : search.country !== ""
-    //       ? location.country === search.country
-    //       : true
-    //   )
-    // );
+    e.preventDefault();
+    setGrades(
+      allGrades.filter((grade) =>
+        search.gradename.length > 0
+          ? grade.gradename
+              .toLowerCase()
+              .includes(search.gradename.toLowerCase())
+          : true
+      )
+    );
   };
 
   const handleReset = async (e) => {
-    // e.preventDefault();
-    // setSearch({ company: "", location: 0 });
-    // setLocations(allLocations);
+    e.preventDefault();
+    setSearch({ gradename: "" });
+    setGrades(allGrades);
   };
 
   useEffect(() => {
@@ -108,8 +101,8 @@ export const GradeHomePage = () => {
             <label> Grade Name</label>
             <input
               type="text"
-              name="locationname"
-              id="locationname"
+              name="gradename"
+              id="gradename"
               onChange={handleChange}
             ></input>
           </form>

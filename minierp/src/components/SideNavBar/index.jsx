@@ -48,7 +48,7 @@ const SideNavBar = () => {
               <a href="/createJob">Manage Jobs</a>
             </li>
             <li>
-              <a href="/createDepartment">Manage departments</a>
+              <a href="/department">Manage departments</a>
             </li>
             <li>
               <a href="/location">Manage locations</a>

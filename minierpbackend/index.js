@@ -560,8 +560,8 @@ app.get("/getjobs", async (req, res) => {
 
 //APIs of Department
 app.post("/createdepartment", (req, res) => {
-  const departmentName = req.body.departmentName;
-  const companyId = req.body.companyId;
+  const departmentName = req.body.departmentname;
+  const companyId = req.body.companyid;
 
   const date = new Date();
 
@@ -573,13 +573,14 @@ app.post("/createdepartment", (req, res) => {
   const createdby = -1;
 
   const query =
-    "Insert into department(departmentname, companyid, datecreated, createdby) values($1,$2,$3,$4)";
+    "Insert into department(departmentname, companyid, datecreated, createdby) values($1,$2,$3,$4) RETURNING departmentid;";
 
   client.query(
     query,
     [departmentName, companyId, datecreated, createdby],
     (err, result) => {
       if (!err) {
+        console.log(result.rows);
         res.send(result.rows);
       } else {
         console.log(err);
@@ -592,10 +593,42 @@ app.post("/createdepartment", (req, res) => {
 // get departments
 app.get("/getdepartments", async (req, res) => {
   const departments =
-    "SELECT departmentid, departmentname, companyid, datecreated, createdby, lastupdateddate, updatedby FROM department;";
+    "SELECT d.departmentid, d.departmentname, d.companyid, d.companyname, d.datecreated, d.createdby, d.lastupdateddate, d.updatedby from GetAllDepartments() d;";
   client.query(departments, (err, result) => {
     if (err) return res.json(err);
     console.log(result);
+    return res.json(result);
+  });
+});
+
+// Update Department
+app.put("/updateDepartment", async (req, res) => {
+  const department = req.body;
+  const update = "Select UpdateDepartment($1, $2, $3, $4, $5, $6, $7);";
+  client.query(
+    update,
+    [
+      department.departmentid,
+      department.departmentname,
+      department.companyid,
+      department.datecreated,
+      department.createdby,
+      department.lastupdateddate,
+      department.updatedby,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json(result);
+    }
+  );
+});
+
+//delete Department
+app.delete("/deleteDepartment:departmentid", async (req, res) => {
+  const departmentid = req.params.departmentid;
+  const deletedepartment = "delete from department where departmentid = $1;";
+  client.query(deletedepartment, [departmentid], (err, result) => {
+    if (err) return res.json(err);
     return res.json(result);
   });
 });
