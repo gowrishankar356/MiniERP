@@ -2,7 +2,7 @@ import { React } from "react";
 import styles from "./styles.module.css";
 import NavBar from "../NavBar";
 
-import { Bar, Pie } from "react-chartjs-2";
+import { Bar, Doughnut } from "react-chartjs-2";
 import {
   BarElement,
   CategoryScale,
@@ -26,18 +26,17 @@ ChartJS.register(
 
 const HomePage = () => {
   const data2 = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ["Grades", "Locations", "Companies", "Departments", "Jobs"],
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        data: [12, 19, 3, 5, 2],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
           "rgba(255, 206, 86, 0.2)",
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -45,7 +44,6 @@ const HomePage = () => {
           "rgba(255, 206, 86, 1)",
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
         ],
         borderWidth: 1,
       },
@@ -62,6 +60,18 @@ const HomePage = () => {
       },
     },
   };
+
+  const option2 = {
+    responsive: true,
+    plugins: {
+      legend: { position: "right" },
+      title: {
+        display: true,
+        text: "WorkForce Structures",
+      },
+    },
+  };
+
   const data = {
     labels: ["Full-Time", "Part-Time", "Contract"],
     datasets: [
@@ -84,7 +94,7 @@ const HomePage = () => {
           <Bar options={option} data={data} />
         </div>
         <div className={styles.workforceGraph}>
-          <Pie data={data2} />
+          <Doughnut data={data2} options={option2} />
         </div>
       </div>
     </div>
