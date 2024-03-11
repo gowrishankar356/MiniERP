@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import NavBar from "../../../NavBar";
 import axios from "axios";
 import Table from "../JobTable";
@@ -17,6 +17,7 @@ export const JobHomePage = () => {
     location: 0,
   });
   const [allJobs, setAllJobs] = useState([]);
+  const searchFocus = useRef(null);
 
   const updateJob = (e) => {
     setJob(e);
@@ -63,13 +64,29 @@ export const JobHomePage = () => {
       allJobs.filter((job) =>
         search.jobname.length > 0
           ? Number(search?.company) !== 0
+            ? Number(search?.location) !== 0
+              ? job.jobname
+                  .toLowerCase()
+                  .includes(search.jobname.toLowerCase()) &&
+                Number(job.companyid) === Number(search.company) &&
+                Number(job.locationid) === Number(search.location)
+              : job.jobname
+                  .toLowerCase()
+                  .includes(search.jobname.toLowerCase()) &&
+                Number(job.companyid) === Number(search.company)
+            : Number(search?.location) !== 0
             ? job.jobname
                 .toLowerCase()
                 .includes(search.jobname.toLowerCase()) &&
-              Number(job.companyid) === Number(search.company)
+              Number(job.locationid) === Number(search.location)
             : job.jobname.toLowerCase().includes(search.jobname.toLowerCase())
           : Number(search?.company) !== 0
-          ? Number(job.companyid) === Number(search.company)
+          ? Number(search?.location) !== 0
+            ? Number(job.companyid) === Number(search.company) &&
+              Number(job.locationid) === Number(search.location)
+            : Number(job.companyid) === Number(search.company)
+          : Number(search?.location) !== 0
+          ? Number(job.locationid) === Number(search.location)
           : true
       )
     );
@@ -79,6 +96,10 @@ export const JobHomePage = () => {
     // setSearch({ company: "", location: 0 });
     // setCompanies(allCompanies);
   };
+
+  useEffect(() => {
+    searchFocus.current.focus();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,12 +159,13 @@ export const JobHomePage = () => {
               name="jobname"
               id="jobname"
               onChange={handleChange}
+              ref={searchFocus}
             ></input>
             <label> Company</label>
             <select name="company" id="company" onChange={handleChange}>
               <option value={0}>Select Company</option>
               {companies.map((company) => (
-                <option value={Number(company.locationid)}>
+                <option value={Number(company.companyid)}>
                   {company.companyname}
                 </option>
               ))}

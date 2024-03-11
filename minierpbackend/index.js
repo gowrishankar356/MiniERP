@@ -303,7 +303,7 @@ app.get("/getlocations", async (req, res) => {
   });
 });
 
-//updateCompany
+//updateLocations
 app.put("/updateLocation", async (req, res) => {
   const location = req.body;
   console.log(location);
@@ -517,9 +517,9 @@ app.delete("/deleteGrade:gradeid", async (req, res) => {
 
 //APIs of Job
 app.post("/createjob", (req, res) => {
-  const jobName = req.body.jobName;
-  const companyId = req.body.companyId;
-  const locationId = req.body.locationId;
+  const jobName = req.body.jobname;
+  const companyId = req.body.companyid;
+  const locationId = req.body.locationid;
 
   const date = new Date();
 
@@ -531,7 +531,7 @@ app.post("/createjob", (req, res) => {
   const createdby = -1;
 
   const query =
-    "Insert into job(jobname, companyid, locationId,datecreated, createdby) values($1,$2,$3,$4,$5)";
+    "Insert into job(jobname, companyid, locationId, datecreated, createdby) values($1,$2,$3,$4,$5) Returning jobid";
 
   client.query(
     query,
@@ -550,10 +550,43 @@ app.post("/createjob", (req, res) => {
 // get jobs
 app.get("/getjobs", async (req, res) => {
   const jobs =
-    "SELECT jobid, jobname, companyid, datecreated, createdby, lastupdateddate, updatedby FROM job;";
+    "SELECT jobid, jobname, companyid,companyname, locationid, locationname, datecreated, createdby, lastupdateddate, updatedby FROM GetAllJobs();";
   client.query(jobs, (err, result) => {
     if (err) return res.json(err);
     console.log(result);
+    return res.json(result);
+  });
+});
+
+//Update Jobs
+app.put("/updateJob", async (req, res) => {
+  const job = req.body;
+  const update = "Select UpdateJob($1, $2, $3, $4, $5, $6, $7, $8);";
+  client.query(
+    update,
+    [
+      job.jobid,
+      job.jobname,
+      job.companyid,
+      job.locationid,
+      job.datecreated,
+      job.createdby,
+      job.lastupdateddate,
+      job.updatedby,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json(result);
+    }
+  );
+});
+
+//delete Job
+app.delete("/deleteJob:jobid", async (req, res) => {
+  const jobid = req.params.jobid;
+  const deleteJob = "delete from job where jobid = $1;";
+  client.query(deleteJob, [jobid], (err, result) => {
+    if (err) return res.json(err);
     return res.json(result);
   });
 });
