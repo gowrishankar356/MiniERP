@@ -1,5 +1,5 @@
-.department_homepage_container {
-    position: fixed;
+.job_homepage_container {
+    position: absolute;
     top: 10%;
     margin-left: 35px;
     color: black;
@@ -34,18 +34,19 @@ h3 {
 }
 
 
-.department_table {
+.job_table {
     display: flex;
     flex-direction: column;
     gap: 10px;
     position: static;
     left: 35px;
     margin-top: 8%;
+    margin-bottom: 8%;
 }
 
 button {
     font-family: 'Poppins', sans-serif;
-    width: 180px;
+    width: 150px;
     height: auto;
     padding: 10px;
     border: none;

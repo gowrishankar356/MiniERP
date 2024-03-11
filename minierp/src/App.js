@@ -10,12 +10,13 @@ import CompanyHomePage from "./components/WorkforceStructures/Company/CompanyHom
 import LocationHomePage from "./components/WorkforceStructures/Location/LocationHomePage";
 import GradeHomePage from "./components/WorkforceStructures/Grade/GradeHomePage";
 import DepartmentHomePage from "./components/WorkforceStructures/Department/DepartmentHomePage";
+import JobHomePage from "./components/WorkforceStructures/Job/JobHomePage";
 
 //Create WorkForce Structure Routes
 import CreateLocation from "./components/WorkforceStructures/Location/CreateLocation";
 import CreateCompany from "./components/WorkforceStructures/Company/CreateCompany";
 import CreateGrade from "./components/WorkforceStructures/Grade/CreateGrade";
-import CreateJob from "./components/WorkforceStructures/CreateJob";
+import CreateJob from "./components/WorkforceStructures/Job/CreateJob";
 import CreateDepartment from "./components/WorkforceStructures/Department/CreateDepartment";
 import CreateElement from "./components/WorkforceStructures/CreateElement";
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/createLocation" element={<CreateLocation />} />
           <Route path="/grade" element={<GradeHomePage />} />
           <Route path="/createGrade" element={<CreateGrade />} />
+          <Route path="/job" element={<JobHomePage />} />
           <Route path="/createJob" element={<CreateJob />} />
           <Route path="/department" element={<DepartmentHomePage />} />
           <Route path="/createDepartment" element={<CreateDepartment />} />

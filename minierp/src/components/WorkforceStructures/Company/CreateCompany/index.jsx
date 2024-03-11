@@ -125,7 +125,7 @@ const Company = ({ updateCompany, closeForm, onSubmit, onUpdate }) => {
                   <option
                     key={location.locationid}
                     value={Number(location.locationid)}
-                    locationName={location.locationname}
+                    locationname={location.locationname}
                   >
                     {location.locationname}
                   </option>
