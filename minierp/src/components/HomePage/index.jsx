@@ -13,6 +13,7 @@ import {
   Tooltip,
   ArcElement,
 } from "chart.js";
+import StatCard from "../StatCard";
 
 ChartJS.register(
   CategoryScale,
@@ -23,6 +24,8 @@ ChartJS.register(
   Legend,
   ArcElement
 );
+
+ChartJS.defaults.font.size = 8;
 
 const HomePage = () => {
   const data2 = {
@@ -64,7 +67,9 @@ const HomePage = () => {
   const option2 = {
     responsive: true,
     plugins: {
-      legend: { position: "right" },
+      legend: {
+        position: "right",
+      },
       title: {
         display: true,
         text: "WorkForce Structures",
@@ -89,6 +94,38 @@ const HomePage = () => {
   return (
     <div>
       <NavBar></NavBar>
+      <div className={styles.StatCards}>
+        <StatCard
+          title={"Monthly Paid Salary"}
+          uom={"$"}
+          arrow={"decreasing"}
+          measurement={50000}
+          percentage={"10.88%"}
+          src="images/down-arrow-red.svg"
+          alt={"downarrow"}
+          summary={"v/s previous month"}
+        ></StatCard>
+        <StatCard
+          title={"Number of New Employees"}
+          uom={""}
+          measurement={14}
+          percentage={"1%"}
+          arrow={"increasing"}
+          src="images/up-arrow-green.svg"
+          alt={"downarrow"}
+          summary={"v/s previous month"}
+        ></StatCard>
+        <StatCard
+          title={"Yearly Paid Salary"}
+          uom={"$"}
+          measurement={"150,000"}
+          percentage={"9%"}
+          arrow={"decreasing"}
+          src="images/down-arrow-red.svg"
+          alt={"downarrow"}
+          summary={"v/s previous year"}
+        ></StatCard>
+      </div>
       <div className={styles.graphs}>
         <div className={styles.employeesGraph}>
           <Bar options={option} data={data} />

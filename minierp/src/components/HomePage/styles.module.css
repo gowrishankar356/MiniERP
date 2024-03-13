@@ -2,6 +2,15 @@ SideNavBar {
     background-color: 100%;
 }
 
+.StatCards {
+    position: fixed;
+    top: 110px;
+    left: 330px;
+    display: flex;
+    direction: column;
+    gap: 40px;
+}
+
 .graphs {
     display: flex;
     flex-direction: column;
@@ -15,6 +24,10 @@ SideNavBar {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.graphCustom {
+    font-size: xx-small;
 }
 
 .employeesGraph {

@@ -1,0 +1,67 @@
+.statCard {
+    font-family: 'Poppins', sans-serif;
+    height: auto;
+    width: auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 14px;
+    color: black;
+}
+
+h5 {
+    margin-top: 10px;
+}
+
+h1,
+p {
+    margin: 0;
+}
+
+p {
+    font-size: 10px;
+}
+
+
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.metrics {
+    display: flex;
+    flex-direction: row;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.metrics p {
+    margin-top: 8px;
+}
+
+.metricsDescription {
+    color: red;
+    display: flex;
+    flex-direction: row;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+
+.decreasing {
+    color: red;
+}
+
+.increasing {
+    color: green;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
