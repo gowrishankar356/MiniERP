@@ -14,7 +14,9 @@ export const StatCard = ({
 }) => {
   return (
     <div className={styles.statCard}>
-      <h5>{title}</h5>
+      <div className={styles.title}>
+        <h5>{title}</h5>
+      </div>
       <div className={styles.description}>
         <div className={styles.metrics}>
           <p>{uom}</p>

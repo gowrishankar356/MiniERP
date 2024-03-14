@@ -2,7 +2,7 @@ import { React } from "react";
 import styles from "./styles.module.css";
 import NavBar from "../NavBar";
 
-import { Bar, Doughnut } from "react-chartjs-2";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 import {
   BarElement,
   CategoryScale,
@@ -12,6 +12,8 @@ import {
   Title,
   Tooltip,
   ArcElement,
+  PointElement,
+  LineElement,
 } from "chart.js";
 import StatCard from "../StatCard";
 
@@ -22,12 +24,50 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  ArcElement
+  ArcElement,
+  PointElement,
+  LineElement
 );
 
 ChartJS.defaults.font.size = 8;
 
 const HomePage = () => {
+  const options3 = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Chart.js Line Chart",
+      },
+    },
+  };
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+  ];
+
+  const y = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+  const data3 = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: labels.map(() => y),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
+
   const data2 = {
     labels: ["Grades", "Locations", "Companies", "Departments", "Jobs"],
     datasets: [
@@ -126,12 +166,20 @@ const HomePage = () => {
           summary={"v/s previous year"}
         ></StatCard>
       </div>
+      <div className={styles.lineGraph}>
+        <Line options={options3} data={data3} />
+      </div>
       <div className={styles.graphs}>
         <div className={styles.employeesGraph}>
-          <Bar options={option} data={data} />
+          <Bar options={option} data={data} height={"150px"} width={"250px"} />
         </div>
         <div className={styles.workforceGraph}>
-          <Doughnut data={data2} options={option2} />
+          <Doughnut
+            data={data2}
+            options={option2}
+            height={"250px"}
+            width={"350px"}
+          />
         </div>
       </div>
     </div>
