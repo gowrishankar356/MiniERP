@@ -2,6 +2,10 @@
 --------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Charm&family=Lato&family=Poppins:wght@200&family=Ubuntu:wght@300&display=swap');
 
+body {
+    background-color: #05181A;
+}
+
 .nav_bar {
     display: flex;
     flex-direction: row;
@@ -13,7 +17,8 @@
     height: 60px;
     color: white;
     z-index: 1;
-    background-color: gray;
+    background-color: #05181A;
+    box-shadow: 0px 6px 6px #6DAAC0;
 }
 
 .nav_bar a {
@@ -25,19 +30,24 @@
 .nav_bar img {
     float: left;
     margin: 2px;
-    height: 30px;
-    width: 30px;
+}
+
+.dropDown img {
+    float: none;
 }
 
 .nav_bar button {
-    background-color: gray;
     width: 60px;
     border: none;
     cursor: pointer;
+    background-color: #05181A;
 }
 
 .nav_bar button:hover {
-    background-color: rgb(160, 160, 160);
+    background-color: #6DAAC0;
+    border-radius: 0px;
+    box-shadow: 0px 4px 4px #6DAAC0;
+
 }
 
 .nav_bar_about {
@@ -76,8 +86,8 @@
 
 .nav_bar_sub_content a:hover {
     padding: 8px;
-    background-color: rgb(160, 160, 160);
-    border-radius: 8px;
+    background-color: #6DAAC0;
+    border-radius: 4px;
 }
 
 .nav_btn {
@@ -92,7 +102,7 @@
 }
 
 .second_levelnav {
-    background-color: gray;
+    background-color: #05181A;
     margin-top: 8px;
     padding: 20px;
     width: 175px;
@@ -109,14 +119,13 @@
 
 .second_levelnav li {
     padding: 4px;
-    border-bottom: 1px groove;
     width: 100%;
 }
 
 .second_levelnav a:hover {
     padding: 4px;
-    background-color: rgb(160, 160, 160);
-    border-radius: 8px;
+    background-color: #6DAAC0;
+    border-radius: 4px;
 }
 
 

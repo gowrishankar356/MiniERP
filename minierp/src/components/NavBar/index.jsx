@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import { useState } from "react";
 import SideNavBar from "../SideNavBar";
+import Icon from "../Icon";
 
 const NavBar = () => {
   // adding the states
@@ -49,11 +50,12 @@ const NavBar = () => {
             }}
             href="#"
           >
-            <img
-              src="images/menu.svg"
-              alt="menu icon"
-              className={styles.image}
-            ></img>
+            <Icon
+              src={"images/menu.svg"}
+              alt={"menu svg"}
+              height={30}
+              width={30}
+            ></Icon>
           </button>
           <div className={styles.nav_bar_about}>
             <h2>Employee Tracker | </h2>
@@ -72,8 +74,14 @@ const NavBar = () => {
             </li>
           </ul>
           <ul>
-            <li>
+            <li className={styles.dropDown}>
               <a onClick={secondLevelActive}>Workforce Structures</a>
+              <Icon
+                src={"images/dropdown.svg"}
+                alt={"dropdown svg"}
+                height={12}
+                width={12}
+              ></Icon>
               <ul
                 className={`${styles.second_levelnav} ${
                   isSecondLevleActive
