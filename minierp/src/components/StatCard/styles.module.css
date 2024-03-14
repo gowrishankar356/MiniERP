@@ -3,9 +3,10 @@
     height: 150px;
     width: 150px;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #05181A;
     border-radius: 14px;
-    color: black;
+    box-shadow: 2px 6px 6px #6DAAC0;
+    color: white;
 }
 
 h5 {

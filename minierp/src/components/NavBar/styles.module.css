@@ -102,8 +102,9 @@ body {
 }
 
 .second_levelnav {
-    background-color: #05181A;
-    margin-top: 8px;
+    background-color: #6DAAC0;
+    /* filter: blur(10px); */
+    margin-top: 20px;
     padding: 20px;
     width: 175px;
     border-radius: 10px;
@@ -124,7 +125,7 @@ body {
 
 .second_levelnav a:hover {
     padding: 4px;
-    background-color: #6DAAC0;
+    background-color: #05181A;
     border-radius: 4px;
 }
 

@@ -123,7 +123,7 @@ const HomePage = () => {
       {
         label: "Employees",
         data: [20, 10, 40],
-        backgroundColor: "gray",
+        backgroundColor: "#6DAAC0",
         borderWidth: 1,
         borderRadius: 10,
         width: 1,
@@ -167,7 +167,12 @@ const HomePage = () => {
         ></StatCard>
       </div>
       <div className={styles.lineGraph}>
-        <Line options={options3} data={data3} />
+        <Line
+          options={options3}
+          data={data3}
+          height={"400px"}
+          width={"650px"}
+        />
       </div>
       <div className={styles.graphs}>
         <div className={styles.employeesGraph}>
