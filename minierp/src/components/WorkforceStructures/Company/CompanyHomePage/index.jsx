@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../../NavBar";
-import axios, { all } from "axios";
+import axios from "axios";
 import Table from "../CompanyTable";
 import styles from "./styles.module.css";
 import Company from "../CreateCompany";
@@ -113,7 +113,7 @@ export const CompanyHomePage = () => {
       <NavBar></NavBar>
       <div className={styles.company_homepage_container}>
         <h1>Manage Companies</h1>
-        <div className={styles.searchform}>
+        <div className={styles.companySearchForm}>
           <form
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -139,15 +139,15 @@ export const CompanyHomePage = () => {
             </select>
           </form>
         </div>
-        <div className={styles.search_buttons}>
+        <div className={styles.companySearchButtons}>
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleRestet}>Reset</button>
         </div>
-        <div className={styles.company_table}>
+        <div className={styles.companyTable}>
           <button onClick={handleSetCompanyForm}>
             <h3>
               <b>+</b>
-            </h3>{" "}
+            </h3>
             Create Company
           </button>
           <Table
