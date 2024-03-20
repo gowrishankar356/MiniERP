@@ -109,9 +109,11 @@ export const CompanyHomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      className={`styles.container ${companyFormOpen ? styles.inactive : ""}`}
+    >
       <NavBar></NavBar>
-      <div className={styles.company_homepage_container}>
+      <div className={styles.companyHomePageContainer}>
         <h1>Manage Companies</h1>
         <div className={styles.companySearchForm}>
           <form
@@ -157,12 +159,14 @@ export const CompanyHomePage = () => {
           ></Table>
         </div>
         {companyFormOpen && (
-          <Company
-            updateCompany={company}
-            onSubmit={handleCreate}
-            closeForm={closeForm}
-            onUpdate={handleUpdate}
-          ></Company>
+          <div className={styles.form}>
+            <Company
+              updateCompany={company}
+              onSubmit={handleCreate}
+              closeForm={closeForm}
+              onUpdate={handleUpdate}
+            ></Company>
+          </div>
         )}
       </div>
     </div>
