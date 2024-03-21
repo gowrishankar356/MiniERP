@@ -109,9 +109,7 @@ export const CompanyHomePage = () => {
   }, []);
 
   return (
-    <div
-      className={`styles.container ${companyFormOpen ? styles.inactive : ""}`}
-    >
+    <div className={styles.container}>
       <NavBar></NavBar>
       <div className={styles.companyHomePageContainer}>
         <h1>Manage Companies</h1>

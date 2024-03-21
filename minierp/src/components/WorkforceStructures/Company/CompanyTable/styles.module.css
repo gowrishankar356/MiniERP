@@ -1,5 +1,5 @@
 .table_wrapper {
-    width: 100%;
+    max-width: 100%;
 }
 
 .table {
@@ -32,13 +32,14 @@
 }
 
 .table td {
-    border-top: 0.5px solid #ddd;
+    border-top: 0.5px solid #6DAAC0;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .table tbody tr:hover {
-    background-color: #eee;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
 }
 
 .expand {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../../../NavBar";
 
 const Company = ({ updateCompany, closeForm, onSubmit, onUpdate }) => {
   const [company, setCompany] = useState({
@@ -94,58 +93,55 @@ const Company = ({ updateCompany, closeForm, onSubmit, onUpdate }) => {
   }, []);
 
   return (
-    <div>
-      <NavBar></NavBar>
-      <div className={styles.form_createCompany}>
-        <h2>Create Company</h2>
-        <form>
-          <div className={styles.row}>
-            <label>
-              Company Name<br></br>
-              <input
-                type="text"
-                name="companyname"
-                id="companyname"
-                value={company.companyname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Location<br></br>
-              <select
-                id="locationId"
-                onChange={handleChangeLocation}
-                name="locationId"
-                value={company.locationid}
-                required
-              >
-                <option value="">Select Location</option>
-                {locations.map((location) => (
-                  <option
-                    key={location.locationid}
-                    value={Number(location.locationid)}
-                    locationname={location.locationname}
-                  >
-                    {location.locationname}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-        </form>
-        <div className={styles.buttons}>
-          {updateCompany ? (
-            <button type="submit" onClick={handleUpdate}>
-              Update Company
-            </button>
-          ) : (
-            <button type="submit" onClick={handleSubmit}>
-              Create Company
-            </button>
-          )}
-          <button onClick={handleCancel}>Cancel</button>
+    <div className={styles.comapanyForm}>
+      <h2>Create Company</h2>
+      <form>
+        <div className={styles.row}>
+          <label>
+            Company Name<br></br>
+            <input
+              type="text"
+              name="companyname"
+              id="companyname"
+              value={company.companyname}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Location<br></br>
+            <select
+              id="locationId"
+              onChange={handleChangeLocation}
+              name="locationId"
+              value={company.locationid}
+              required
+            >
+              <option value="">Select Location</option>
+              {locations.map((location) => (
+                <option
+                  key={location.locationid}
+                  value={Number(location.locationid)}
+                  locationname={location.locationname}
+                >
+                  {location.locationname}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
+      </form>
+      <div className={styles.buttons}>
+        {updateCompany ? (
+          <button type="submit" onClick={handleUpdate}>
+            Update Company
+          </button>
+        ) : (
+          <button type="submit" onClick={handleSubmit}>
+            Create Company
+          </button>
+        )}
+        <button onClick={handleCancel}>Cancel</button>
       </div>
     </div>
   );
