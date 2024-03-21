@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: row;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -11,9 +12,6 @@
     color: white;
 }
 
-.container h1 {
-    font-family: 'Poppins', sans-serif;
-}
 
 
 .companySearchForm input {
@@ -38,9 +36,6 @@ select:active {
     background-color: #6DAAC0;
 }
 
-.companySearchForm label {
-    font-family: 'Poppins', sans-serif;
-}
 
 .companySearchButtons {
     display: flex;
@@ -71,7 +66,6 @@ select:active {
 
 .companySearchButtons button,
 .companyTable button {
-    font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
     padding: 10px;

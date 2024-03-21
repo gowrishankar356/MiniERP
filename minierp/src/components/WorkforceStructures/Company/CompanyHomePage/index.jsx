@@ -147,7 +147,7 @@ export const CompanyHomePage = () => {
           <button onClick={handleSetCompanyForm}>
             <h3>
               <b>+</b>
-            </h3>
+            </h3>{" "}
             Create Company
           </button>
           <Table

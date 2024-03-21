@@ -86,11 +86,11 @@ export const GradeHomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.gradeContainer}>
       <NavBar></NavBar>
       <div className={styles.grade_homepage_container}>
         <h1>Manage Grades</h1>
-        <div className={styles.searchform}>
+        <div className={styles.gradeSearchForm}>
           <form
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -107,11 +107,11 @@ export const GradeHomePage = () => {
             ></input>
           </form>
         </div>
-        <div className={styles.search_buttons}>
+        <div className={styles.gradeSearchButtons}>
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleReset}>Reset</button>
         </div>
-        <div className={styles.grade_table}>
+        <div className={styles.gradeTable}>
           <button onClick={handleSetGradeForm}>
             <h3>
               <b>+</b>
@@ -125,12 +125,14 @@ export const GradeHomePage = () => {
           ></Table>
         </div>
         {gradeFormOpen && (
-          <CreateGrade
-            updateGrade={grade}
-            onSubmit={handleCreate}
-            onUpdate={handleUpdate}
-            closeForm={closeForm}
-          ></CreateGrade>
+          <div className={styles.gradeForm}>
+            <CreateGrade
+              updateGrade={grade}
+              onSubmit={handleCreate}
+              onUpdate={handleUpdate}
+              closeForm={closeForm}
+            ></CreateGrade>
+          </div>
         )}
       </div>
     </div>

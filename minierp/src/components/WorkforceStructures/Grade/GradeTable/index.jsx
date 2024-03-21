@@ -15,8 +15,8 @@ export const Table = ({ rows, deleteGrade, updateGrade }) => {
     }
   };
   return (
-    <div className={styles.table_wrapper}>
-      <table className={styles.table}>
+    <div className={styles.gradeTableWrapper}>
+      <table className={styles.gradeTable}>
         <thead>
           <tr>
             <th>Grade Name</th>

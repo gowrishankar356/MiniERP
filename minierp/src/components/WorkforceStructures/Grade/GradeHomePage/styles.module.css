@@ -1,32 +1,45 @@
-.grade_homepage_container {
-    position: fixed;
-    top: 10%;
-    margin-left: 35px;
-    color: black;
-}
-
-h1 {
+.gradeContainer {
+    display: flex;
+    flex-direction: row;
     font-family: 'Poppins', sans-serif;
 }
 
-h3 {
+.grade_homepage_container {
+    margin-top: 6%;
+    margin-left: 35px;
+    color: white;
+}
+
+
+.gradeContainer h3 {
     display: inline-block;
     margin: 0;
 }
 
-.searchform input {
-    border: 1px solid #ccc;
+.gradeForm {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    padding: 30px;
+    background-color: #0C7078;
+    border: 1px solid #6DAAC0;
+    border-radius: 16px;
+    z-index: 1;
+    color: white;
 }
 
-.searchform select {
-    border: 1px solid #ccc;
+.gradeSearchForm input {
+    background-color: #05181A;
+    border: 1px solid #6DAAC0;
+    color: white;
 }
 
-.searchform label {
-    font-family: 'Poppins', sans-serif;
+.gradeSearchForm input:focus {
+    background-color: #6DAAC0;
 }
 
-.search_buttons {
+
+.gradeSearchButtons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -34,20 +47,31 @@ h3 {
 }
 
 
-.grade_table {
+.gradeTable {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    position: static;
-    left: 35px;
+    gap: 20px;
     margin-top: 8%;
 }
 
-button {
-    font-family: 'Poppins', sans-serif;
+.gradeSearchButtons button,
+.gradeTable button {
     width: 150px;
     height: auto;
     padding: 10px;
     border: none;
     border-radius: 8px;
+    background-color: #05181A;
+    box-shadow: 0px 6px 6px #6DAAC0;
+    color: white
+}
+
+
+.gradeSearchButtons button:hover,
+.gradeTable button:hover {
+    height: auto;
+    width: 160px;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
