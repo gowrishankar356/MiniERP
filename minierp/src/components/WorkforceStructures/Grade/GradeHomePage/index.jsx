@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import CreateGrade from "../CreateGrade";
 
 export const GradeHomePage = () => {
-  const [grades, setGrades] = useState([]);
+  const [gad, setGrades] = useState([]);
   const [grade, setGrade] = useState(null);
   const [gradeFormOpen, setGradeFormOpen] = useState(false);
   const [search, setSearch] = useState({ locationname: "", country: "" });
