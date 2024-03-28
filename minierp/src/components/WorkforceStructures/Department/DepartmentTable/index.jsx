@@ -17,8 +17,8 @@ export const Table = ({ rows, deleteDepartment, updateDepartment }) => {
     }
   };
   return (
-    <div className={styles.table_wrapper}>
-      <table className={styles.table}>
+    <div className={styles.departmentTableWrapper}>
+      <table className={styles.departmentTable}>
         <thead>
           <tr>
             <th>Department Name</th>

@@ -105,7 +105,7 @@ const CreateDepartment = ({
   return (
     <div>
       <NavBar></NavBar>
-      <div className={styles.form_createdepartment}>
+      <div className={styles.departmentForm}>
         <h2>Create Department</h2>
         <form>
           <div className={styles.row}>

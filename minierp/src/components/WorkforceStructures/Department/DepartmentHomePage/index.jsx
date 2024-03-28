@@ -114,11 +114,11 @@ export const DepartmentHomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <NavBar></NavBar>
-      <div className={styles.department_homepage_container}>
-        <h1>Manage Locations</h1>
-        <div className={styles.searchform}>
+      <div className={styles.departmentHomePageContainer}>
+        <h1>Manage Departments</h1>
+        <div className={styles.departmentSearchForm}>
           <form
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -144,11 +144,11 @@ export const DepartmentHomePage = () => {
             </select>
           </form>
         </div>
-        <div className={styles.search_buttons}>
+        <div className={styles.departmentSearchButtons}>
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleReset}>Reset</button>
         </div>
-        <div className={styles.department_table}>
+        <div className={styles.departmentTable}>
           <button onClick={handleSetDepartmentForm}>
             <h3>
               <b>+</b>
@@ -162,12 +162,14 @@ export const DepartmentHomePage = () => {
           ></Table>
         </div>
         {departmentFormOpen && (
-          <CreateDepartment
-            updateDepartment={department}
-            onSubmit={handleCreate}
-            onUpdate={handleUpdate}
-            closeForm={closeForm}
-          ></CreateDepartment>
+          <div className={styles.departmentFormComp}>
+            <CreateDepartment
+              updateDepartment={department}
+              onSubmit={handleCreate}
+              onUpdate={handleUpdate}
+              closeForm={closeForm}
+            ></CreateDepartment>
+          </div>
         )}
       </div>
     </div>

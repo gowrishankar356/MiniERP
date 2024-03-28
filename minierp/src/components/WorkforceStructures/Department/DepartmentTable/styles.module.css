@@ -1,13 +1,13 @@
-.table_wrapper {
-    width: 100%;
+.departmentTableWrapper {
+    max-width: 100%;
 }
 
-.table {
+.departmentTable {
     display: block;
     overflow: scroll;
     table-layout: auto;
     border-collapse: collapse;
-    box-shadow: 0px 10px 10px #ccc;
+    box-shadow: 0px 10px 10px #6DAAC0;
     border-radius: 10px;
     white-space: nowrap;
     width: 90rem;
@@ -15,8 +15,8 @@
     overflow-x: auto;
 }
 
-.table thead {
-    background-color: #ccc;
+.departmentTable thead {
+    background-color: #6DAAC0;
     color: #222;
     font-family: 'Poppins', sans-serif;
     position: sticky;
@@ -25,20 +25,21 @@
 }
 
 
-.table th,
-.table td {
+.departmentTable th,
+.departmentTable td {
     text-align: left;
     padding: 0.8rem;
 }
 
-.table td {
-    border-top: 0.5px solid #ddd;
+.departmentTable td {
+    border-top: 0.5px solid #6DAAC0;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.table tbody tr:hover {
-    background-color: #eee;
+.departmentTable tbody tr:hover {
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
 }
 
 .expand {
