@@ -119,7 +119,7 @@ const CreateJob = ({ updateJob, closeForm, onSubmit, onUpdate }) => {
   return (
     <div>
       <NavBar></NavBar>
-      <div className={styles.form_createjob}>
+      <div className={styles.jobForm}>
         <h2>Create Job</h2>
         <form>
           <div className={styles.row}>

@@ -15,8 +15,8 @@ export const Table = ({ rows, deleteJob, updateJob }) => {
     }
   };
   return (
-    <div className={styles.table_wrapper}>
-      <table className={styles.table}>
+    <div className={styles.jobTableWrapper}>
+      <table className={styles.jobTable}>
         <thead>
           <tr>
             <th>Job Name</th>

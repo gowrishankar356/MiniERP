@@ -141,11 +141,11 @@ export const JobHomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.jobContainer}>
       <NavBar></NavBar>
-      <div className={styles.job_homepage_container}>
+      <div className={styles.jobHomePageContainer}>
         <h1>Manage Jobs</h1>
-        <div className={styles.searchform}>
+        <div className={styles.jobSearchForm}>
           <form
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -181,11 +181,11 @@ export const JobHomePage = () => {
             </select>
           </form>
         </div>
-        <div className={styles.search_buttons}>
+        <div className={styles.jobSearchButtons}>
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleRestet}>Reset</button>
         </div>
-        <div className={styles.job_table}>
+        <div className={styles.jobTable}>
           <button onClick={handleSetJobForm}>
             <h3>
               <b>+</b>
@@ -199,12 +199,14 @@ export const JobHomePage = () => {
           ></Table>
         </div>
         {jobFormOpen && (
-          <Job
-            updateJob={job}
-            onSubmit={handleCreate}
-            closeForm={closeForm}
-            onUpdate={handleUpdate}
-          ></Job>
+          <div className={styles.jobFormComp}>
+            <Job
+              updateJob={job}
+              onSubmit={handleCreate}
+              closeForm={closeForm}
+              onUpdate={handleUpdate}
+            ></Job>
+          </div>
         )}
       </div>
     </div>
