@@ -60,8 +60,14 @@ select:active {
     margin-top: 4%;
 }
 
+.jobTable h3 {
+    display: inline-block;
+    margin: 0;
+}
+
 .jobSearchButtons button,
 .jobTable button {
+    font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
     padding: 10px;

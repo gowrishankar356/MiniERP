@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../../../NavBar";
 
 const CreateLocation = ({ updateLocation, closeForm, onSubmit, onUpdate }) => {
   const [location, setLocation] = useState({
@@ -74,8 +73,7 @@ const CreateLocation = ({ updateLocation, closeForm, onSubmit, onUpdate }) => {
 
   return (
     <div>
-      <NavBar></NavBar>
-      <div className={styles.form_createLocation}>
+      <div className={styles.locationForm}>
         <h2>Create Location</h2>
         <form>
           <div>

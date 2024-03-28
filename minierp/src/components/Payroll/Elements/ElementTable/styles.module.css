@@ -1,8 +1,8 @@
-.locationTableWrapper {
+.elementTableWrapper {
     max-width: 100%;
 }
 
-.locationTable {
+.elementTable {
     display: block;
     overflow: scroll;
     table-layout: auto;
@@ -15,7 +15,7 @@
     overflow-x: auto;
 }
 
-.locationTable thead {
+.elementTable thead {
     background-color: #6DAAC0;
     color: #222;
     font-family: 'Poppins', sans-serif;
@@ -25,19 +25,19 @@
 }
 
 
-.locationTable th,
-.locationTable td {
+.elementTable th,
+.elementTable td {
     text-align: left;
     padding: 0.8rem;
 }
 
-.locationTable td {
+.elementTable td {
     border-top: 0.5px solid #6DAAC0;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.locationTable tbody tr:hover {
+.elementTable tbody tr:hover {
     background-color: #6DAAC0;
     transition: 0.2s ease-in-out;
 }

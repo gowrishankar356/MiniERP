@@ -109,7 +109,7 @@ export const CompanyHomePage = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.companyContainer}>
       <NavBar></NavBar>
       <div className={styles.companyHomePageContainer}>
         <h1>Manage Companies</h1>

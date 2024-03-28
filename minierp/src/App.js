@@ -5,6 +5,9 @@ import DemographicInfo from "./components/HRActivities/Hiring/CreatePerson/Demog
 import EmploymentInfo from "./components/HRActivities/Hiring/CreatePerson/EmploymentDetails";
 import CompensationInfo from "./components/HRActivities/Hiring/CreatePerson/CompensationDetails";
 
+//Payroll Homepage
+import ElementHomePage from "./components/Payroll/Elements/ElementHomePage";
+
 //WorkForce Homepage
 import CompanyHomePage from "./components/WorkforceStructures/Company/CompanyHomePage";
 import LocationHomePage from "./components/WorkforceStructures/Location/LocationHomePage";
@@ -18,7 +21,7 @@ import CreateCompany from "./components/WorkforceStructures/Company/CreateCompan
 import CreateGrade from "./components/WorkforceStructures/Grade/CreateGrade";
 import CreateJob from "./components/WorkforceStructures/Job/CreateJob";
 import CreateDepartment from "./components/WorkforceStructures/Department/CreateDepartment";
-import CreateElement from "./components/WorkforceStructures/CreateElement";
+import CreateElement from "./components/Payroll/Elements/CreateElement";
 
 function App() {
   return (
@@ -40,6 +43,7 @@ function App() {
           <Route path="/createJob" element={<CreateJob />} />
           <Route path="/department" element={<DepartmentHomePage />} />
           <Route path="/createDepartment" element={<CreateDepartment />} />
+          <Route path="/element" element={<ElementHomePage />} />
           <Route path="/createElement" element={<CreateElement />} />
         </Routes>
       </BrowserRouter>

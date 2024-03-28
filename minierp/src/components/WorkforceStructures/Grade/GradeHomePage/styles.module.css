@@ -45,11 +45,16 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 8%;
+    margin-top: 6%;
+}
+
+.gradeSearchButtons {
+    margin-top: 10%;
 }
 
 .gradeSearchButtons button,
 .gradeTable button {
+    font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
     padding: 10px;
@@ -60,6 +65,10 @@
     color: white
 }
 
+.gradeTable h3 {
+    display: inline-block;
+    margin: 0;
+}
 
 .gradeSearchButtons button:hover,
 .gradeTable button:hover {

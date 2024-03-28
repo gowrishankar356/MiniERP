@@ -1,53 +1,89 @@
-.location_homepage_container {
-    position: fixed;
-    top: 10%;
+.container {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Poppins', sans-serif;
+}
+
+.locationHomePageContainer {
+    margin-top: 6%;
     margin-left: 35px;
-    color: black;
+    color: white;
 }
 
-h1 {
-    font-family: 'Poppins', sans-serif;
+.locationSearchForm input {
+    background-color: #05181A;
+    border: 1px solid #6DAAC0;
+    color: white;
 }
 
-h3 {
-    display: inline-block;
-    margin: 0;
+.locationSearchForm input:focus {
+    background-color: #6DAAC0;
 }
 
-.searchform input {
-    border: 1px solid #ccc;
+
+.locationSearchForm select {
+    background-color: #05181A;
+    border: 1px solid #6DAAC0;
+    color: white
 }
 
-.searchform select {
-    border: 1px solid #ccc;
+.locationSearchForm select:focus,
+select:active {
+    background-color: #6DAAC0;
 }
 
-.searchform label {
-    font-family: 'Poppins', sans-serif;
-}
 
-.search_buttons {
+.locationSearchButtons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     column-gap: 8px;
 }
 
+.locationFormComp {
+    position: fixed;
+    top: 16%;
+    left: 30%;
+    padding: 30px;
+    background-color: #0C7078;
+    border: 1px solid #6DAAC0;
+    border-radius: 16px;
+    z-index: 1;
+    color: white;
+}
 
-.location_table {
+
+.locationTable {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    position: static;
-    left: 35px;
+    gap: 20px;
     margin-top: 8%;
 }
 
-button {
+.locationTable h3 {
+    display: inline-block;
+    margin: 0px;
+}
+
+.locationSearchButtons button,
+.locationTable button {
     font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
     padding: 10px;
     border: none;
     border-radius: 8px;
+    background-color: #05181A;
+    box-shadow: 0px 6px 6px #6DAAC0;
+    color: white
+}
+
+
+.locationSearchButtons button:hover,
+.locationTable button:hover {
+    height: auto;
+    width: 160px;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 }

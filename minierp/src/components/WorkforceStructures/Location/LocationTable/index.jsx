@@ -15,8 +15,8 @@ export const Table = ({ rows, deleteLocation, updateLocation }) => {
     }
   };
   return (
-    <div className={styles.table_wrapper}>
-      <table className={styles.table}>
+    <div className={styles.locationTableWrapper}>
+      <table className={styles.locationTable}>
         <thead>
           <tr>
             <th>Location Name</th>

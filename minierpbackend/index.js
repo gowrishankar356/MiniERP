@@ -668,10 +668,10 @@ app.delete("/deleteDepartment:departmentid", async (req, res) => {
 
 //APIs of Element
 app.post("/createelement", (req, res) => {
-  const elementName = req.body.elementName;
-  const elementType = req.body.elementType;
+  const elementName = req.body.elementname;
+  const elementType = req.body.elementtype;
   const periodicity = req.body.periodicity;
-  const companyId = req.body.companyId;
+  const companyId = req.body.companyid;
 
   const date = new Date();
 
@@ -683,7 +683,7 @@ app.post("/createelement", (req, res) => {
   const createdby = -1;
 
   const query =
-    "Insert into element(elementname, elementtype, periodicity, companyId, datecreated, createdby) values($1,$2,$3,$4,$5, $6)";
+    "Insert into element(elementname, elementtype, periodicity, companyId, datecreated, createdby) values($1,$2,$3,$4,$5, $6) RETURNING elementid";
 
   client.query(
     query,
@@ -701,11 +701,45 @@ app.post("/createelement", (req, res) => {
 
 // get elements
 app.get("/getelements", async (req, res) => {
-  const elements =
-    "select elementid, elementname, elementtype, periodicity, companyid, datecreated, createdby, lastupdateddate, updatedby from element;";
-  client.query(elements, (err, result) => {
+  const jobs =
+    "SELECT elementid, elementname, elementtype,periodicity, companyid, companyname, datecreated, createdby, lastupdateddate, updatedby FROM GetAllElements();";
+  client.query(jobs, (err, result) => {
     if (err) return res.json(err);
     console.log(result);
+    return res.json(result);
+  });
+});
+
+//update element
+app.put("/updateElement", async (req, res) => {
+  const element = req.body;
+  const update = "Select UpdateElement($1, $2, $3, $4, $5, $6, $7, $8, $9);";
+  client.query(
+    update,
+    [
+      element.elementid,
+      element.elementname,
+      element.elementtype,
+      element.periodicity,
+      element.companyid,
+      element.datecreated,
+      element.createdby,
+      element.lastupdateddate,
+      element.updatedby,
+    ],
+    (err, result) => {
+      if (err) return res.json(err);
+      return res.json(result);
+    }
+  );
+});
+
+//delete element
+app.delete("/deleteElement:elementid", async (req, res) => {
+  const elementid = req.params.elementid;
+  const deleteelement = "delete from element where elementid = $1;";
+  client.query(deleteelement, [elementid], (err, result) => {
+    if (err) return res.json(err);
     return res.json(result);
   });
 });

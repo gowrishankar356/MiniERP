@@ -94,11 +94,11 @@ export const LocationHomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <NavBar></NavBar>
-      <div className={styles.location_homepage_container}>
+      <div className={styles.locationHomePageContainer}>
         <h1>Manage Locations</h1>
-        <div className={styles.searchform}>
+        <div className={styles.locationSearchForm}>
           <form
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -124,11 +124,11 @@ export const LocationHomePage = () => {
             </select>
           </form>
         </div>
-        <div className={styles.search_buttons}>
+        <div className={styles.locationSearchButtons}>
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleReset}>Reset</button>
         </div>
-        <div className={styles.location_table}>
+        <div className={styles.locationTable}>
           <button onClick={handleSetLocationForm}>
             <h3>
               <b>+</b>
@@ -142,12 +142,14 @@ export const LocationHomePage = () => {
           ></Table>
         </div>
         {locationFormOpen && (
-          <CreateLocation
-            updateLocation={location}
-            onSubmit={handleCreate}
-            onUpdate={handleUpdate}
-            closeForm={closeForm}
-          ></CreateLocation>
+          <div className={styles.locationFormComp}>
+            <CreateLocation
+              updateLocation={location}
+              onSubmit={handleCreate}
+              onUpdate={handleUpdate}
+              closeForm={closeForm}
+            ></CreateLocation>
+          </div>
         )}
       </div>
     </div>

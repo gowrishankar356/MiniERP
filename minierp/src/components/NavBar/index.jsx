@@ -108,7 +108,7 @@ const NavBar = () => {
                   <a href="/location">Manage locations</a>
                 </li>
                 <li>
-                  <a href="/createElement">Manage elements</a>
+                  <a href="/element">Manage elements</a>
                 </li>
               </ul>
             </li>

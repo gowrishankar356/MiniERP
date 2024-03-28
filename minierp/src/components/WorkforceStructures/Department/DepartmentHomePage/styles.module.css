@@ -60,8 +60,16 @@ select:active {
     margin-top: 8%;
 }
 
+.departmentTable h3 {
+    display: inline-block;
+    margin: 0;
+}
+
+
+
 .departmentSearchButtons button,
 .departmentTable button {
+    font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
     padding: 10px;

@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "./styles.module.css";
-import NavBar from "../../NavBar";
 
-const CreateElement = () => {
+const CreateElement = ({ updateElement, closeForm, onSubmit, onUpdate }) => {
   const [element, setElement] = useState({
-    elementName: "",
-    elementType: "",
-    periodicity: "",
-    companyId: "",
+    elementid: updateElement ? updateElement?.elementid : 0,
+    elementname: updateElement ? updateElement?.elementname : "",
+    elementtype: updateElement ? updateElement.elementtype : "",
+    periodicity: updateElement ? updateElement.periodicity : "",
+    companyid: updateElement ? updateElement.companyid : 0,
+    companyname: updateElement ? updateElement.companyname : 0,
+    datecreated: updateElement ? updateElement?.datecreated : Date(),
+    createdby: updateElement ? updateElement?.createdby : 0,
+    lastupdateddate: updateElement ? updateElement?.lastupdateddate : Date(),
+    updatedby: updateElement ? updateElement?.updatedby : 0,
   });
-  const [companies, setCompanies] = useState([]);
 
-  const navigate = useNavigate();
+  const [companies, setCompanies] = useState([]);
 
   const handleChange = (e) => {
     setElement((prev) => ({
@@ -23,10 +26,19 @@ const CreateElement = () => {
     }));
   };
 
+  const handleChangeCompany = (e) => {
+    setElement((prev) => ({
+      ...prev,
+      companyid: e.target.value,
+      companyname:
+        e.target.options[e.target.selectedIndex].getAttribute("companyname"),
+    }));
+  };
+
   const handleCancel = async (e) => {
     e.preventDefault();
     try {
-      navigate("/");
+      closeForm();
     } catch (error) {
       console.log(error);
       alert("Error cancelling current transaction!");
@@ -36,11 +48,36 @@ const CreateElement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3300/createelement`, element);
-      navigate("/");
+      const res = await axios.post(
+        `http://localhost:3300/createelement`,
+        element
+      );
+      const companyid = element.companyid;
+      setElement((prev) => ({
+        ...prev,
+        elementid: res.data[0]?.elementid,
+      }));
+      onSubmit({
+        ...element,
+        companyid: Number(companyid),
+        elementid: res.data[0]?.elementid,
+      });
+      closeForm();
     } catch (error) {
       console.log(error);
-      alert("Error adding Element. Please try again.");
+      alert("Error adding Job. Please try again.");
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3300/updateElement`, element);
+      onUpdate(element);
+      closeForm();
+    } catch (error) {
+      console.log(error);
+      alert("Error updating Element. Please try again.");
     }
   };
 
@@ -59,8 +96,7 @@ const CreateElement = () => {
 
   return (
     <div>
-      <NavBar></NavBar>
-      <div className={styles.form_element}>
+      <div className={styles.elementForm}>
         <h2>Create Element</h2>
         <form>
           <div className={styles.row}>
@@ -68,9 +104,9 @@ const CreateElement = () => {
               Element Name<br></br>
               <input
                 type="text"
-                name="elementName"
-                id="elementName"
-                value={element.elementName}
+                name="elementname"
+                id="elementname"
+                value={element.elementname}
                 onChange={handleChange}
                 required
               />
@@ -78,9 +114,9 @@ const CreateElement = () => {
             <label>
               Element Type<br></br>
               <select
-                id="elementType"
-                name="elementType"
-                value={element.elementType}
+                id="elementtype"
+                name="elementtype"
+                value={element.elementtype}
                 onChange={handleChange}
               >
                 <option value="">Select Element Type</option>
@@ -95,15 +131,20 @@ const CreateElement = () => {
             <label>
               Company<br></br>
               <select
-                id="companyId"
-                name="companyId"
-                value={element.companyId}
+                id="companyid"
+                name="companyid"
+                value={element.companyid}
                 required
-                onChange={handleChange}
+                onChange={handleChangeCompany}
+                companyname={element.companyname}
               >
                 <option>Select Company</option>
                 {companies.map((company) => (
-                  <option value={company.companyid} id={company.companyid}>
+                  <option
+                    value={company.companyid}
+                    id={company.companyid}
+                    companyname={company.companyname}
+                  >
                     {company.companyname}
                   </option>
                 ))}
@@ -125,9 +166,15 @@ const CreateElement = () => {
           </div>
         </form>
         <div className={styles.buttons}>
-          <button type="submit" onClick={handleSubmit}>
-            Create Element
-          </button>
+          {updateElement ? (
+            <button type="submit" onClick={handleUpdate}>
+              Update Element
+            </button>
+          ) : (
+            <button type="submit" onClick={handleSubmit}>
+              Create Element
+            </button>
+          )}
           <button onClick={handleCancel}>Cancel</button>
         </div>
       </div>

@@ -1,48 +1,47 @@
-.companyContainer {
+.elementContainer {
     display: flex;
     flex-direction: row;
     font-family: 'Poppins', sans-serif;
 }
 
-.companyHomePageContainer {
+.elementHomePageContainer {
     margin-top: 6%;
     margin-left: 35px;
     color: white;
 }
 
 
-
-.companySearchForm input {
+.elementSearchForm input {
     background-color: #05181A;
     border: 1px solid #6DAAC0;
     color: white;
 }
 
-.companySearchForm input:focus {
+.elementSearchForm input:focus {
     background-color: #6DAAC0;
 }
 
 
-.companySearchForm select {
+.elementSearchForm select {
     background-color: #05181A;
     border: 1px solid #6DAAC0;
     color: white
 }
 
-.companySearchForm select:focus,
+.elementSearchForm select:focus,
 select:active {
     background-color: #6DAAC0;
 }
 
 
-.companySearchButtons {
+.elementSearchButtons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     column-gap: 8px;
 }
 
-.companyFormComp {
+.elementFormComp {
     position: fixed;
     top: 30%;
     left: 30%;
@@ -54,16 +53,20 @@ select:active {
     color: white;
 }
 
-
-.companyTable {
+.elementTable {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 8%;
+    margin-top: 4%;
 }
 
-.companySearchButtons button,
-.companyTable button {
+.elementTable h3 {
+    display: inline-block;
+    margin: 0;
+}
+
+.elementSearchButtons button,
+.elementTable button {
     font-family: 'Poppins', sans-serif;
     width: 150px;
     height: auto;
@@ -75,13 +78,9 @@ select:active {
     color: white
 }
 
-.companyTable h3 {
-    display: inline-block;
-    margin: 0;
-}
 
-.companySearchButtons button:hover,
-.companyTable button:hover {
+.elementSearchButtons button:hover,
+.elementTable button:hover {
     height: auto;
     width: 160px;
     background-color: #6DAAC0;
