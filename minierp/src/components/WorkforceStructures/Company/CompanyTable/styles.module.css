@@ -1,8 +1,8 @@
-.table_wrapper {
+.companyTableWrapper {
     max-width: 100%;
 }
 
-.table {
+.companyTable {
     display: block;
     overflow: scroll;
     table-layout: auto;
@@ -15,7 +15,7 @@
     overflow-x: auto;
 }
 
-.table thead {
+.companyTable thead {
     background-color: #6DAAC0;
     color: #222;
     font-family: 'Poppins', sans-serif;
@@ -25,19 +25,19 @@
 }
 
 
-.table th,
-.table td {
+.companyTable th,
+.companyTable td {
     text-align: left;
     padding: 0.8rem;
 }
 
-.table td {
+.companyTable td {
     border-top: 0.5px solid #6DAAC0;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.table tbody tr:hover {
+.companyTable tbody tr:hover {
     background-color: #6DAAC0;
     transition: 0.2s ease-in-out;
 }

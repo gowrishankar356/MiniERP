@@ -16,8 +16,8 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
     }
   };
   return (
-    <div className={styles.table_wrapper}>
-      <table className={styles.table}>
+    <div className={styles.companyTableWrapper}>
+      <table className={styles.companyTable}>
         <thead>
           <tr>
             <th>Company Name</th>

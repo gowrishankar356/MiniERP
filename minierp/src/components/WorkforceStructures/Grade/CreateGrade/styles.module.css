@@ -1,9 +1,15 @@
-label {
+.gradeForm h2 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.gradeForm label {
+    font-family: 'Poppins', sans-serif;
     margin-left: 4px;
     font-weight: 300;
 }
 
-input {
+
+.gradeForm input {
     width: 300px;
     margin-top: 4px;
     margin-bottom: 10px;
@@ -11,47 +17,14 @@ input {
     height: 26px;
     border: none;
     border-radius: 8px;
-}
-
-input:focus {
-    outline: none;
-    background-color: rgb(230, 230, 230);
-}
-
-select {
-    width: auto;
-    height: 40px;
-    padding: 6px;
-    border-radius: 8px;
-    margin-top: 4px;
-    margin-bottom: 10px;
-}
-
-select:focus {
-    outline: none;
-    background-color: rgb(230, 230, 230);
-}
-
-option:hover {
-    background-color: rgb(230, 230, 230);
-}
-
-button:hover {
-    /* background-color: rgb(180, 180, 180); */
-}
-
-/* personal form css*/
-.form_creategrade {
-    width: auto;
-    height: auto;
-    top: 20%;
-    left: 20%;
-    padding: 30px;
-    background-color: gray;
-    border-radius: 16px;
-    position: fixed;
-    z-index: 1;
+    background-color: #05181A;
+    border: 1px solid #6DAAC0;
     color: white;
+}
+
+.gradeForm input:focus {
+    background-color: #05181A;
+    transition: 0.2s ease-in-out;
 }
 
 .row {
@@ -60,7 +33,7 @@ button:hover {
     gap: 40px;
 }
 
-.buttons {
+.gradeForm .buttons {
     margin-top: 100px;
     display: flex;
     flex-direction: row;
@@ -68,10 +41,18 @@ button:hover {
     gap: 20px;
 }
 
-.buttons button {
+.gradeForm .buttons button {
     width: auto;
     height: auto;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    background-color: #05181A;
+    color: white;
+}
+
+.gradeForm .buttons button:hover {
+    border: 1px solid #05181A;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
 }

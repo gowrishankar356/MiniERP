@@ -157,7 +157,7 @@ export const CompanyHomePage = () => {
           ></Table>
         </div>
         {companyFormOpen && (
-          <div className={styles.form}>
+          <div className={styles.companyFormComp}>
             <Company
               updateCompany={company}
               onSubmit={handleCreate}

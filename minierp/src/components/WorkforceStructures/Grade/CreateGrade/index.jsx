@@ -63,9 +63,8 @@ const CreateGrade = ({ updateGrade, closeForm, onSubmit, onUpdate }) => {
 
   return (
     <div>
-      <NavBar></NavBar>
-      <div className={styles.form_creategrade}>
-        <h2>Create Location</h2>
+      <div className={styles.gradeForm}>
+        <h2>Create Grade</h2>
         <form>
           <div>
             <label>

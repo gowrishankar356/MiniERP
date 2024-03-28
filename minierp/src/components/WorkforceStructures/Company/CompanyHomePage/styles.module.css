@@ -4,8 +4,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
-
 .companyHomePageContainer {
     margin-top: 6%;
     margin-left: 35px;
@@ -44,7 +42,7 @@ select:active {
     column-gap: 8px;
 }
 
-.form {
+.companyFormComp {
     position: fixed;
     top: 30%;
     left: 30%;

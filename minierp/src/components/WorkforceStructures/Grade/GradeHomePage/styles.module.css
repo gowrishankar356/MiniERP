@@ -10,24 +10,6 @@
     color: white;
 }
 
-
-.gradeContainer h3 {
-    display: inline-block;
-    margin: 0;
-}
-
-.gradeForm {
-    position: fixed;
-    top: 30%;
-    left: 30%;
-    padding: 30px;
-    background-color: #0C7078;
-    border: 1px solid #6DAAC0;
-    border-radius: 16px;
-    z-index: 1;
-    color: white;
-}
-
 .gradeSearchForm input {
     background-color: #05181A;
     border: 1px solid #6DAAC0;
@@ -46,6 +28,18 @@
     column-gap: 8px;
 }
 
+
+.gradeFormComp {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    padding: 30px;
+    background-color: #0C7078;
+    border: 1px solid #6DAAC0;
+    border-radius: 16px;
+    z-index: 1;
+    color: white;
+}
 
 .gradeTable {
     display: flex;

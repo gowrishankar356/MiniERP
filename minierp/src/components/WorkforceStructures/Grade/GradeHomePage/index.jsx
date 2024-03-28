@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import CreateGrade from "../CreateGrade";
 
 export const GradeHomePage = () => {
-  const [gad, setGrades] = useState([]);
+  const [grades, setGrades] = useState([]);
   const [grade, setGrade] = useState(null);
   const [gradeFormOpen, setGradeFormOpen] = useState(false);
   const [search, setSearch] = useState({ locationname: "", country: "" });
@@ -125,7 +125,7 @@ export const GradeHomePage = () => {
           ></Table>
         </div>
         {gradeFormOpen && (
-          <div className={styles.gradeForm}>
+          <div className={styles.gradeFormComp}>
             <CreateGrade
               updateGrade={grade}
               onSubmit={handleCreate}
