@@ -13,6 +13,8 @@ export const ElementHomePage = () => {
   const [search, setSearch] = useState({
     elementname: "",
     company: 0,
+    periodicity: "",
+    elementtype: "",
   });
   const [allElements, setAllElements] = useState([]);
   const searchFocus = useRef(null);
@@ -60,43 +62,57 @@ export const ElementHomePage = () => {
   };
 
   const handleSearch = async (e) => {
-    // e.preventDefault();
-    // console.log(allJobs);
-    // setJobs(
-    //   allJobs.filter((job) =>
-    //     search.jobname.length > 0
-    //       ? Number(search?.company) !== 0
-    //         ? Number(search?.location) !== 0
-    //           ? job.jobname
-    //               .toLowerCase()
-    //               .includes(search.jobname.toLowerCase()) &&
-    //             Number(job.companyid) === Number(search.company) &&
-    //             Number(job.locationid) === Number(search.location)
-    //           : job.jobname
-    //               .toLowerCase()
-    //               .includes(search.jobname.toLowerCase()) &&
-    //             Number(job.companyid) === Number(search.company)
-    //         : Number(search?.location) !== 0
-    //         ? job.jobname
-    //             .toLowerCase()
-    //             .includes(search.jobname.toLowerCase()) &&
-    //           Number(job.locationid) === Number(search.location)
-    //         : job.jobname.toLowerCase().includes(search.jobname.toLowerCase())
-    //       : Number(search?.company) !== 0
-    //       ? Number(search?.location) !== 0
-    //         ? Number(job.companyid) === Number(search.company) &&
-    //           Number(job.locationid) === Number(search.location)
-    //         : Number(job.companyid) === Number(search.company)
-    //       : Number(search?.location) !== 0
-    //       ? Number(job.locationid) === Number(search.location)
-    //       : true
-    //   )
-    // );
+    e.preventDefault();
+    setElements(
+      allElements.filter((element) =>
+        search.elementname.length > 0
+          ? Number(search?.company) !== 0
+            ? search?.elementtype.length > 0
+              ? element.elementname
+                  .toLowerCase()
+                  .includes(search.elementname.toLowerCase()) &&
+                Number(element.companyid) === Number(search.company) &&
+                element.elementtype
+                  .toLowerCase()
+                  .includes(search.elementtype.toLowerCase())
+              : element.elementname
+                  .toLowerCase()
+                  .includes(search.element.toLowerCase()) &&
+                Number(element.companyid) === Number(search.company)
+            : search?.elementtype.length > 0
+            ? element.elementname
+                .toLowerCase()
+                .includes(search.elementname.toLowerCase()) &&
+              element.elementype
+                .toLowerCase()
+                .includes(search.elementtype.toLowerCase())
+            : element.elementname
+                .toLowerCase()
+                .includes(search.elementname.toLowerCase())
+          : Number(search?.company) !== 0
+          ? search?.elementtype.length > 0
+            ? Number(element.companyid) === Number(search.company) &&
+              element.elementype
+                .toLowerCase()
+                .includes(search.elementype.toLowerCase())
+            : Number(element.companyid) === Number(search.company)
+          : search?.elementtype.length > 0
+          ? element.elementype
+              .toLowerCase()
+              .includes(search.elementype.toLowerCase())
+          : true
+      )
+    );
   };
   const handleRestet = async (e) => {
-    // e.preventDefault();
-    // setSearch({ company: "", location: 0 });
-    // setCompanies(allCompanies);
+    e.preventDefault();
+    setSearch({
+      elementname: "",
+      company: 0,
+      periodicity: "",
+      elementtype: "",
+    });
+    setCompanies(allElements);
   };
 
   useEffect(() => {
@@ -148,10 +164,16 @@ export const ElementHomePage = () => {
               name="elementname"
               id="elementname"
               onChange={handleChange}
+              value={search.elementname}
               ref={searchFocus}
             ></input>
             <label> Company</label>
-            <select name="company" id="company" onChange={handleChange}>
+            <select
+              name="company"
+              id="company"
+              onChange={handleChange}
+              value={search.company}
+            >
               <option value={0}>Select Company</option>
               {companies.map((company) => (
                 <option value={Number(company.companyid)}>
@@ -159,6 +181,34 @@ export const ElementHomePage = () => {
                 </option>
               ))}
             </select>
+            <label>
+              Periodicity<br></br>
+              <select
+                id="periodicity"
+                name="periodicity"
+                value={search.periodicity}
+                onChange={handleChange}
+              >
+                <option value="">Select Periodicity of Element</option>
+                <option value="R">Recurring</option>
+                <option value="NR">Non Recurring</option>
+              </select>
+            </label>
+            <label>
+              Element Type<br></br>
+              <select
+                id="elementtype"
+                name="elementtype"
+                value={search.elementtype}
+                onChange={handleChange}
+              >
+                <option value="">Select Element Type</option>
+                <option value="STD_ERR">Standard Earnings</option>
+                <option value="SUP_ERR">Supplement Earnings</option>
+                <option value="VOL_DED">Voluntary Deductions</option>
+                <option value="INVOL_DED">Involuntary Deductions</option>
+              </select>
+            </label>
           </form>
         </div>
         <div className={styles.elementSearchButtons}>
