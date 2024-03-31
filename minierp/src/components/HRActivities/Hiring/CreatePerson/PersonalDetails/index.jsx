@@ -94,9 +94,9 @@ const PersonalDetailsForm = () => {
   // };
 
   return (
-    <div>
+    <div className={styles.containerEmployeeForm}>
       <NavBar></NavBar>
-      <div className={styles.form_personal}>
+      <div className={styles.personForm}>
         <h2>Hire an Employee</h2>
         <h3>Basic Details</h3>
         <form>
@@ -123,7 +123,11 @@ const PersonalDetailsForm = () => {
               >
                 <option value="0">Select Company</option>
                 {companies.map((company) => (
-                  <option key={company.companyid} value={company.companyid} id={company.companyid}>
+                  <option
+                    key={company.companyid}
+                    value={company.companyid}
+                    id={company.companyid}
+                  >
                     {company.companyname}
                   </option>
                 ))}
@@ -201,10 +205,7 @@ const PersonalDetailsForm = () => {
                 required
               >
                 <option value="">Select Gender</option>
-                <option
-                 value="MALE">
-                  Male
-                </option>
+                <option value="MALE">Male</option>
                 <option value="FEMALE">Female</option>
               </select>
             </label>

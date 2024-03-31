@@ -1,10 +1,24 @@
-label {
-    margin-left: 4px;
-    font-weight: 300;
-    display: block;
+.containerCompensationForm {
+    margin-top: 10rem;
+    margin-left: 12rem;
+    margin-bottom: 100px;
+    color: white;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    box-shadow: 0px 6px 6px #6DAAC0;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 20px;
 }
 
-input {
+
+.compensationForm label {
+    margin-left: 4px;
+    font-weight: 300;
+}
+
+
+.compensationForm input {
     width: 300px;
     margin-top: 4px;
     margin-bottom: 10px;
@@ -12,52 +26,71 @@ input {
     height: 26px;
     border: none;
     border-radius: 8px;
+    background-color: #05181A;
+    border: 1px solid #6DAAC0;
+    color: white;
 }
 
-input:focus {
-    outline: none;
-    background-color: rgb(230, 230, 230);
-}
-
-select {
+.compensationForm select {
     width: auto;
     height: 40px;
     padding: 6px;
     border-radius: 8px;
     margin-top: 4px;
     margin-bottom: 10px;
+    border: none;
+    background-color: #05181A;
+    border: 1px solid #6DAAC0;
+    color: white;
 }
 
-select:focus {
-    outline: none;
-    background-color: rgb(230, 230, 230);
+
+.compensationForm select:focus {
+    background-color: #6DAAC0;
+    height: 42px;
+    transition: 0.2s ease-in-out;
 }
 
-option:hover {
-    background-color: rgb(230, 230, 230);
+.compensationForm input:focus {
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
 }
 
-button:hover {
-    /* background-color: rgb(180, 180, 180); */
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
 }
 
-/* personal form css*/
-.form_compensationInfo {
-    width: 60%;
-    height: 50%;
-    padding: 30px;
-    margin-left: 250px;
-    margin-top: 100px;
-    background-color: gray;
-    border-radius: 16px;
+.compensationForm .buttons {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 20px;
 }
 
-.form_compensationInfo h3 {
-    margin-left: 4px;
-    margin-bottom: 10px;
+.compensationForm .buttons button {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    box-shadow: 0px 6px 6px #6DAAC0;
+    border-radius: 8px;
+    background-color: #05181A;
+    color: white;
+
 }
 
-.button_add_compensation {
+.compensationForm .buttons button:hover {
+    height: auto;
+    width: 60px;
+    cursor: pointer;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
+}
+
+
+/* .addCompensation {
     width: auto;
     height: auto;
     padding: 10px;
@@ -67,18 +100,10 @@ button:hover {
     margin-left: 400px;
 }
 
-.buttons {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 20px;
-}
-
-.buttons button {
-    width: auto;
+.addCompensation :hover {
     height: auto;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-}
+    width: 100px;
+    cursor: pointer;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
+} */

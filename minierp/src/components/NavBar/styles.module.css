@@ -34,6 +34,7 @@ body {
 
 .dropDown img {
     float: none;
+    margin: 0;
 }
 
 .nav_bar button {
@@ -76,8 +77,14 @@ body {
     font-weight: 800;
 }
 
+
 .nav_bar ul {
     list-style-type: none;
+    margin-left: 0;
+}
+
+.dropDown {
+    margin: 0;
 }
 
 .nav_bar ul li ul {
@@ -103,10 +110,19 @@ body {
 
 .second_levelnav {
     background-color: #6DAAC0;
-    /* filter: blur(10px); */
     margin-top: 20px;
     padding: 20px;
     width: 175px;
+    border-radius: 10px;
+    font-size: small;
+}
+
+.second_levelnavHR {
+    background-color: #6DAAC0;
+    margin-top: 20px;
+    padding: 20px;
+    width: 140px;
+    font-size: smaller;
     border-radius: 10px;
 }
 
@@ -123,7 +139,8 @@ body {
     width: 100%;
 }
 
-.second_levelnav a:hover {
+.second_levelnav a:hover,
+.second_levelnavHR a:hover {
     padding: 4px;
     background-color: #05181A;
     border-radius: 4px;

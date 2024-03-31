@@ -743,3 +743,43 @@ app.delete("/deleteElement:elementid", async (req, res) => {
     return res.json(result);
   });
 });
+
+//get all employees
+app.get("/getEmployees", async (req, res) => {
+  const employees = `select personid , fullname , gender , dateofbirth , demographicid , citizenship ,
+citizenshipstatus ,
+maritalstatus ,
+contactid ,
+email ,
+mobileno ,
+addressline1 ,
+addressline2 ,
+city ,
+state ,
+country ,
+postalcode ,
+assignmentid ,
+assignmentstartdate ,
+assignmentenddate ,
+hiredate ,
+companyid ,
+companyname ,
+departmentid ,
+departmentname ,
+jobid ,
+jobname ,
+gradeid ,
+gradename ,
+locationid ,
+locationname ,
+employeetype ,
+managerid ,
+managername 
+from GetAllEmployeesHRDetails();
+`;
+  client.query(employees, (err, result) => {
+    if (err) return res.json(err);
+    console.log(result);
+    return res.json(result);
+  });
+});

@@ -7,7 +7,11 @@ import Icon from "../Icon";
 const NavBar = () => {
   // adding the states
   // const [isActive, setIsActive] = useState(false);
-  const [isSecondLevleActive, setIsSecondLevleActive] = useState(false);
+  const [isSecondLevleActiveWorkForce, setIsSecondLevleActiveWorkForce] =
+    useState(false);
+
+  const [isSecondLevleActiveCoreHR, setIsSecondLevleActiveCoreHR] =
+    useState(false);
 
   const [isSideNaveBarActive, SetIsSideNaveBarActive] = useState(false);
 
@@ -22,11 +26,19 @@ const NavBar = () => {
   // };
 
   const secondLevelActive = () => {
-    setIsSecondLevleActive(true);
+    setIsSecondLevleActiveWorkForce(true);
   };
 
   const secondLevelInActive = () => {
-    setIsSecondLevleActive(false);
+    setIsSecondLevleActiveWorkForce(false);
+  };
+
+  const secondLevelActiveHR = () => {
+    setIsSecondLevleActiveCoreHR(true);
+  };
+
+  const secondLevelInActiveHR = () => {
+    setIsSecondLevleActiveCoreHR(false);
   };
 
   const [color, setColor] = useState(false);
@@ -69,9 +81,30 @@ const NavBar = () => {
             </li>
           </ul>
           <ul>
-            <li>
-              <a href="/personalDetails">HR Activities</a>
+            <li className={styles.dropDown}>
+              <a onClick={secondLevelActiveHR}>Core HR Activities</a>
+              <Icon
+                src={"images/dropdown.svg"}
+                alt={"dropdown svg"}
+                height={12}
+                width={12}
+              ></Icon>
             </li>
+
+            <ul
+              className={`${styles.second_levelnavHR} ${
+                isSecondLevleActiveCoreHR
+                  ? styles.second_level_active
+                  : styles.second_level_inactive
+              }`}
+              onClick={(e) => {
+                secondLevelInActiveHR();
+              }}
+            >
+              <li>
+                <a href="/employees">Manage Employees</a>
+              </li>
+            </ul>
           </ul>
           <ul>
             <li className={styles.dropDown}>
@@ -84,7 +117,7 @@ const NavBar = () => {
               ></Icon>
               <ul
                 className={`${styles.second_levelnav} ${
-                  isSecondLevleActive
+                  isSecondLevleActiveWorkForce
                     ? styles.second_level_active
                     : styles.second_level_inactive
                 }`}

@@ -148,9 +148,9 @@ const EmploymentInfo = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.containerEmployementForm}>
       <NavBar></NavBar>
-      <div className={styles.form_employmentInfo}>
+      <div className={styles.employmentForm}>
         <h2>Hire an Employee</h2>
         <h3>Employment Info</h3>
         <form>
@@ -183,7 +183,11 @@ const EmploymentInfo = () => {
               >
                 <option value="0">Select Grade</option>
                 {grades.map((grade) => (
-                  <option key={grade.gradeid} value={grade.gradeid} id={grade.gradeid}>
+                  <option
+                    key={grade.gradeid}
+                    value={grade.gradeid}
+                    id={grade.gradeid}
+                  >
                     {grade.gradename}
                   </option>
                 ))}
@@ -201,11 +205,21 @@ const EmploymentInfo = () => {
                 onChange={handleChange}
               >
                 <option value="0">Select Department</option>
-                {departments.map((department) => (
-                  <option key={department.departmentid} value={department.departmentid} id={department.departmentid}>
-                    {department.departmentname}
-                  </option>
-                ))}
+                {departments
+                  .filter(
+                    (department) =>
+                      Number(department.companyid) ===
+                      Number(personalDetails.companyId)
+                  )
+                  .map((department) => (
+                    <option
+                      key={department.departmentid}
+                      value={department.departmentid}
+                      id={department.departmentid}
+                    >
+                      {department.departmentname}
+                    </option>
+                  ))}
               </select>
             </label>
             <label>
@@ -219,7 +233,11 @@ const EmploymentInfo = () => {
               >
                 <option value="0">Select Location</option>
                 {locations.map((location) => (
-                  <option key={location.locationid} value={location.locationid} id={location.locationid}>
+                  <option
+                    key={location.locationid}
+                    value={location.locationid}
+                    id={location.locationid}
+                  >
                     {location.locationname}
                   </option>
                 ))}
@@ -238,7 +256,11 @@ const EmploymentInfo = () => {
               >
                 <option value="0">Select Manager</option>
                 {managers.map((manager) => (
-                  <option key={manager.personid} value={manager.personid} id={manager.personid}>
+                  <option
+                    key={manager.personid}
+                    value={manager.personid}
+                    id={manager.personid}
+                  >
                     {manager.personid}
                   </option>
                 ))}

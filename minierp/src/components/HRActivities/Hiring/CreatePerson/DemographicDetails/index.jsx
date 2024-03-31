@@ -88,9 +88,9 @@ const DemographicInfo = () => {
   };
 
   return (
-    <div>
+    <div className={styles.containerDemographicForm}>
       <NavBar></NavBar>
-      <div className={styles.form_legislativeContactInfo}>
+      <div className={styles.demographicForm}>
         <h2>Hire an Employee</h2>
         <h3>Citizenship Info</h3>
         <form>

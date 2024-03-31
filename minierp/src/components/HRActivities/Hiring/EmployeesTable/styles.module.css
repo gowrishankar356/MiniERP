@@ -1,0 +1,67 @@
+.jobTableWrapper {
+    max-width: 100%;
+}
+
+.jobTable {
+    display: block;
+    overflow: scroll;
+    table-layout: auto;
+    border-collapse: collapse;
+    box-shadow: 0px 10px 10px #6DAAC0;
+    border-radius: 10px;
+    white-space: nowrap;
+    width: 90rem;
+    max-height: 15rem;
+    overflow-x: auto;
+}
+
+.jobTable img {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.jobTable thead {
+    background-color: #6DAAC0;
+    color: #222;
+    font-family: 'Poppins', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+
+.jobTable th,
+.jobTable td {
+    text-align: left;
+    padding: 0.8rem;
+}
+
+.jobTable td {
+    border-top: 0.5px solid #6DAAC0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jobTable tbody tr:hover {
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
+}
+
+.expand {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.actions svg {
+    cursor: pointer;
+}
+
+.delete_btn {
+    color: red;
+}

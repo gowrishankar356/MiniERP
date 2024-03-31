@@ -43,8 +43,13 @@ const CompensationInfo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(personalDetails)
-      await axios.post(`http://localhost:3300/createperson`, {personalDetails :personalDetails , demographicDetails : demographicDetails, employmentDetails : employmentDetails, compensations: compensations});
+      console.log(personalDetails);
+      await axios.post(`http://localhost:3300/createperson`, {
+        personalDetails: personalDetails,
+        demographicDetails: demographicDetails,
+        employmentDetails: employmentDetails,
+        compensations: compensations,
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -78,9 +83,9 @@ const CompensationInfo = () => {
   };
 
   return (
-    <div>
+    <div className={styles.containerCompensationForm}>
       <NavBar></NavBar>
-      <div className={styles.form_compensationInfo}>
+      <div className={styles.compensationForm}>
         <h2>Hire an Employee</h2>
         <h3>Compensation Info</h3>
         <form>
@@ -111,7 +116,7 @@ const CompensationInfo = () => {
           </div>
           <Table rows={compensations} deleteRow={handleDelete}></Table>
           <button
-            className={styles.button_add_compensation}
+            // className={styles.addCompensation}
             onClick={handleSetCompensation}
           >
             Add Compensation
