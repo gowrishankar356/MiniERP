@@ -8,6 +8,7 @@ const SideNavBar = () => {
     dropDownWorkForceStructuresActive,
     setDropDownWorkForceStructuresActive,
   ] = useState(false);
+  const [dropDownCoreHRActive, setDropDownCoreHRActive] = useState(false);
 
   return (
     <div className={styles.side_bar_container}>
@@ -57,6 +58,23 @@ const SideNavBar = () => {
               </li>
               <li>
                 <a href="/createElement">Manage elements</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li onClick={() => setDropDownCoreHRActive(!dropDownCoreHRActive)}>
+            <a>Core HR Activities</a>
+            <img src="images/dropdown.svg" alt="dropdown svg"></img>
+            <ul
+              className={
+                dropDownCoreHRActive
+                  ? `${styles.workForceStructuresActive}`
+                  : `${styles.workForceStructures}`
+              }
+            >
+              <li>
+                <a href="/employees">Manage Employees</a>
               </li>
             </ul>
           </li>

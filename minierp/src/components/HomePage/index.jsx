@@ -40,7 +40,7 @@ const HomePage = () => {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
+        text: "Employees salary v/s Month",
       },
     },
   };
@@ -52,16 +52,21 @@ const HomePage = () => {
     "May",
     "June",
     "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
-  const y = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  const y = [400, 800, 1200, 1100, 1000, 900, 1400, 1600, 700];
 
   const data3 = {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
-        data: labels.map(() => y),
+        label: "Year 2023",
+        data: y,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
