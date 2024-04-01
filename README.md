@@ -3,7 +3,7 @@
 ## Home Page:
 
 ### NavBar and SideBar
-<img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/DashBoard.png?raw=true" height={500} width={500}>
+<img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/DashBoard.png?raw=true" height="500" width="500">
 
 
 
