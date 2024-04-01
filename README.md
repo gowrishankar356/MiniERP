@@ -16,7 +16,7 @@
 - Also, dashboard consists of graphs configured using react-chartJS. They visualize the employees piad salary monthly wise,
   number of worforce structures, number of employees present grouped by category.
 
-#### Manage Employees
+### Manage Employees
 
 - Created a microservice to manage CRUD operations for Employee.
 - Configured RESTful APIs for Create - POST method(/createemployee), Update - PUT method(/updateemployee),
