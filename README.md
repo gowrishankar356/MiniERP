@@ -20,15 +20,20 @@
 
 ##### Manage Employees
 
-<img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/DashBoard.png?raw=true" height="300" width="600">
+- Created a microservice to manage CRUD operations for Employee.
+- Configured RESTful APIs for Create - POST method(/createemployee), Update - PUT method(/updateemployee),
+  Read - GET method(/getemployees), and Delete - Delete method(/deleteemployee) using ExpressJS, NodeJS and PostgreSQL.
+- Integrated those RESTful APIs to UI using ReatJS and succesfully created a user interface to communicate with microservice.
+- Please refer below images to see how can you create an employee
+<img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee6.png?raw=true" alt="image-description" height="300" width="600"/>
 <details>
   <summary>Manage Employee</summary>
-  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee1.png?raw=true" alt="image-description"/>
-  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee2.png?raw=true" alt="image-description"/>
-    <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee3.png?raw=true" alt="image-description"/>
-  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee4.png?raw=true" alt="image-description"/>
-  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee5.png?raw=true" alt="image-description"/>
-    <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee6.png?raw=true" alt="image-description"/>
+  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee1.png?raw=true" alt="image-description" height="300" width="600"/>
+  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee2.png?raw=true" alt="image-description" height="300" width="600"/>
+    <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee3.png?raw=true" alt="image-description" height="300" width="600"/>
+  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee4.png?raw=true" alt="image-description" height="300" width="600"/>
+  <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee5.png?raw=true" alt="image-description" height="300" width="600"/>
+    <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee6.png?raw=true" alt="image-description" height="300" width="600"/>
 
 </details>
 
