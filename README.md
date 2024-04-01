@@ -1,9 +1,14 @@
 # MiniERP - An Enterprise Resource Planning System
-# Q1
 
-## 1. Problem Formulation:
+## Home Page:
 
-The problem addressed is the implementation of a K-Nearest Neighbors (KNN) classifier from scratch. The KNN algorithm is employed for both regression and classification tasks, leveraging the intuition that instances of similar classes are close to each other in the feature space. In this implementation, the initial data serves as the training set, and the classes of test data are predicted based on the classes of its closest observations.
+### NavBar and SideBar
+![alt text](https://github.com/gowrishankar356/MiniERP/readme_pics/main/DashBoard.png?raw=true)
+
+
+
+
+
 
 ## 2. Program Description:
 
