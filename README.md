@@ -1,8 +1,6 @@
 # MiniERP - An Enterprise Resource Planning System
 
-## Home Page:
-
-### NavBar and SideBar
+## NavBar and SideBar
 
 <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/DashBoard.png?raw=true" height="300" width="600">
 
