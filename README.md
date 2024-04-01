@@ -3,7 +3,7 @@
 ## Home Page:
 
 ### NavBar and SideBar
-![alt text](https://github.com/gowrishankar356/MiniERP/readme_pics/main/DashBoard.png?raw=true)
+![alt text](https://github.com/gowrishankar356/MiniERP/readme_pics/DashBoard.png?raw=true)
 
 
 
