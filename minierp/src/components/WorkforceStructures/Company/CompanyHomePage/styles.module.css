@@ -10,11 +10,16 @@
     color: white;
 }
 
-
+/* .companySearchForm form {} */
 
 .companySearchForm input {
+    display: block;
     background-color: #05181A;
     border: 1px solid #6DAAC0;
+    width: 180px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 6px;
     color: white;
 }
 
@@ -24,9 +29,14 @@
 
 
 .companySearchForm select {
+    display: block;
     background-color: #05181A;
     border: 1px solid #6DAAC0;
-    color: white
+    color: white;
+    width: 180px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 6px;
 }
 
 .companySearchForm select:focus,

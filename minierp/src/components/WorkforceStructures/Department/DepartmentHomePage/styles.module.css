@@ -12,6 +12,11 @@
 
 
 .departmentSearchForm input {
+    display: block;
+    width: 180px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 6px;
     background-color: #05181A;
     border: 1px solid #6DAAC0;
     color: white;
@@ -22,6 +27,11 @@
 }
 
 .departmentSearchForm select {
+    display: block;
+    width: 180px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 6px;
     background-color: #05181A;
     border: 1px solid #6DAAC0;
     color: white

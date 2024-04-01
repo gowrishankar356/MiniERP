@@ -127,11 +127,11 @@ export const EmployeesHomePage = () => {
   }, []);
 
   return (
-    <div className={styles.jobContainer}>
+    <div className={styles.employeeContainer}>
       <NavBar></NavBar>
-      <div className={styles.jobHomePageContainer}>
+      <div className={styles.employeeHomePageContainer}>
         <h1>Manage Employees</h1>
-        <div className={styles.jobSearchForm}>
+        <div className={styles.employeeSearchForm}>
           <form
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -158,11 +158,11 @@ export const EmployeesHomePage = () => {
             </select>
           </form>
         </div>
-        <div className={styles.jobSearchButtons}>
+        <div className={styles.employeeSearchButtons}>
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleRestet}>Reset</button>
         </div>
-        <div className={styles.jobTable}>
+        <div className={styles.employeeTable}>
           <button onClick={handleCreateEmployee}>
             <h3>
               <b>+</b>
