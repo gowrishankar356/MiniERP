@@ -76,7 +76,7 @@
     border-radius: 8px;
     background-color: #05181A;
     color: white;
-
+    border: none;
 }
 
 .employmentForm .buttons button:hover {

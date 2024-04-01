@@ -1,4 +1,4 @@
-.modal_container {
+.compensationAddForm {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -8,35 +8,58 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    font-family: 'Poppins', sans-serif;
 }
 
-.modal {
-    border-radius: 5px;
+.compensationAdd {
+    border-radius: 20px;
     padding: 2rem;
-    background-color: white;
+    background-color: #6DAAC0;
     width: 25em;
+    z-index: 2;
 }
 
-.modal input {
-    border: 1px solid #ccc;
+.compensationAdd input {
+    display: block;
+    border: 1px solid #6DAAC0;
+
 }
 
-.buttons {
+.compensationAdd select {
+    display: block;
+    border: 1px solid #6DAAC0;
+}
+
+.compensationAdd select:focus {
+    background-color: #05181A;
+    height: 42px;
+    transition: 0.2s ease-in-out;
+}
+
+.compensationAdd input:focus {
+    background-color: #05181A;
+    transition: 0.2s ease-in-out;
+}
+
+.compensationAdd .buttons {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 20px;
 }
 
-.buttons button {
-    display: block;
-    margin-top: 1rem;
+.compensationAdd .buttons button {
+    width: auto;
+    height: auto;
+    padding: 10px;
     border: none;
-    background-color: grey;
+    border-radius: 8px;
+    background-color: #05181A;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0px 5px 5px white;
+}
+
+.compensationAdd .buttons button:hover {
+    border: 1px solid #05181A;
+    background-color: #6DAAC0;
+    transition: 0.2s ease-in-out;
 }

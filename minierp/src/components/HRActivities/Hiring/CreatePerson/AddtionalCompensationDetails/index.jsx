@@ -57,71 +57,64 @@ export const AddtionalCompensationForm = ({ closeForm, onSubmit }) => {
   }, []);
 
   return (
-    <div className={styles.modal_container}>
-      <div className={styles.modal}>
+    <div className={styles.compensationAddForm}>
+      <div className={styles.compensationAdd}>
         <form>
           <div>
-            <label>
-              Compensation<br></br>
-              <select
-                id="elementId"
-                name="elementId"
-                value={formState.elementId}
-                required
-                onChange={handleChangeElement}
-              >
-                <option value="0">Select Element</option>
-                {elements.map((element) => (
-                  <option
-                    key={element.elementid}
-                    value={element.elementid}
-                    id={element.elementid}
-                    elementname={element.elementname}
-                    elementtype={element.elementtype}
-                    periodicity={element.periodicity}
-                  >
-                    {element.elementname}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Start Date<br></br>
-              <input
-                type="date"
-                name="startDate"
-                placeholder="Eg: Google"
-                id="startDate"
-                value={formState.startDate}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Value<br></br>
-              <input
-                type="number"
-                name="value"
-                placeholder="Eg: 200.00"
-                id="value"
-                value={formState.value}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Status<br></br>
-              <select
-                id="status"
-                onChange={handleChange}
-                name="status"
-                value={formState.status}
-                required
-              >
-                <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
-              </select>
-            </label>
+            <label>Compensation </label>
+            <select
+              id="elementId"
+              name="elementId"
+              value={formState.elementId}
+              required
+              onChange={handleChangeElement}
+            >
+              <option value="0">Select Element</option>
+              {elements.map((element) => (
+                <option
+                  key={element.elementid}
+                  value={element.elementid}
+                  id={element.elementid}
+                  elementname={element.elementname}
+                  elementtype={element.elementtype}
+                  periodicity={element.periodicity}
+                >
+                  {element.elementname}
+                </option>
+              ))}
+            </select>
+            <label>Start Date</label>
+            <input
+              type="date"
+              name="startDate"
+              placeholder="Eg: Google"
+              id="startDate"
+              value={formState.startDate}
+              onChange={handleChange}
+              required
+            />
+            <label>Value </label>
+            <input
+              type="number"
+              name="value"
+              placeholder="Eg: 200.00"
+              id="value"
+              value={formState.value}
+              onChange={handleChange}
+              required
+            />
+
+            <label>Status </label>
+            <select
+              id="status"
+              onChange={handleChange}
+              name="status"
+              value={formState.status}
+              required
+            >
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
           </div>
           <div className={styles.buttons}>
             <button type="submit" onClick={handleSubmit}>

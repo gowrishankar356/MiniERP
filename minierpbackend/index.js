@@ -167,7 +167,7 @@ app.post("/createperson", (req, res) => {
           "Insert into Assignment(personid, assignmentstartdate,assignmentenddate, hiredate, companyid, departmentid, jobid, gradeid, locationid, employeetype, managerid, datecreated, createdby) values($1,$2,$3,$4,$5,$6, $7, $8, $9, $10, $11, $12, $13 ) returning assignmentid";
 
         const assignmentStartDate = "2020-01-01";
-        const assignmentEndDate = "2020-01-31";
+        const assignmentEndDate = "2050-01-31";
 
         client.query(
           assignmentDetailsQuery,

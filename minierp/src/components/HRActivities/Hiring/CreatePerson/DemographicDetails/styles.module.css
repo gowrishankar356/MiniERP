@@ -78,7 +78,7 @@
     border-radius: 8px;
     background-color: #05181A;
     color: white;
-
+    border: none;
 }
 
 .demographicForm .buttons button:hover {

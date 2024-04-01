@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import NavBar from "../../../../NavBar";
 
-import Table from "../../../../Table";
+import Table from "../CompensationTable";
 import { AddtionalCompensationForm } from "../AddtionalCompensationDetails";
 
 const CompensationInfo = () => {
@@ -90,37 +90,30 @@ const CompensationInfo = () => {
         <h3>Compensation Info</h3>
         <form>
           <div>
-            <label>
-              Basic Salary<br></br>
-              <input
-                type="number"
-                name="basicSalary"
-                id="basicSalary"
-                value={compensationInfo.basicSalary}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Annual Basic Salary<br></br>
-              <input
-                type="number"
-                name="annualBasicSalary"
-                placeholder=""
-                id="annualBasicSalary"
-                value={compensationInfo.annualBasicSalary}
-                onChange={handleChange}
-                required
-              />
-            </label>
+            <label>Basic Salary</label>
+            <input
+              type="number"
+              name="basicSalary"
+              id="basicSalary"
+              value={compensationInfo.basicSalary}
+              onChange={handleChange}
+              required
+            />
+            <label>Annual Basic Salary </label>
+            <input
+              type="number"
+              name="annualBasicSalary"
+              placeholder=""
+              id="annualBasicSalary"
+              value={compensationInfo.annualBasicSalary}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.addCompensation}>
+            <button onClick={handleSetCompensation}>Add Compensation</button>
           </div>
           <Table rows={compensations} deleteRow={handleDelete}></Table>
-          <button
-            // className={styles.addCompensation}
-            onClick={handleSetCompensation}
-          >
-            Add Compensation
-          </button>
           {compensationFormOpen && (
             <AddtionalCompensationForm
               closeForm={() => setCompensationFormOpen(false)}
