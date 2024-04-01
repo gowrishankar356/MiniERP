@@ -37,4 +37,10 @@
 
 </details>
 
+### Workforce Structures
+- Created different microservices for each worforce structure company, grade, department, job, location, and payroll elements.
+- For each microservice created RESTful APIs Create, Read, Update, and Delete which will communicate to respective PostgreSQL database to execute respective CRUD Procedures.
+- Please refer below images to see the homepages of workforce structures.
+
+
 
