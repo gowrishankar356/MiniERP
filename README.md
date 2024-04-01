@@ -1,5 +1,74 @@
 # MiniERP - An Enterprise Resource Planning System
 
+## Database:
+
+- Designed and Configured a database using PostgreSQL which consits of 20+ tables.
+- Created indexes to optimize the querying time and procedures for CRUD operations for each table.
+- Used those procedures to implement RESTful APIs using ExpressJS and NodeJS.
+- Below is one of the example procedure configured to retrieve employee details.
+
+```
+CREATE or REPLACE Function GetAllEmployeesHRDetails(p_date date)
+RETURNS TABLE(personid INT,
+    fullname text,
+	gender VARCHAR,
+	dateofbirth date,
+	demographicid int,
+	citizenship varchar,
+	citizenshipstatus varchar,
+	maritalstatus varchar,
+	contactid int,
+	email varchar,
+	mobileno bigint,
+	addressline1 varchar,
+	addressline2 varchar,
+	city varchar,
+	state varchar,
+	country varchar,
+	postalcode varchar,
+	assignmentid int,
+	assignmentstartdate date,
+	assignmentenddate date,
+	hiredate date,
+	companyid int,
+	companyname varchar,
+	departmentid int,
+	departmentname varchar,
+	jobid int,
+	jobname varchar,
+	gradeid int,
+	gradename varchar,
+	locationid int,
+	locationname varchar,
+	employeetype varchar,
+	managerid int,
+	managername varchar
+    )
+AS $$
+BEGIN
+RETURN QUERY
+select p.personid, p.title || ' ' || p.firstname || ' '|| p.lastname as fullname, p.gender, p.dateofbirth,
+d.demographicid, d.citizenship, d.status, d.maritalstatus,
+c.contactid, c.email, c.mobileno, c.addressline1, c.addressline2, c.city, c.state, c.country, c.postalcode,
+a.assignmentid, a.assignmentstartdate, a.assignmentenddate, a.hiredate, a.companyid, com.companyname,
+a.departmentid, dep.departmentname, a.jobid, j.jobname, a.gradeid, g.gradename, a.locationid, l.locationname, a.employeetype, a.managerid, man.firstname
+from person p, demographic d, contact c, assignment a, company com, Department dep,job j, grade g, location l, person man
+where p.personid = d.personid
+and d.personid = c.personid
+and a.personid = p.personid
+and a.assignmentstartdate <= p_date
+and a.assignmentenddate >= p_date
+and a.companyid = com.companyid
+and a.departmentid = dep.departmentid
+and a.jobid = j.jobid
+and g.gradeid = a.gradeid
+and a.locationid = l.locationid
+and p.personid = man.personid;
+END;
+$$ Language plpgsql;
+
+```
+
 ## Home Page:
 
 <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/DashBoard.png?raw=true" height="300" width="600">
