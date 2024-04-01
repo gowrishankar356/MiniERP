@@ -26,9 +26,9 @@
 <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee6.png?raw=true" alt="image-description" height="300" width="600"/>
 <details>
   <summary>Manage Employee</summary>
-  -Employee Home Page
+  <h4>Employee Home Page<h4>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee1.png?raw=true" alt="image-description" height="300" width="600"/>
-  - Hire an Employee
+  <h4>Hire an Employee</h4>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee2.png?raw=true" alt="image-description" height="300" width="600"/>
     <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee3.png?raw=true" alt="image-description" height="300" width="600"/>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageemployee4.png?raw=true" alt="image-description" height="300" width="600"/>
@@ -45,16 +45,16 @@
 
 <details>
   <summary>Workfroce Structures</summary>
-  -Companies Home Page
+  <h4>Companies Home Page</h4>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/managecompany.png?raw=true" alt="image-description" height="300" width="600"/>
-  -Grades Home Page
+  <h4>Grades Home Page</h4>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/managegrade.png?raw=true" alt="image-description" height="300" width="600"/>
-  -Departments Home Page
+  <h4>Departments Home Page</h4>
     <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/managedepartment.png?raw=true" alt="image-description" height="300" width="600"/>
-  -Jobs Home Page
+    <h4>Jobs Home Page</h4>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/managejob.png?raw=true" alt="image-description" height="300" width="600"/>
-  -Locations Home Page
+    <h4>Locations Home Page</h4>
   <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/managelocation.png?raw=true" alt="image-description" height="300" width="600"/>
-  -Elements Home Page
+    <h4>Elements Home Page</h4>
     <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/manageelement.png?raw=true" alt="image-description" height="300" width="600"/>
 </details>
