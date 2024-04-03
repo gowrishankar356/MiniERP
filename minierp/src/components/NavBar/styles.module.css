@@ -6,6 +6,10 @@ body {
     background-color: #05181A;
 }
 
+.unordered {
+    margin-left: 0px;
+}
+
 .nav_bar {
     display: flex;
     flex-direction: row;
@@ -71,16 +75,18 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 100px;
     padding-top: 2px;
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
 }
 
+.nav_bar_sub_content ul {
+    margin-left: 0px;
+}
+
 
 .nav_bar ul {
     list-style-type: none;
-    margin-left: 0;
 }
 
 .dropDown {

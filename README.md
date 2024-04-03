@@ -2,7 +2,7 @@
 
 ## Database:
 
-- Designed and Configured a database using PostgreSQL which consits of 20+ tables.
+- Designed and Configured a database using PostgreSQL which consists of 20+ tables.
 - Created indexes to optimize the querying time and procedures for CRUD operations for each table.
 - Used those procedures to implement RESTful APIs using ExpressJS and NodeJS.
 - Below is one of the example procedure configured to retrieve employee details.

@@ -13,6 +13,9 @@ const NavBar = () => {
   const [isSecondLevleActiveCoreHR, setIsSecondLevleActiveCoreHR] =
     useState(false);
 
+  const [isSecondLevleActivePayroll, setIsSecondLevleActivePayroll] =
+    useState(false);
+
   const [isSideNaveBarActive, SetIsSideNaveBarActive] = useState(false);
 
   // //add the active class
@@ -39,6 +42,14 @@ const NavBar = () => {
 
   const secondLevelInActiveHR = () => {
     setIsSecondLevleActiveCoreHR(false);
+  };
+
+  const secondLevelActivePayroll = () => {
+    setIsSecondLevleActivePayroll(true);
+  };
+
+  const secondLevelInActivePayroll = () => {
+    setIsSecondLevleActivePayroll(false);
   };
 
   const [color, setColor] = useState(false);
@@ -82,32 +93,6 @@ const NavBar = () => {
           </ul>
           <ul>
             <li className={styles.dropDown}>
-              <a onClick={secondLevelActiveHR}>Core HR Activities</a>
-              <Icon
-                src={"images/dropdown.svg"}
-                alt={"dropdown svg"}
-                height={12}
-                width={12}
-              ></Icon>
-            </li>
-
-            <ul
-              className={`${styles.second_levelnavHR} ${
-                isSecondLevleActiveCoreHR
-                  ? styles.second_level_active
-                  : styles.second_level_inactive
-              }`}
-              onClick={(e) => {
-                secondLevelInActiveHR();
-              }}
-            >
-              <li>
-                <a href="/employees">Manage Employees</a>
-              </li>
-            </ul>
-          </ul>
-          <ul>
-            <li className={styles.dropDown}>
               <a onClick={secondLevelActive}>Workforce Structures</a>
               <Icon
                 src={"images/dropdown.svg"}
@@ -145,6 +130,58 @@ const NavBar = () => {
                 </li>
               </ul>
             </li>
+          </ul>
+          <ul>
+            <li className={styles.dropDown}>
+              <a onClick={secondLevelActiveHR}>Core HR Activities</a>
+              <Icon
+                src={"images/dropdown.svg"}
+                alt={"dropdown svg"}
+                height={12}
+                width={12}
+              ></Icon>
+            </li>
+
+            <ul
+              className={`${styles.second_levelnavHR} ${
+                isSecondLevleActiveCoreHR
+                  ? styles.second_level_active
+                  : styles.second_level_inactive
+              }`}
+              onClick={(e) => {
+                secondLevelInActiveHR();
+              }}
+            >
+              <li>
+                <a href="/employees">Manage Employees</a>
+              </li>
+            </ul>
+          </ul>
+          <ul className={styles.unordered}>
+            <li className={styles.dropDown}>
+              <a onClick={secondLevelActivePayroll}>Payroll Activities</a>
+              <Icon
+                src={"images/dropdown.svg"}
+                alt={"dropdown svg"}
+                height={12}
+                width={12}
+              ></Icon>
+            </li>
+
+            <ul
+              className={`${styles.second_levelnavHR} ${
+                isSecondLevleActivePayroll
+                  ? styles.second_level_active
+                  : styles.second_level_inactive
+              }`}
+              onClick={(e) => {
+                secondLevelInActivePayroll();
+              }}
+            >
+              <li>
+                <a href="/payroll">Run Payroll</a>
+              </li>
+            </ul>
           </ul>
         </div>
         {/* <div
