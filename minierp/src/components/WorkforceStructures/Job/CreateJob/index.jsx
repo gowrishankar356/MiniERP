@@ -156,29 +156,29 @@ const CreateJob = ({ updateJob, closeForm, onSubmit, onUpdate }) => {
                 ))}
               </select>
             </label>
-            <label>
-              Location<br></br>
-              <select
-                id="locationid"
-                name="locationid"
-                value={job.locationid}
-                required
-                onChange={handleChangeLocation}
-                locationname={job.locationname}
-              >
-                <option>Select Company</option>
-                {locations.map((location) => (
-                  <option
-                    value={location.locationid}
-                    id={location.locationid}
-                    locationname={location.locationname}
-                  >
-                    {location.locationname}
-                  </option>
-                ))}
-              </select>
-            </label>
           </div>
+          <label>
+            Location<br></br>
+            <select
+              id="locationid"
+              name="locationid"
+              value={job.locationid}
+              required
+              onChange={handleChangeLocation}
+              locationname={job.locationname}
+            >
+              <option>Select Company</option>
+              {locations.map((location) => (
+                <option
+                  value={location.locationid}
+                  id={location.locationid}
+                  locationname={location.locationname}
+                >
+                  {location.locationname}
+                </option>
+              ))}
+            </select>
+          </label>
         </form>
         <div className={styles.buttons}>
           {updateJob ? (

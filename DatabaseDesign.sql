@@ -13,9 +13,6 @@ create table Person(
 	primary key(personid)	
 )
 
-select * from person
-
-delete from person where personid > 0
 
 --DB code for Demographic Table
 create table Demographic (
@@ -31,8 +28,6 @@ create table Demographic (
 	primary key(demographicid,personid),
 	constraint fk_demographic_person_personid foreign key(personid) references person(personid)
 );
-
-select * from demographic
 
 --DB code for Contact table
 create table Contact (
@@ -54,8 +49,6 @@ create table Contact (
 	primary key(contactId,personid),
 	constraint fk_contact_person_personid foreign key(personid) references person(personid)
 );
-
-drop table contact
 
 
 --DB code for Assignment Information table
@@ -117,8 +110,6 @@ create table elemententry (
 	constraint fk_elemententry_assignment_assignmentid foreign key(assignmentid) references Assignment(assignmentid),
 	constraint fk_elemententry_element_elementid foreign key(elementid) references element(elementid)
 );
-
-drop table elemententry
 
 --DB code for Company
 create table company (
@@ -208,14 +199,92 @@ create table element (
 );
 
 --Procedures
+--Location procedures
+CREATE or REPLACE function GetAllLocations() 
+RETURNS TABLE(locationid INT,
+    locationname VARCHAR,
+	addressline1 varchar,
+	addressline2 varchar,
+	city varchar,
+	state varchar,
+	country varchar,
+	postalcode varchar,
+    datecreated DATE,
+    createdby INT,
+    lastupdateddate DATE,
+    updatedby INT)
+AS $$
+BEGIN
+RETURN QUERY
+select l.locationid, l.locationname, l.addressline1, l.addressline2, l.city, l.state,
+l.country,  l.datecreated,  l.createdby, l.lastupdateddate, l.updatedby
+from location l;
+END;
+$$ Language plpgsql;
+
+-- Update Location Function
+CREATE or Replace function UpdateLocation(p_locationId integer, p_locationName varchar, p_addressline1 varchar,
+										  p_addressline2 varchar, p_city varchar, p_state varchar, p_country varchar,
+										  p_postalcode varchar, p_dateCreated date, p_createdBy integer, 
+										  p_lastUpdatedDate date, p_updatedBy integer)
+RETURNS VOID
+AS $$
+Update Location
+set locationname = p_locationName,
+addressline1 = p_addressline1,
+addressline2 = p_addressline2,
+city = p_city,
+state = p_state,
+country = p_country,
+postalcode = p_postalcode,
+datecreated = p_dateCreated,
+createdby = p_createdBy,
+lastupdateddate = p_lastUpdatedDate,
+updatedby = p_updatedBy
+where locationid = p_locationId
+$$ Language SQL;
+
 
 --Company Procedures
 --Get All Companies
-CREATE or REPLACE Procedure GetAllCompanies() 
-RETURNS TABLE
+CREATE or REPLACE function GetAllCompanies() 
+RETURNS TABLE(companyid INT,
+    companyname VARCHAR,
+	locationid INT,
+	locationname varchar,
+    datecreated DATE,
+    createdby INT,
+    lastupdateddate DATE,
+    updatedby INT)
 AS $$
-Select  c.companyid, c.companyname, l.locationname, c.datecreated, c.createdby, c.lastupdateddate, c.updatedby from company c, location l where c.locationid = l.locationid;
+BEGIN
+RETURN QUERY
+select c.companyid, c.companyname, c.locationid,l.locationname, c.datecreated,  c.createdby, c.lastupdateddate, c.updatedby
+from company c, location l
+where c.locationid = l.locationid;
+END;
+$$ Language plpgsql;
+
+--Update Company
+CREATE or Replace function UpdateCompany(p_companyId integer, 
+										 p_companyName varchar, 
+										 p_locationId integer, 
+										 p_dateCreated date, 
+										 p_createdBy integer, 
+										 p_lastUpdatedDate date, 
+										 p_updatedBy integer)
+RETURNS VOID
+AS $$
+Update Company
+set companyname = p_companyName,
+locationid = p_locationId,
+datecreated = p_dateCreated,
+createdby = p_createdBy,
+lastupdateddate = p_lastUpdatedDate,
+updatedby = p_updatedBy
+where companyid = p_companyId
 $$ Language SQL;
+
 
 --Update Grade
 CREATE or Replace function UpdateGrade(p_gradeId integer, p_gradeName varchar, p_minimumSalary integer, p_maximumSalary integer, p_dateCreated date, p_createdBy integer, p_lastUpdatedDate date, p_updatedBy integer)

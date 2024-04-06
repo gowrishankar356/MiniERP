@@ -5,6 +5,7 @@ import axios from "axios";
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
 export const Table = ({ rows, deleteCompany, updateCompany }) => {
+  console.log(rows);
   const handleDelete = async (companyid) => {
     try {
       console.log(companyid);
