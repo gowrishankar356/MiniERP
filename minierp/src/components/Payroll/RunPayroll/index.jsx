@@ -1,90 +1,62 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NavBar from "../../NavBar";
+import Table from "../PayrollTable";
 
 import styles from "./styles.module.css";
 
-const CreateElement = ({ updateElement, closeForm, onSubmit, onUpdate }) => {
-  const [element, setElement] = useState({
-    elementid: updateElement ? updateElement?.elementid : 0,
-    elementname: updateElement ? updateElement?.elementname : "",
-    elementtype: updateElement ? updateElement.elementtype : "",
-    periodicity: updateElement ? updateElement.periodicity : "",
-    companyid: updateElement ? updateElement.companyid : 0,
-    companyname: updateElement ? updateElement.companyname : 0,
-    datecreated: updateElement ? updateElement?.datecreated : Date(),
-    createdby: updateElement ? updateElement?.createdby : 0,
-    lastupdateddate: updateElement ? updateElement?.lastupdateddate : Date(),
-    updatedby: updateElement ? updateElement?.updatedby : 0,
+const RunPayroll = () => {
+  const [companies, setCompanies] = useState([]);
+  const [payroll, setParoll] = useState({ company: 0, month: 0, year: 0 });
+  const [payrollResults, setPayrollResults] = useState({
+    company: 0,
+    month: 0,
+    year: 0,
   });
 
-  const [companies, setCompanies] = useState([]);
+  const months = [
+    { month_no: 1, month_name: "January" },
+    { month_no: 2, month_name: "February" },
+    { month_no: 3, month_name: "March" },
+    { month_no: 4, month_name: "April" },
+    { month_no: 5, month_name: "May" },
+    { month_no: 6, month_name: "June" },
+    { month_no: 7, month_name: "July" },
+    { month_no: 8, month_name: "August" },
+    { month_no: 9, month_name: "September" },
+    { month_no: 10, month_name: "October" },
+    { month_no: 11, month_name: "November" },
+    { month_no: 12, month_name: "December" },
+  ];
 
   const handleChange = (e) => {
-    setElement((prev) => ({
+    setParoll((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
-  const handleChangeCompany = (e) => {
-    setElement((prev) => ({
-      ...prev,
-      companyid: e.target.value,
-      companyname:
-        e.target.options[e.target.selectedIndex].getAttribute("companyname"),
-    }));
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3300/getallcompanies`
+        );
+        setCompanies(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
 
-  const handleCancel = async (e) => {
-    e.preventDefault();
-    try {
-      closeForm();
-    } catch (error) {
-      console.log(error);
-      alert("Error cancelling current transaction!");
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(
-        `http://localhost:3300/createelement`,
-        element
-      );
-      const companyid = element.companyid;
-      setElement((prev) => ({
-        ...prev,
-        elementid: res.data[0]?.elementid,
-      }));
-      onSubmit({
-        ...element,
-        companyid: Number(companyid),
-        elementid: res.data[0]?.elementid,
-      });
-      closeForm();
-    } catch (error) {
-      console.log(error);
-      alert("Error adding Job. Please try again.");
-    }
-  };
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`http://localhost:3300/updateElement`, element);
-      onUpdate(element);
-      closeForm();
-    } catch (error) {
-      console.log(error);
-      alert("Error updating Element. Please try again.");
-    }
-  };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3300/getcompanies`);
+        const response = await axios.get(
+          `http://localhost:3300/getPayrollResults`
+        );
         setCompanies(response.data.rows);
       } catch (error) {
         console.error("Error:", error);
@@ -95,91 +67,49 @@ const CreateElement = ({ updateElement, closeForm, onSubmit, onUpdate }) => {
   }, []);
 
   return (
-    <div>
-      <div className={styles.elementForm}>
-        <h2>Create Element</h2>
-        <form>
-          <div className={styles.row}>
-            <label>
-              Element Name<br></br>
-              <input
-                type="text"
-                name="elementname"
-                id="elementname"
-                value={element.elementname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Element Type<br></br>
-              <select
-                id="elementtype"
-                name="elementtype"
-                value={element.elementtype}
-                onChange={handleChange}
-              >
-                <option value="">Select Element Type</option>
-                <option value="STD_ERR">Standard Earnings</option>
-                <option value="SUP_ERR">Supplement Earnings</option>
-                <option value="VOL_DED">Voluntary Deductions</option>
-                <option value="INVOL_DED">Involuntary Deductions</option>
-              </select>
-            </label>
-          </div>
-          <div className={styles.row}>
-            <label>
-              Company<br></br>
-              <select
-                id="companyid"
-                name="companyid"
-                value={element.companyid}
-                required
-                onChange={handleChangeCompany}
-                companyname={element.companyname}
-              >
-                <option>Select Company</option>
-                {companies.map((company) => (
-                  <option
-                    value={company.companyid}
-                    id={company.companyid}
-                    companyname={company.companyname}
-                  >
-                    {company.companyname}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Periodicity<br></br>
-              <select
-                id="periodicity"
-                name="periodicity"
-                value={element.periodicity}
-                onChange={handleChange}
-              >
-                <option value="">Select Periodicity of Element</option>
-                <option value="R">Recurring</option>
-                <option value="NR">Non Recurring</option>
-              </select>
-            </label>
-          </div>
-        </form>
-        <div className={styles.buttons}>
-          {updateElement ? (
-            <button type="submit" onClick={handleUpdate}>
-              Update Element
-            </button>
-          ) : (
-            <button type="submit" onClick={handleSubmit}>
-              Create Element
-            </button>
-          )}
-          <button onClick={handleCancel}>Cancel</button>
+    <div className={styles.payrollContainer}>
+      <NavBar></NavBar>
+      <div className={styles.payrollHomePageontainer}>
+        <h1>Run Payroll</h1>
+        <div className={styles.payrollSearchForm}>
+          <form>
+            <label> Company</label>
+            <select name="company" id="company" onChange={handleChange}>
+              <option value={0}>Select Company</option>
+              {companies.map((company) => (
+                <option value={Number(company.companyid)}>
+                  {company.locationname}
+                </option>
+              ))}
+            </select>
+            <label> Pryoll Month</label>
+            <select name="month" id="month" onChange={handleChange}>
+              <option value={0}>Select Month</option>
+              {months.map((month) => (
+                <option value={Number(month.month_no)}>
+                  {month.month_name}
+                </option>
+              ))}
+            </select>
+            <label> Payroll Year</label>
+            <select name="year" id="year" onChange={handleChange}>
+              <option value={0}>Select Month</option>
+              <option value={2024}>2024</option>
+              <option value={2025}>2025</option>
+              <option value={2026}>2026</option>
+              <option value={2027}>2027</option>
+              <option value={2028}>2028</option>
+              <option value={2029}>2029</option>
+              <option value={2030}>2030</option>
+            </select>
+          </form>
+        </div>
+        <div className={styles.companyTable}>
+          <Table rows={payrollResults}></Table>
         </div>
       </div>
     </div>
   );
 };
 
-export default CreateElement;
+export default RunPayroll;

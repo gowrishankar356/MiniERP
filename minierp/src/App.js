@@ -4,6 +4,7 @@ import PersonalDetailsForm from "./components/HRActivities/Hiring/CreatePerson/P
 import DemographicInfo from "./components/HRActivities/Hiring/CreatePerson/DemographicDetails";
 import EmploymentInfo from "./components/HRActivities/Hiring/CreatePerson/EmploymentDetails";
 import CompensationInfo from "./components/HRActivities/Hiring/CreatePerson/CompensationDetails";
+import RunPayroll from "./components/Payroll/RunPayroll";
 
 //HR Homepages
 import EmployeesHomepPage from "./components/HRActivities/Hiring/EmployeesHomePage";
@@ -49,6 +50,8 @@ function App() {
           <Route path="/createDepartment" element={<CreateDepartment />} />
           <Route path="/element" element={<ElementHomePage />} />
           <Route path="/createElement" element={<CreateElement />} />
+          RunPayroll
+          <Route path="/payroll" element={<RunPayroll />} />
         </Routes>
       </BrowserRouter>
     </div>
