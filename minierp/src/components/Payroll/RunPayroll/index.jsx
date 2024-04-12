@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 
 const RunPayroll = () => {
   const [companies, setCompanies] = useState([]);
-  const [payroll, setParoll] = useState({ company: 0, month: 0, year: 0 });
+  const [payrolll, setParoll] = useState({ company: 0, month: 0, year: 0 });
   const [payrollResults, setPayrollResults] = useState({
     company: 0,
     month: 0,
