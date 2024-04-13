@@ -783,3 +783,13 @@ from GetAllEmployeesHRDetails();
     return res.json(result);
   });
 });
+
+//get all employees
+app.get("/getPayrollResults", async (req, res) => {
+  const results = `select personid, name, payrollresultid, payrolldate, paidamount from GetAllPayrollResults();`;
+  client.query(results, (err, result) => {
+    if (err) return res.json(err);
+    console.log(result);
+    return res.json(result);
+  });
+});

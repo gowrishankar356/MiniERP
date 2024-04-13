@@ -21,8 +21,9 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
       <table className={styles.companyTable}>
         <thead>
           <tr>
-            <th>Company Name</th>
-            <th>Location</th>
+            <th>Name</th>
+            <th>Payroll Date</th>
+            <th>Paid Amount</th>
             <th className={styles.expand}>Actions</th>
           </tr>
         </thead>
@@ -30,8 +31,9 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
           {rows.map((row, idx) => {
             return (
               <tr key={idx}>
-                <td>{row.companyname}</td>
-                <td>{row.locationname}</td>
+                <td>{row.name}</td>
+                <td>{row.payrolldate}</td>
+                <td>{row.paidamount}</td>
                 <td>
                   <span className={styles.actions}>
                     <BsFillPencilFill

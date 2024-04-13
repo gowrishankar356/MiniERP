@@ -7,12 +7,8 @@ import styles from "./styles.module.css";
 
 const RunPayroll = () => {
   const [companies, setCompanies] = useState([]);
-  const [payrolll, setParoll] = useState({ company: 0, month: 0, year: 0 });
-  const [payrollResults, setPayrollResults] = useState({
-    company: 0,
-    month: 0,
-    year: 0,
-  });
+  const [payroll, setParoll] = useState({ company: 0, month: 0, year: 0 });
+  const [payrollResults, setPayrollResults] = useState([]);
 
   const months = [
     { month_no: 1, month_name: "January" },
@@ -57,7 +53,7 @@ const RunPayroll = () => {
         const response = await axios.get(
           `http://localhost:3300/getPayrollResults`
         );
-        setCompanies(response.data.rows);
+        setPayrollResults(response.data.rows);
       } catch (error) {
         console.error("Error:", error);
       }
