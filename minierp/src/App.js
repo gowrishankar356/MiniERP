@@ -11,6 +11,7 @@ import EmployeesHomepPage from "./components/HRActivities/Hiring/EmployeesHomePa
 
 //Payroll Homepage
 import ElementHomePage from "./components/Payroll/Elements/ElementHomePage";
+import PayrollResults from "./components/Payroll/PayrollResults";
 
 //WorkForce Homepage
 import CompanyHomePage from "./components/WorkforceStructures/Company/CompanyHomePage";
@@ -52,6 +53,7 @@ function App() {
           <Route path="/createElement" element={<CreateElement />} />
           RunPayroll
           <Route path="/payroll" element={<RunPayroll />} />
+          <Route path="/payrollResults" element={<PayrollResults />} />
         </Routes>
       </BrowserRouter>
     </div>

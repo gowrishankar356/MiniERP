@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../NavBar";
 import Table from "../PayrollTable";
-import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
-const RunPayroll = () => {
+const PayrollResults = () => {
   const [companies, setCompanies] = useState([]);
   const [payroll, setParoll] = useState({ company: 0, month: 0, year: 0 });
-  const navigate = useNavigate();
+  const [payrollResults, setPayrollResults] = useState([]);
 
   const months = [
     { month_no: 1, month_name: "January" },
@@ -32,17 +31,6 @@ const RunPayroll = () => {
     }));
   };
 
-  const handleSubmitPayroll = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(`http://localhost:3300/runPayroll`, payroll);
-      navigate("/payrollResults");
-    } catch (error) {
-      console.log(error);
-      alert("Error running Payroll. Please try again.");
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,20 +46,20 @@ const RunPayroll = () => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3300/getPayrollResults`
-  //       );
-  //       setPayrollResults(response.data.rows);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3300/getPayrollResults`
+        );
+        setPayrollResults(response.data.rows);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.payrollContainer}>
@@ -110,13 +98,14 @@ const RunPayroll = () => {
               <option value={2030}>2030</option>
             </select>
           </form>
-          <button onClick={(e) => handleSubmitPayroll(e)}>
-            Submit Payroll
-          </button>
+          <button>Submit Payroll</button>
+        </div>
+        <div className={styles.companyTable}>
+          <Table rows={payrollResults}></Table>
         </div>
       </div>
     </div>
   );
 };
 
-export default RunPayroll;
+export default PayrollResults;

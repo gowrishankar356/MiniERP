@@ -793,3 +793,25 @@ app.get("/getPayrollResults", async (req, res) => {
     return res.json(result);
   });
 });
+
+//run payroll
+app.post("/runPayroll", async (req, res) => {
+  const company = req.body.company;
+  const month = req.body.month;
+  const year = req.body.year;
+
+  var payrollEndDate = new Date(year, month, 0);
+  var payrollStartDate = new Date(year, month - 1, 1);
+  var curDate = new Date();
+
+  const results = `select RunPayroll($1, $2, $3);`;
+  client.query(
+    results,
+    [payrollStartDate, payrollEndDate, curDate],
+    (err, result) => {
+      if (err) return res.json(err);
+      console.log(result);
+      return res.json(result);
+    }
+  );
+});

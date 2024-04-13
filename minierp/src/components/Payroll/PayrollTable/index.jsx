@@ -23,8 +23,8 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
           <tr>
             <th>Name</th>
             <th>Payroll Date</th>
-            <th>Paid Amount</th>
-            <th className={styles.expand}>Actions</th>
+            <th className={styles.expand}>Paid Amount</th>
+            {/* <th className={styles.expand}>Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
                 <td>{row.name}</td>
                 <td>{row.payrolldate}</td>
                 <td>{row.paidamount}</td>
-                <td>
+                {/* <td>
                   <span className={styles.actions}>
                     <BsFillPencilFill
                       onClick={() => updateCompany(row)}
@@ -44,7 +44,7 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
                       onClick={() => handleDelete(row.companyid)}
                     ></BsFillTrashFill>
                   </span>
-                </td>
+                </td> */}
               </tr>
             );
           })}
