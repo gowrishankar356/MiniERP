@@ -157,7 +157,7 @@ const NavBar = () => {
               </li>
             </ul>
           </ul>
-          <ul className={styles.unordered}>
+          <ul>
             <li className={styles.dropDown}>
               <a onClick={secondLevelActivePayroll}>Payroll Activities</a>
               <Icon
@@ -180,6 +180,9 @@ const NavBar = () => {
             >
               <li>
                 <a href="/payroll">Run Payroll</a>
+              </li>
+              <li>
+                <a href="/payrollResults">Payroll Results</a>
               </li>
             </ul>
           </ul>

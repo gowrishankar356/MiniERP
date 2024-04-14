@@ -89,6 +89,9 @@ const SideNavBar = () => {
               <li>
                 <a href="/payroll">Run Payroll</a>
               </li>
+              <li>
+                <a href="/payrollResults">Payroll Results</a>
+              </li>
             </ul>
           </li>
         </ul>

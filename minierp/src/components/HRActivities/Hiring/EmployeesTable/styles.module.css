@@ -13,6 +13,7 @@
     width: 90rem;
     max-height: 30rem;
     overflow-x: auto;
+    scrollbar-color: #05181A #6DAAC0;
 }
 
 .jobTable img {
