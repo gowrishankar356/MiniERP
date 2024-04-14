@@ -6,21 +6,35 @@ The MiniERP client-server application is an enterprise resource planning system 
 
 ## Key Features:
 
-#### 1. Comprehensive Employee Management:
+##### 1. Comprehensive Employee Management:
 
 The application provides a centralized platform for storing and managing all employee-related information, such as personal details (name, contact information, etc.) and employment history (position, department, etc.). This ensures that all relevant data is easily accessible and up-to-date.
 
-#### 2. Leave Management:
+##### 2. Leave Management:
 
 The system includes functionality for tracking employee leave requests, approvals, and balances. Managers can efficiently manage leave requests, and employees can easily view their remaining leave balances and request time off as needed.
 
-#### 3. Accurate Payroll Calculation:
+##### 3. Accurate Payroll Calculation:
 
 One of the critical features of the MiniERP system is its ability to calculate monthly payroll with 100% accuracy. By integrating with relevant data sources and applying predefined payroll rules, the system automates the payroll process, reducing the risk of errors and ensuring timely and accurate payments to employees.
 
-#### 4. Data Visualization:
+##### 4. Data Visualization:
 
 To provide insights into payroll trends and employee-related metrics, the application includes a dashboard module. This dashboard utilizes React-Table and React-ChartJS libraries to visualize data on salaries paid, number of employees, and other key performance indicators. This visualization enables stakeholders to track important metrics at a glance and make data-driven decisions.
+
+## Technologies Used:
+
+##### Client-Side:
+
+The front-end of the application is built using React.js, a popular JavaScript library for building user interfaces. React-Table and React-ChartJS libraries are used for displaying tabular and graphical data, respectively, providing a responsive and interactive user experience.
+
+##### Server-Side:
+
+The back-end of the application is implemented using a server-side technology stack Node.js to handle data storage, retrieval, and business logic. The server-side architecture ensures data security, scalability, and performance.
+
+##### Database:
+
+Employee data is stored in a secure and reliable database system PostgreSQL to ensure data integrity and accessibility.
 
 ## Database:
 
