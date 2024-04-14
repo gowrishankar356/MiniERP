@@ -21,6 +21,7 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
       <table className={styles.companyTable}>
         <thead>
           <tr>
+            <th>{"       "}</th>
             <th>Name</th>
             <th>Payroll Date</th>
             <th className={styles.expand}>Paid Amount</th>
@@ -32,6 +33,12 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
             const payrollDate = new Date(row.payrolldate);
             return (
               <tr key={idx}>
+                <td>
+                  <img
+                    src={"images/" + row.personid.toString() + ".jpeg"}
+                    alt={row.personid.toString() + "Pic"}
+                  ></img>
+                </td>
                 <td>{row.name}</td>
                 <td>
                   {payrollDate.getFullYear() +
