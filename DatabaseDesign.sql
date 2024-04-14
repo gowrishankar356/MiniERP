@@ -483,17 +483,95 @@ create table PayrollResults (
 	CreatedBy int not null,
 	LastUpdatedDate date,
 	UpdatedBy int,
-	primary key(contactId,personid),
-	constraint fk_contact_person_personid foreign key(personid) references person(personid)
+	primary key(PayrollResultId),
+	constraint fk_PayrollResults_person_personid foreign key(personid) references person(personid)
 );
 
-	
-	
+select * from elemententry
+select * from payrollResults
 
-	
+Create type PayrollDetail as
+(
+	personid int, 
+    name varchar,
+    assignmentstartdate DATE,
+    assignmentenddate DATE,
+    elemententryvalue Int,
+    elemententrystartdate DATE,
+    elemententryenddate DATE,
+    periodicity varchar
+);
+
+CREATE OR REPLACE VIEW PayrollDetails as
+select p.personid, p.firstname || ' ' || p.lastname as name, a.assignmentstartdate, a.assignmentenddate, ee.elemententryvalue,
+ee.elemententrystartdate,  ee.elemententryenddate, e.periodicity
+from person p, assignment a, elemententry ee, element e
+where p.personid = a.personid
+and a.assignmentid = ee.assignmentid
+and ee.elementid = e.elementid
 
 
+drop view PayrollDetails
+
+--Run Payroll Function
+CREATE or REPLACE Function RunPayroll(p_PayrollStartDate Date,p_PayrollEndDate Date,  p_CurDate Date) 
+RETURNS VOID
+AS $$
+DECLARE
+persons text;
+payrollQuery text;
+i int;
+j PayrollDetail;
+payrollStartDate date;
+payrollEndDate date;
+monthPaidAmount BigInt;
+BEGIN
+persons := 'Select personid from person;';
+for i in execute persons
+	Loop
+	payrollQuery := 'Select q.personid, q.name, q.assignmentstartdate ,q.assignmentenddate,q.elemententryvalue , q.elemententrystartdate,
+					 q.elemententryenddate, q.periodicity from PayrollDetails q where q.personid = ' || i;
+	monthPaidAmount := 0;
+	for j in execute payrollQuery
+		Loop
+		payrollStartDate := greatest(p_PayrollStartDate, j.assignmentstartdate, j.elemententrystartdate);
+		payrollEndDate := least(p_PayrollEndDate, j.assignmentenddate, j.elemententryenddate);
+		monthPaidAmount := monthPaidAmount + 
+							((j.elemententryvalue)*(payrollEndDate-payrollStartDate+1))/(p_PayrollEndDate - p_PayrollStartDate + 1);
+	end loop;
+	Insert into payrollResults(personid, payrolldate, paidamount, datecreated,createdby) 
+	values(i,p_PayrollEndDate,monthPaidAmount, p_CurDate,1 );
+end loop;
+END;
+$$ Language plpgsql;
+
+select RunPayroll('2024-04-01','2024-04-30','2024-04-06');
+
+select * from PayrollResults
 	
+truncate table PayrollResults
+
+
+--Get All Payroll Results
+CREATE or REPLACE Function GetAllPayrollResults() 
+RETURNS TABLE(personid INT,
+			  name text,
+			  payrollresultid int,
+			  payrolldate date,
+			  paidamount int
+    )
+AS $$
+BEGIN
+RETURN QUERY
+select p.personid, p.firstname || ' ' || p.lastname as name, pr.payrollresultid, pr.payrolldate, pr.paidamount
+from person p, payrollresults pr
+where p.personid = pr.personid;
+END;
+$$ Language plpgsql;
+
+drop function GetAllPayrollResults;
+
+select personid, name, payrollresultid, payrolldate, paidamount from GetAllPayrollResults();
 
 
 
