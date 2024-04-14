@@ -1,5 +1,27 @@
 # MiniERP - An Enterprise Resource Planning System
 
+## Project Overview:
+
+The MiniERP client-server application is an enterprise resource planning system designed to streamline the management of employee data, including personal details, employment history, leave records, and payroll information. The primary goal of the system is to ensure accurate and efficient management of employee-related data while facilitating seamless communication between different departments within the organization.
+
+## Key Features:
+
+#### 1. Comprehensive Employee Management:
+
+The application provides a centralized platform for storing and managing all employee-related information, such as personal details (name, contact information, etc.) and employment history (position, department, etc.). This ensures that all relevant data is easily accessible and up-to-date.
+
+#### 2. Leave Management:
+
+The system includes functionality for tracking employee leave requests, approvals, and balances. Managers can efficiently manage leave requests, and employees can easily view their remaining leave balances and request time off as needed.
+
+#### 3. Accurate Payroll Calculation:
+
+One of the critical features of the MiniERP system is its ability to calculate monthly payroll with 100% accuracy. By integrating with relevant data sources and applying predefined payroll rules, the system automates the payroll process, reducing the risk of errors and ensuring timely and accurate payments to employees.
+
+#### 4. Data Visualization:
+
+To provide insights into payroll trends and employee-related metrics, the application includes a dashboard module. This dashboard utilizes React-Table and React-ChartJS libraries to visualize data on salaries paid, number of employees, and other key performance indicators. This visualization enables stakeholders to track important metrics at a glance and make data-driven decisions.
+
 ## Database:
 
 - Designed and Configured a database using PostgreSQL which consists of 20+ tables.
