@@ -116,9 +116,6 @@ where p.personid = a.personid
 and a.assignmentid = ee.assignmentid
 and ee.elementid = e.elementid
 
-
-drop view PayrollDetails
-
 --Run Payroll Function
 CREATE or REPLACE Function RunPayroll(p_PayrollStartDate Date,p_PayrollEndDate Date,  p_CurDate Date)
 RETURNS VOID
