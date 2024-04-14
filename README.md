@@ -105,6 +105,54 @@ $$ Language plpgsql;
 
 ```
 
+Below procedure and views are used to implement monthly payroll.
+
+```
+CREATE OR REPLACE VIEW PayrollDetails as
+select p.personid, p.firstname || ' ' || p.lastname as name, a.assignmentstartdate, a.assignmentenddate, ee.elemententryvalue,
+ee.elemententrystartdate,  ee.elemententryenddate, e.periodicity
+from person p, assignment a, elemententry ee, element e
+where p.personid = a.personid
+and a.assignmentid = ee.assignmentid
+and ee.elementid = e.elementid
+
+
+drop view PayrollDetails
+
+--Run Payroll Function
+CREATE or REPLACE Function RunPayroll(p_PayrollStartDate Date,p_PayrollEndDate Date,  p_CurDate Date)
+RETURNS VOID
+AS $$
+DECLARE
+persons text;
+payrollQuery text;
+i int;
+j PayrollDetail;
+payrollStartDate date;
+payrollEndDate date;
+monthPaidAmount BigInt;
+BEGIN
+persons := 'Select personid from person;';
+for i in execute persons
+	Loop
+	payrollQuery := 'Select q.personid, q.name, q.assignmentstartdate ,q.assignmentenddate,q.elemententryvalue , q.elemententrystartdate,
+					 q.elemententryenddate, q.periodicity from PayrollDetails q where q.personid = ' || i;
+	monthPaidAmount := 0;
+	for j in execute payrollQuery
+		Loop
+		payrollStartDate := greatest(p_PayrollStartDate, j.assignmentstartdate, j.elemententrystartdate);
+		payrollEndDate := least(p_PayrollEndDate, j.assignmentenddate, j.elemententryenddate);
+		monthPaidAmount := monthPaidAmount +
+							((j.elemententryvalue)*(payrollEndDate-payrollStartDate+1))/(p_PayrollEndDate - p_PayrollStartDate + 1);
+	end loop;
+	Insert into payrollResults(personid, payrolldate, paidamount, datecreated,createdby)
+	values(i,p_PayrollEndDate,monthPaidAmount, p_CurDate,1 );
+end loop;
+END;
+$$ Language plpgsql;
+
+```
+
 ## Home Page:
 
 <img src="https://github.com/gowrishankar356/MiniERP/blob/main/readme_pics/DashBoard.png?raw=true" height="300" width="600">
