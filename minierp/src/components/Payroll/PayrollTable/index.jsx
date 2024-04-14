@@ -29,10 +29,17 @@ export const Table = ({ rows, deleteCompany, updateCompany }) => {
         </thead>
         <tbody>
           {rows.map((row, idx) => {
+            const payrollDate = new Date(row.payrolldate);
             return (
               <tr key={idx}>
                 <td>{row.name}</td>
-                <td>{row.payrolldate}</td>
+                <td>
+                  {payrollDate.getFullYear() +
+                    "-" +
+                    payrollDate.getMonth() +
+                    "-" +
+                    payrollDate.getDay()}
+                </td>
                 <td>{row.paidamount}</td>
                 {/* <td>
                   <span className={styles.actions}>

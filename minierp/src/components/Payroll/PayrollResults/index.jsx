@@ -100,7 +100,7 @@ const PayrollResults = () => {
           </form>
           <button>Submit Payroll</button>
         </div>
-        <div className={styles.companyTable}>
+        <div className={styles.payrollResultsTable}>
           <Table rows={payrollResults}></Table>
         </div>
       </div>
